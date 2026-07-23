@@ -21,10 +21,29 @@ const mono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const description =
+  "A hands-on crash course in loop engineering: build agents that run themselves — on a heartbeat, checked, and human-gated. 6 parts, 20 starter kits, 11 projects. MIT licensed.";
+
+// Resolved to the real origin at deploy time via NEXT_PUBLIC_SITE_URL (deploy-loop
+// sets this); the fallback only affects the absolute OG-image URL, not the markup.
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://loop-engineering.vercel.app";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Loop Engineering — Crash Course",
-  description:
-    "A hands-on crash course in loop engineering: build agents that run themselves. 101 lessons, 6 parts, 20 starter kits. MIT licensed.",
+  description,
+  openGraph: {
+    type: "website",
+    siteName: "Loop Engineering — Crash Course",
+    title: "Loop Engineering — Crash Course",
+    description,
+    url: "/",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Loop Engineering — Crash Course",
+    description,
+  },
 };
 
 export default function RootLayout({
@@ -37,7 +56,15 @@ export default function RootLayout({
       lang="en"
       className={`${display.variable} ${body.variable} ${mono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="flex min-h-full flex-col overflow-x-hidden">
+        <a
+          href="#top"
+          className="sr-only rounded bg-accent px-4 py-2 text-accent-fg focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100]"
+        >
+          Skip to content
+        </a>
+        {children}
+      </body>
     </html>
   );
 }
