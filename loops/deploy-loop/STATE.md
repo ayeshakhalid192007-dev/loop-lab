@@ -25,6 +25,15 @@ Statuses: ☐ todo · ▶ in progress · ✅ done · ⛔ blocked
 - **Copy button works**: clicking it wrote the exact clone command to the clipboard and flipped the label to "Copied".
 - **Private repo confirmed user-facing**: in an unauthenticated browser, the GitHub links render "Page not found" — the paths are correct, but the repo must be public before these work for visitors. (Still item #1 below.)
 
+## Post-QA design update (2026-07-23, `6926915`) — re-QA'd
+Human-directed redesign after the QA above: new **olive/brass/sand** palette,
+IntersectionObserver scroll reveals (reliable cross-browser, replacing the
+Chromium-only scroll-timeline), JS scroll-linked hero parallax, card hover
+effects, and a premium animated loop motif. Re-verified on the new build: **axe
+0 violations / 21 passes**, reveals fire on scroll, 0 console errors, build clean.
+Checks 1–3, 6–7 still green; a fresh 375px screenshot pass is cheap to redo but the
+layout structure is unchanged (colours/animation only; `overflow-x-hidden` intact).
+
 ## Pre-deploy human decisions (carried over from build-loop)
 
 - **Course repo is PRIVATE** — every outbound link is path-correct but 404s for
