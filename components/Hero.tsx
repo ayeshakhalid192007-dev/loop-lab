@@ -1,4 +1,5 @@
 import { PillButton } from "@/components/ui/PillButton";
+import { DepthField } from "@/components/DepthField";
 import { hero } from "@/lib/content";
 
 /**
@@ -12,7 +13,8 @@ export function Hero() {
       id="top"
       className="relative overflow-hidden border-b border-border"
     >
-      <div className="mx-auto grid w-full max-w-6xl items-center gap-12 px-6 py-24 md:py-32 lg:grid-cols-[1.1fr_0.9fr]">
+      <DepthField />
+      <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-12 px-6 py-24 md:py-32 lg:grid-cols-[1.1fr_0.9fr]">
         <div>
           <h1 className="font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-text sm:text-5xl md:text-6xl">
             {hero.headline}
@@ -59,6 +61,18 @@ function LoopMotif() {
         fill="none"
         stroke="var(--border)"
         strokeWidth="1"
+      />
+      {/* A constant, subtle signal that something is cycling (§6.3). */}
+      <circle
+        className="loop-dash"
+        cx="100"
+        cy="100"
+        r="74"
+        fill="none"
+        stroke="var(--accent)"
+        strokeOpacity="0.55"
+        strokeWidth="1.5"
+        strokeDasharray="6 8"
       />
       {nodes.map((n, i) => {
         const next = nodes[(i + 1) % nodes.length];

@@ -91,3 +91,69 @@ body {
     transform: none;
   }
 }
+
+/* Step 8 — hero depth field (§6.2) + loop-motif dash (§6.3). Same double-guard as
+   the reveals: reduced-motion and browsers without scroll timelines get a static
+   field. Only transform / stroke-dashoffset animate; layer blur is a one-time
+   filter (never animated) so the compositor caches it. Drift is driven by the
+   --mx/--my CSS vars that DepthField's rAF loop writes — no layout, no re-render. */
+@media (prefers-reduced-motion: no-preference) {
+  .depth-drift-far {
+    transform: translate3d(calc(var(--mx, 0) * 6px), calc(var(--my, 0) * 6px), 0);
+  }
+  .depth-drift-mid {
+    transform: translate3d(calc(var(--mx, 0) * 14px), calc(var(--my, 0) * 14px), 0);
+  }
+  .depth-drift-near {
+    transform: translate3d(calc(var(--mx, 0) * 26px), calc(var(--my, 0) * 26px), 0);
+  }
+
+  @supports (animation-timeline: view()) {
+    .depth-far {
+      animation: depth-far linear both;
+      animation-timeline: view();
+    }
+    .depth-mid {
+      animation: depth-mid linear both;
+      animation-timeline: view();
+    }
+    .depth-near {
+      animation: depth-near linear both;
+      animation-timeline: view();
+    }
+  }
+
+  .loop-dash {
+    animation: loop-dash 8s linear infinite;
+  }
+}
+
+@keyframes depth-far {
+  from {
+    transform: translateY(20px);
+  }
+  to {
+    transform: translateY(-40px);
+  }
+}
+@keyframes depth-mid {
+  from {
+    transform: translateY(50px);
+  }
+  to {
+    transform: translateY(-110px);
+  }
+}
+@keyframes depth-near {
+  from {
+    transform: translateY(90px);
+  }
+  to {
+    transform: translateY(-200px);
+  }
+}
+@keyframes loop-dash {
+  to {
+    stroke-dashoffset: -140;
+  }
+}
