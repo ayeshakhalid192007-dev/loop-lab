@@ -33,7 +33,7 @@ export function LoopAnatomy() {
             <h3 className="mt-3 font-display text-base font-bold tracking-tight">
               {part.name}
             </h3>
-            <p className="mt-0.5 font-mono text-[11px] uppercase tracking-wider text-accent/80">
+            <p className="mt-0.5 font-mono text-[11px] uppercase tracking-wider text-accent">
               {part.metaphor}
             </p>
             <p className="mt-2 text-sm text-muted">{part.answers}</p>
