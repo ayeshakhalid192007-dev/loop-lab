@@ -1,8 +1,8 @@
 # build-loop — STATE.md
 
-**Last iteration:** 2026-07-23 (step 6 committed `b60613e`)
-**Current step:** 7 — Motion baseline: `.reveal` + stagger (§6.1)
-**Progress:** 6 / 10 — static page complete
+**Last iteration:** 2026-07-23 (step 7 committed `fef46b6`)
+**Current step:** 8 — Signature motion: hero depth field + connector draw (§6.2–6.3)
+**Progress:** 7 / 10
 
 ## Build board
 
@@ -16,8 +16,8 @@ Statuses: ☐ todo · ▶ in progress · ✅ done · ⛔ blocked
 | 4  | Curriculum + PatternGrid | ✅ | 1 | `9fa1330` | The two link-heavy sections work end to end |
 | 5  | LoopAnatomy + BuildingBlocks | ✅ | 1 | `cdaa72a` | Visual middle of the page complete |
 | 6  | GetStarted + FinalCTA | ✅ | 1 | `b60613e` | Copy button works; page complete & static |
-| 7  | Motion baseline: `.reveal` + stagger (§6.1) | ▶ | 0 | — | Whole page feels alive; zero JS added |
-| 8  | Signature motion: hero depth field + connector draw (§6.2–6.3) | ☐ | 0 | — | 60fps in DevTools; reduced-motion verified |
+| 7  | Motion baseline: `.reveal` + stagger (§6.1) | ✅ | 1 | `fef46b6` | Whole page feels alive; zero JS added |
+| 8  | Signature motion: hero depth field + connector draw (§6.2–6.3) | ▶ | 0 | — | 60fps in DevTools; reduced-motion verified |
 | 9  | Polish: responsive, a11y, metadata, OG image | ☐ | 0 | — | 375px clean; Lighthouse a11y ≥ 95 |
 | 10 | Deploy readiness: `npm run build` clean + `npx serve out` | ☐ | 0 | — | Static export verified → hand off to deploy-loop |
 
