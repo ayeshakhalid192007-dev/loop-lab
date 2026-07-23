@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { PillButton } from "@/components/ui/PillButton";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { nav } from "@/lib/content";
 
 /**
@@ -49,9 +50,12 @@ export function NavBar() {
           ))}
         </ul>
 
-        <PillButton href={nav.cta.href} variant="solid" external>
-          {nav.cta.label}
-        </PillButton>
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          <PillButton href={nav.cta.href} variant="solid" external>
+            {nav.cta.label}
+          </PillButton>
+        </div>
       </nav>
     </header>
   );

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter_Tight, Inter, Geist_Mono } from "next/font/google";
 import { ScrollAnimator } from "@/components/ScrollAnimator";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 
 // Adds `reveal-on` before first paint so reveals start hidden without a flash —
@@ -61,17 +62,20 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${display.variable} ${body.variable} ${mono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col overflow-x-hidden">
         <script dangerouslySetInnerHTML={{ __html: revealInit }} />
-        <a
-          href="#top"
-          className="sr-only rounded bg-accent px-4 py-2 text-accent-fg focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100]"
-        >
-          Skip to content
-        </a>
-        {children}
-        <ScrollAnimator />
+        <ThemeProvider>
+          <a
+            href="#top"
+            className="sr-only rounded bg-accent px-4 py-2 text-accent-fg focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100]"
+          >
+            Skip to content
+          </a>
+          {children}
+          <ScrollAnimator />
+        </ThemeProvider>
       </body>
     </html>
   );

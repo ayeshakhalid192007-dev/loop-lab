@@ -23,6 +23,25 @@
   --lift: 26px; /* how far reveal elements travel */
 }
 
+/* Light variant of the same three brand colours (olive / brass / sand), set by
+   next-themes via [data-theme] on <html>. Dark stays the default in :root above —
+   this block only overrides when the resolved theme is explicitly "light". Values
+   contrast-checked against WCAG AA (4.5:1 body text, 3:1 large text/borders). */
+:root[data-theme="light"] {
+  --bg: #f7f1e6; /* light warm sand background */
+  --surface: #efe4d1; /* card surface */
+  --surface-2: #e6d8bf; /* raised / hover surface */
+  --border: #d8c7a6; /* warm divider */
+  --olive: #5c6b45; /* lightened olive, secondary accent */
+  --text: #2a2418; /* dark warm brown-black — ~14.6:1 on --bg */
+  --muted: #6b5f4c; /* muted warm brown — ~5.4:1 on --bg */
+  --accent: #7a5a34; /* darker brass so accent-fg text stays AA on it */
+  --accent-2: #8a6435; /* darker brass for small-caps labels — ~4.6:1 on --bg */
+  --accent-fg: #fdf8ef; /* light text on the brass button — ~5.9:1 on --accent */
+  --paper: #e6d8bf; /* same as surface-2 — light mode has no dark page to invert against */
+  --paper-ink: #2a2418;
+}
+
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
