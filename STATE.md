@@ -18,13 +18,9 @@ is the pipeline-level view.
 
 ## High Priority (loop is acting or waiting on a human)
 
-- **⏸ build-loop paused on budget — human decision needed.** Logged spend hit ~697k,
-  past 80% of the build-loop daily cap (640k of 800k) → report-only mode. Steps 9
-  (polish: responsive/a11y/metadata/OG) and 10 (deploy readiness) each require a
-  `loop-verifier` sub-agent + commit, which report-only forbids; step 9 would also
-  cross the global 800k line mid-step. **Loop stopped after step 8 (8/10).** The
-  site is fully built, link-verified, and motion-complete. To continue: raise the
-  cap in `loop-budget.md` (or wait for the daily reset), then re-run `/loop`.
+_none_ — the 2026-07-23 budget pause was cleared: the human raised the caps
+(build-loop → 1.1M, global → 1.3M) and the loop resumed at step 9. See
+`loop-budget.md` → Alerts This Period.
 
 ## Watch List
 
