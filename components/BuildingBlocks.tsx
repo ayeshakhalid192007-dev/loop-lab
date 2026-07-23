@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactElement } from "react";
+import type { ReactElement } from "react";
 import { Section } from "@/components/ui/Section";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { buildingBlocks } from "@/lib/content";
@@ -48,44 +48,49 @@ const ICONS: Record<string, ReactElement> = {
 };
 
 /**
- * Six primitive cards (the Body layer). Each is an outbound link to the doc that
- * teaches it, with a minimal inline icon and a one-line blurb.
+ * The six primitives (the Body layer) as a ruled editorial list, not a card grid.
+ * Each row is a single outbound link to the doc that teaches it: an accent icon,
+ * the name, its one-line job, and a "Learn" affordance that reveals on hover.
  */
 export function BuildingBlocks() {
   return (
-    <Section
-      id="blocks"
-      eyebrow="Building blocks"
-      title="The primitives you compose"
-    >
-      <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {buildingBlocks.map((block, i) => (
-          <li
-            key={block.title}
-            style={{ "--i": i } as CSSProperties}
-            className="reveal-stagger"
-          >
+    <Section id="blocks" eyebrow="Building blocks" title="The primitives you compose">
+      <p className="mb-10 max-w-2xl text-muted">
+        Six moving parts. Learn each on its own, then wire them into a loop that runs
+        without you.
+      </p>
+
+      <ul className="divide-y divide-border border-y border-border">
+        {buildingBlocks.map((block) => (
+          <li key={block.title}>
             <ExternalLink
               href={block.href}
-              className="card group flex h-full flex-col rounded-xl border border-border bg-surface p-6"
+              className="group flex items-center gap-5 py-5 transition-colors hover:bg-surface/40"
             >
-              <svg
-                viewBox="0 0 24 24"
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-accent/30 bg-accent/10 text-accent transition-colors group-hover:border-accent">
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-5 w-5"
+                >
+                  {ICONS[block.title]}
+                </svg>
+              </span>
+              <div className="min-w-0">
+                <h3 className="font-display text-base font-bold tracking-tight text-text">
+                  {block.title}
+                </h3>
+                <p className="mt-0.5 text-sm text-muted">{block.blurb}</p>
+              </div>
+              <span
                 aria-hidden="true"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-6 w-6 text-accent"
+                className="ml-auto shrink-0 text-sm font-medium text-muted opacity-0 transition-all group-hover:translate-x-0.5 group-hover:text-accent-2 group-hover:opacity-100"
               >
-                {ICONS[block.title]}
-              </svg>
-              <h3 className="mt-4 font-display text-lg font-bold tracking-tight">
-                {block.title}
-              </h3>
-              <p className="mt-2 text-sm text-muted">{block.blurb}</p>
-              <span className="mt-4 text-sm font-medium text-muted transition-colors group-hover:text-accent-2">
                 Learn →
               </span>
             </ExternalLink>

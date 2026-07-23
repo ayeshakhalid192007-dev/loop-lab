@@ -14,6 +14,7 @@
   --accent-fg: #0a0b07; /* near-black text on brass (AA on the brass button) */
   --paper: #dbc2a6; /* brand sand — the one light band */
   --paper-ink: #2a2418; /* dark warm text on the sand band */
+  --glow: color-mix(in srgb, var(--accent) 35%, transparent); /* card hover glow */
 
   /* motion tokens */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1); /* the house curve */
@@ -40,6 +41,7 @@
   --accent-fg: #fdf8ef; /* light text on the brass button — ~5.9:1 on --accent */
   --paper: #e6d8bf; /* same as surface-2 — light mode has no dark page to invert against */
   --paper-ink: #2a2418;
+  --glow: color-mix(in srgb, var(--accent) 20%, transparent); /* lighter bg needs a subtler glow */
 }
 
 @theme inline {
@@ -67,7 +69,10 @@ html {
 }
 
 body {
-  background: var(--bg);
+  background:
+    radial-gradient(ellipse 70% 45% at 50% -10%, color-mix(in srgb, var(--accent) 10%, transparent), transparent),
+    radial-gradient(ellipse 55% 35% at 100% 0%, color-mix(in srgb, var(--olive) 16%, transparent), transparent),
+    var(--bg);
   color: var(--text);
   font-family: var(--font-body), system-ui, sans-serif;
 }
@@ -109,29 +114,6 @@ body {
   }
 }
 
-/* ── Card hover ────────────────────────────────────────────────────────────────
-   Lift + warm brass border + soft depth. The lift is motion-gated; the colour/
-   shadow shift stays (instant under reduced motion via the global rule). */
-.card {
-  transition:
-    transform var(--dur-fast) var(--ease-out),
-    border-color var(--dur-fast) var(--ease-out),
-    box-shadow var(--dur-fast) var(--ease-out),
-    background-color var(--dur-fast) var(--ease-out);
-}
-.card:hover {
-  border-color: color-mix(in srgb, var(--accent) 60%, var(--border));
-  background-color: var(--surface-2);
-  box-shadow:
-    0 22px 46px -24px rgba(0, 0, 0, 0.85),
-    0 0 0 1px color-mix(in srgb, var(--accent) 24%, transparent);
-}
-@media (prefers-reduced-motion: no-preference) {
-  .card:hover {
-    transform: translateY(-5px);
-  }
-}
-
 /* ── Hero depth field ──────────────────────────────────────────────────────────
    Scroll parallax (JS writes --sy = scrollY) + mouse drift (--mx/--my). Only
    transform moves; per-layer blur is a one-time filter the compositor caches. */
@@ -154,5 +136,47 @@ body {
   .depth-drift-near {
     transform: translate3d(calc(var(--mx, 0) * 26px), calc(var(--my, 0) * 26px), 0);
   }
+}
+
+/* ── Loop cycle ──────────────────────────────────────────────────────────────────
+   The signature diagram's travelling pulse. A single <g> rotated 360° around the
+   ring's centre — transform only, so the compositor handles it. Gated behind
+   reduced-motion below; with motion off the pulse just sits at the top node. */
+.loop-spin {
+  transform-box: view-box;
+  transform-origin: 220px 220px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .loop-spin {
+    animation: loop-spin 9s linear infinite;
+  }
+}
+@keyframes loop-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Heartbeat ──────────────────────────────────────────────────────────────────
+   The one signature motion on the page: a pulsing dot, used exactly once, on the
+   "Heartbeat" node of the loop-anatomy chain — the primitive it's named for. */
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.5;
+  }
+}
+.pulse-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--accent);
+  animation: heartbeat 1.8s var(--ease-out) infinite;
 }
 

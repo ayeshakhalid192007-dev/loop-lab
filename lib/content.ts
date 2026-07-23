@@ -48,6 +48,7 @@ export interface CurriculumPart {
 
 export interface PatternCard {
   name: string;
+  blurb: string;
   frequency: string;
   risk: "low" | "medium" | "high";
   patternHref: string;
@@ -198,9 +199,74 @@ export const curriculum: CurriculumPart[] = [
   },
 ];
 
+/** The operational loop, one beat. Eight stages that run and then run again.
+ *  `short` is the ring label; `role` is the one-line job. Every stage maps to a
+ *  real concept taught in the course. */
+export interface CycleStage {
+  short: string;
+  name: string;
+  role: string;
+}
+
+export const loopCycle: CycleStage[] = [
+  { short: "Schedule", name: "Schedule", role: "The heartbeat fires — a timer, a condition, or an event." },
+  { short: "State", name: "Load state", role: "Read STATE.md and the run log — what survived the last beat." },
+  { short: "Triage", name: "Triage", role: "Pick the next unit of work, or stop if there's none." },
+  { short: "Worktree", name: "Worktree", role: "Isolate the run in its own checkout so nothing collides." },
+  { short: "Implement", name: "Implement", role: "The maker agent does the work inside the worktree." },
+  { short: "Verify", name: "Verify", role: "A separate checker grades it — never the maker itself." },
+  { short: "Gate", name: "Human gate", role: "A person approves, escalates, or rejects the change." },
+  { short: "Commit", name: "Commit", role: "Apply over MCP, append one line to the log — then beat again." },
+];
+
+/** The stack, top to bottom — who sits where, and which part of the anatomy it is. */
+export interface Layer {
+  name: string;
+  role: string;
+  maps: string;
+}
+
+export const layers: Layer[] = [
+  { name: "Human", role: "Design the loop, hold the gate, review the diffs.", maps: "The engineer" },
+  { name: "Control plane", role: "Scheduling, pattern selection, and budget caps.", maps: "Heartbeat" },
+  { name: "Durable memory", role: "STATE.md, LOOP.md, and the run log — carried between beats.", maps: "Spine" },
+  { name: "Execution", role: "Worktrees and the maker / checker agents doing the work.", maps: "Body" },
+  { name: "Tooling", role: "CLIs and MCP connectors — the hands that touch real systems.", maps: "Hands" },
+];
+
+/** The three rungs of autonomy — where each loop in this repo actually sits. */
+export interface AutonomyLevel {
+  level: string;
+  name: string;
+  blurb: string;
+  example: string;
+}
+
+export const autonomyLevels: AutonomyLevel[] = [
+  {
+    level: "L1",
+    name: "Report-only",
+    blurb: "The loop looks and tells you. It writes findings; a human makes every change.",
+    example: "Where triage-loop runs.",
+  },
+  {
+    level: "L2",
+    name: "Assisted",
+    blurb: "The loop proposes and drafts — one small change at a time — and waits at the gate.",
+    example: "Small auto-wins after week one.",
+  },
+  {
+    level: "L3",
+    name: "Unattended",
+    blurb: "The loop runs to completion on its own, stopping only when done or stuck.",
+    example: "Where build-loop runs — still human-gated on deploy.",
+  },
+];
+
 export const patterns: PatternCard[] = [
   {
     name: "PR Babysitter",
+    blurb: "Shepherds a PR through review, CI, and rebase. The human stays in the merge seat.",
     frequency: "On PR events",
     risk: "medium",
     patternHref: doc("patterns/pr-babysitter.md"),
@@ -208,6 +274,7 @@ export const patterns: PatternCard[] = [
   },
   {
     name: "Daily Triage",
+    blurb: "A morning scan of CI, issues, and commits. Report-only in week one, small auto-wins after.",
     frequency: "Daily",
     risk: "low",
     patternHref: doc("patterns/daily-triage.md"),
@@ -215,6 +282,7 @@ export const patterns: PatternCard[] = [
   },
   {
     name: "CI Sweeper",
+    blurb: "Reacts to a failing check with the smallest fix that passes it. Escalates after three tries.",
     frequency: "On CI failure",
     risk: "medium",
     patternHref: doc("patterns/ci-sweeper.md"),
@@ -222,6 +290,7 @@ export const patterns: PatternCard[] = [
   },
   {
     name: "Dependency Sweeper",
+    blurb: "Opens one PR per upgrade, reads the changelog, and flags anything that needs a human look.",
     frequency: "Weekly",
     risk: "medium",
     patternHref: doc("patterns/dependency-sweeper.md"),
@@ -229,6 +298,7 @@ export const patterns: PatternCard[] = [
   },
   {
     name: "Issue Triage",
+    blurb: "Labels, dedupes, and routes a new issue before anyone on the team has seen it.",
     frequency: "On new issue",
     risk: "low",
     patternHref: doc("patterns/issue-triage.md"),
@@ -236,6 +306,7 @@ export const patterns: PatternCard[] = [
   },
   {
     name: "Changelog Drafter",
+    blurb: "Reads the merged commits since last tag and drafts release notes for a human to edit.",
     frequency: "On release",
     risk: "low",
     patternHref: doc("patterns/changelog-drafter.md"),

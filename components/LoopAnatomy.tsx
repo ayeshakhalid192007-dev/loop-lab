@@ -1,45 +1,49 @@
-import type { CSSProperties } from "react";
 import { Section } from "@/components/ui/Section";
+import { LoopCycle } from "@/components/LoopCycle";
 import { loopParts } from "@/lib/content";
 
 /**
- * The course's own anatomy of a loop — a horizontal strip of six numbered stages
- * (Heartbeat → … → Human gate), connected by a line on wide screens and stacking to
- * a vertical list on mobile. Static here; step 8 draws the connector on scroll.
+ * What one loop actually looks like: the signature ring diagram of the eight
+ * operational stages, followed by the six conceptual parts every loop is made of.
+ * No card grid — a diagram and a ruled definition list.
  */
 export function LoopAnatomy() {
   return (
-    <Section
-      id="anatomy"
-      eyebrow="Anatomy of a loop"
-      title="Six parts of every loop"
-    >
-      <p className="mb-10 max-w-2xl text-muted">
-        Drop any one of them and the loop earns a familiar failure name — no
-        heartbeat and it&apos;s a script you run by hand; no checker and it grades
-        itself; no human gate and it ships with no owner.
+    <Section id="anatomy" eyebrow="Anatomy of a loop" title="What one loop looks like">
+      <p className="mb-12 max-w-2xl text-muted">
+        A loop is not a prompt you re-send. It&apos;s a cycle that schedules itself, does
+        the work in isolation, gets graded by a second pair of eyes, and stops at a human.
+        Then it beats again.
       </p>
 
-      <ol className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
-        {loopParts.map((part, i) => (
-          <li
-            key={part.name}
-            style={{ "--i": i } as CSSProperties}
-            className="card reveal-stagger relative rounded-xl border border-border bg-surface p-4 lg:after:absolute lg:after:top-[34px] lg:after:left-full lg:after:h-px lg:after:w-4 lg:after:bg-border lg:last:after:hidden"
-          >
-            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-accent font-mono text-sm text-accent">
-              {i + 1}
-            </span>
-            <h3 className="mt-3 font-display text-base font-bold tracking-tight">
-              {part.name}
-            </h3>
-            <p className="mt-0.5 font-mono text-[11px] uppercase tracking-wider text-accent-2">
-              {part.metaphor}
-            </p>
-            <p className="mt-2 text-sm text-muted">{part.answers}</p>
-          </li>
-        ))}
-      </ol>
+      <div className="reveal">
+        <LoopCycle />
+      </div>
+
+      <div className="mt-16 border-t border-border pt-12">
+        <h3 className="font-display text-xl font-bold tracking-tight">The six parts</h3>
+        <p className="mt-2 max-w-2xl text-sm text-muted">
+          Drop any one and the loop earns a familiar failure name — no heartbeat and it&apos;s
+          a script you run by hand; no checker and it grades itself; no human gate and it
+          ships with no owner.
+        </p>
+
+        <dl className="mt-8 divide-y divide-border border-y border-border">
+          {loopParts.map((part) => (
+            <div key={part.name} className="grid gap-1 py-4 sm:grid-cols-[200px_1fr] sm:gap-6">
+              <dt className="flex items-baseline gap-2">
+                <span className="font-display text-base font-bold tracking-tight text-text">
+                  {part.name}
+                </span>
+                <span className="font-mono text-[11px] uppercase tracking-widest text-accent-2">
+                  {part.metaphor}
+                </span>
+              </dt>
+              <dd className="text-sm text-muted">{part.answers}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
     </Section>
   );
 }

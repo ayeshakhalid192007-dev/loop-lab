@@ -1,67 +1,66 @@
-import type { CSSProperties } from "react";
 import { Section } from "@/components/ui/Section";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { curriculum } from "@/lib/content";
 
 /**
- * The spine of the site: six cards for the six course parts. Each card's title links
- * to the part's GitHub folder; each lesson, the quiz, and (where it exists) the
- * flashcards deck link straight to the file. Most of the site's outbound links live here.
+ * The spine of the course: six parts as a numbered syllabus running down a single
+ * rail — not a card grid. Each part's title links to its GitHub folder; each
+ * lesson, quiz, and flashcards deck links straight to the file. Most of the site's
+ * outbound links live here.
  */
 export function Curriculum() {
   return (
     <Section id="curriculum" eyebrow="Curriculum" title="Six parts, start to finish">
-      <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <ol className="border-l border-border">
         {curriculum.map((part, i) => (
-          <li
-            key={part.part}
-            style={{ "--i": i } as CSSProperties}
-            className="card reveal-stagger flex flex-col rounded-xl border border-border bg-surface p-6"
-          >
-            <p className="text-xs font-medium uppercase tracking-widest text-accent-2">
-              {part.part}
-            </p>
-            <h3 className="mt-1 font-display text-xl font-bold tracking-tight">
-              <ExternalLink
-                href={part.folderHref}
-                className="transition-colors hover:text-accent"
-              >
-                {part.title}
-              </ExternalLink>
-            </h3>
+          <li key={part.part} className="relative grid gap-3 py-8 pl-8 sm:grid-cols-[auto_1fr] sm:gap-8 sm:pl-10">
+            <span
+              className="absolute -left-[13px] top-8 flex h-6 w-6 items-center justify-center rounded-full border border-accent bg-bg font-mono text-[11px] font-bold text-accent-2"
+              aria-hidden="true"
+            >
+              {i + 1}
+            </span>
 
-            <ul className="mt-4 flex flex-1 flex-col gap-2 text-sm">
-              {part.lessons.map((lesson) => (
-                <li key={lesson.href}>
-                  <ExternalLink
-                    href={lesson.href}
-                    className="text-muted transition-colors hover:text-text"
-                  >
-                    {lesson.title}
-                  </ExternalLink>
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-5 flex gap-4 border-t border-border pt-4 text-xs font-medium uppercase tracking-wide">
-              <ExternalLink
-                href={part.quizHref}
-                className="text-muted transition-colors hover:text-accent"
-              >
-                Quiz
-              </ExternalLink>
-              {part.flashcardsHref && (
-                <ExternalLink
-                  href={part.flashcardsHref}
-                  className="text-muted transition-colors hover:text-accent"
-                >
-                  Flashcards
+            <div className="sm:w-40">
+              <p className="font-mono text-[11px] uppercase tracking-widest text-muted">{part.part}</p>
+              <h3 className="mt-1 font-display text-lg font-bold tracking-tight">
+                <ExternalLink href={part.folderHref} className="transition-colors hover:text-accent">
+                  {part.title}
                 </ExternalLink>
-              )}
+              </h3>
+            </div>
+
+            <div>
+              <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+                {part.lessons.map((lesson) => (
+                  <li key={lesson.href}>
+                    <ExternalLink
+                      href={lesson.href}
+                      className="text-muted underline decoration-border underline-offset-4 transition-colors hover:text-text hover:decoration-accent"
+                    >
+                      {lesson.title}
+                    </ExternalLink>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-4 flex gap-4 text-xs font-medium uppercase tracking-wide">
+                <ExternalLink href={part.quizHref} className="text-muted transition-colors hover:text-accent">
+                  Quiz
+                </ExternalLink>
+                {part.flashcardsHref && (
+                  <ExternalLink
+                    href={part.flashcardsHref}
+                    className="text-muted transition-colors hover:text-accent"
+                  >
+                    Flashcards
+                  </ExternalLink>
+                )}
+              </div>
             </div>
           </li>
         ))}
-      </ul>
+      </ol>
     </Section>
   );
 }

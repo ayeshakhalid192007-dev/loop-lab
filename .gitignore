@@ -26,3 +26,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# QA scratch (screenshots + playwright-mcp working dir)
+/.playwright-mcp
+/*.png
