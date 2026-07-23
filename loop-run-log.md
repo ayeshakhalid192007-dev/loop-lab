@@ -1,0 +1,26 @@
+# Loop Run Log — consolidated (shared)
+
+Every loop appends **one JSON entry per iteration** below the marker line. The
+`loop-budget` skill sums `tokens_estimate` here to enforce the daily cap. Prune entries
+older than 30 days.
+
+## Format
+
+```json
+{
+  "run_id": "2026-07-23T09:15:00Z",
+  "loop": "build-loop | deploy-loop | triage-loop",
+  "step": "step 3: NavBar + Hero + Footer",
+  "attempt": 1,
+  "duration_s": 45,
+  "verifier": "ACCEPT | REJECT | n/a",
+  "committed": true,
+  "escalations": 0,
+  "tokens_estimate": 52000,
+  "outcome": "step-done | retry | escalated | no-op | handoff | budget-exceeded"
+}
+```
+
+## Recent Runs
+
+<!-- Loops append below this line -->
