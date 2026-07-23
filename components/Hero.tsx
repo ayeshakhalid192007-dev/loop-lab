@@ -1,11 +1,12 @@
+import type { CSSProperties } from "react";
 import { PillButton } from "@/components/ui/PillButton";
 import { DepthField } from "@/components/DepthField";
 import { hero } from "@/lib/content";
 
 /**
- * Oversized headline, lede, two CTAs, a feature line, and a static loop motif.
- * Visible-by-default: no opacity/transform tricks here — the signature hero motion
- * (depth field + drawn connectors) is layered on in step 8.
+ * Oversized headline, lede, two CTAs, a feature line, and the signature loop motif.
+ * Visible-by-default: the hero content never depends on motion (the depth field and
+ * the motif are decorative and reduced-motion-gated).
  */
 export function Hero() {
   return (
@@ -41,39 +42,45 @@ export function Hero() {
   );
 }
 
-/** Static decorative ring of connected nodes — a loop. Purely ornamental. */
+/**
+ * The signature: a loop that quietly cycles. A gradient ring (olive → brass) with a
+ * traveling dash, softly pulsing nodes, a breathing glow, and one bright sand node
+ * orbiting the loop. Decorative (aria-hidden); all motion stops under reduced motion.
+ */
 function LoopMotif() {
+  const R = 74;
   const nodes = Array.from({ length: 8 }, (_, i) => {
     const angle = (i / 8) * Math.PI * 2 - Math.PI / 2;
-    return { x: 100 + 74 * Math.cos(angle), y: 100 + 74 * Math.sin(angle) };
+    return { x: 100 + R * Math.cos(angle), y: 100 + R * Math.sin(angle) };
   });
 
   return (
     <svg
       viewBox="0 0 200 200"
       aria-hidden="true"
-      className="mx-auto hidden w-full max-w-xs text-accent lg:block"
+      className="mx-auto hidden w-full max-w-sm lg:block"
     >
-      <circle
-        cx="100"
-        cy="100"
-        r="74"
-        fill="none"
-        stroke="var(--border)"
-        strokeWidth="1"
-      />
-      {/* A constant, subtle signal that something is cycling (§6.3). */}
-      <circle
-        className="loop-dash"
-        cx="100"
-        cy="100"
-        r="74"
-        fill="none"
-        stroke="var(--accent)"
-        strokeOpacity="0.55"
-        strokeWidth="1.5"
-        strokeDasharray="6 8"
-      />
+      <defs>
+        <radialGradient id="motif-glow-grad">
+          <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.5" />
+          <stop offset="65%" stopColor="var(--accent)" stopOpacity="0.06" />
+          <stop offset="100%" stopColor="var(--accent)" stopOpacity="0" />
+        </radialGradient>
+        <linearGradient id="motif-ring-grad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="var(--olive)" />
+          <stop offset="55%" stopColor="var(--accent)" />
+          <stop offset="100%" stopColor="var(--olive)" />
+        </linearGradient>
+      </defs>
+
+      {/* Breathing glow behind the loop */}
+      <circle className="motif-glow" cx="100" cy="100" r="94" fill="url(#motif-glow-grad)" />
+
+      {/* Faint concentric rings for depth */}
+      <circle cx="100" cy="100" r="90" fill="none" stroke="var(--olive)" strokeOpacity="0.35" strokeWidth="1" />
+      <circle cx="100" cy="100" r="56" fill="none" stroke="var(--olive)" strokeOpacity="0.22" strokeWidth="1" />
+
+      {/* Connecting lines */}
       {nodes.map((n, i) => {
         const next = nodes[(i + 1) % nodes.length];
         return (
@@ -83,22 +90,46 @@ function LoopMotif() {
             y1={n.y}
             x2={next.x}
             y2={next.y}
-            stroke="var(--border)"
+            stroke="var(--olive)"
+            strokeOpacity="0.4"
             strokeWidth="1"
           />
         );
       })}
+
+      {/* The ring: gradient base + a traveling brass dash */}
+      <circle cx="100" cy="100" r={R} fill="none" stroke="url(#motif-ring-grad)" strokeOpacity="0.5" strokeWidth="1.25" />
+      <circle
+        className="loop-dash"
+        cx="100"
+        cy="100"
+        r={R}
+        fill="none"
+        stroke="var(--accent)"
+        strokeWidth="1.75"
+        strokeDasharray="6 8"
+      />
+
+      {/* Pulsing nodes */}
       {nodes.map((n, i) => (
         <circle
           key={`node-${i}`}
+          className="motif-node"
+          style={{ "--i": i } as CSSProperties}
           cx={n.x}
           cy={n.y}
-          r={i === 0 ? 6 : 4}
+          r={i === 0 ? 5.5 : 4}
           fill={i === 0 ? "var(--accent)" : "var(--surface)"}
           stroke="var(--accent)"
           strokeWidth="1.5"
         />
       ))}
+
+      {/* A bright sand node orbiting the loop — the "current position" cycling round */}
+      <g className="motif-orbit">
+        <circle cx="100" cy={100 - R} r="9" fill="var(--accent)" fillOpacity="0.25" />
+        <circle cx="100" cy={100 - R} r="4.5" fill="var(--text)" stroke="var(--accent)" strokeWidth="1.5" />
+      </g>
     </svg>
   );
 }

@@ -16,7 +16,7 @@ export function PatternGrid() {
           <li
             key={p.name}
             style={{ "--i": i } as CSSProperties}
-            className="reveal-stagger flex flex-col rounded-xl border border-border bg-surface p-6"
+            className="card reveal-stagger flex flex-col rounded-xl border border-border bg-surface p-6"
           >
             <div className="flex items-start justify-between gap-3">
               <h3 className="font-display text-lg font-bold tracking-tight">{p.name}</h3>
@@ -32,7 +32,7 @@ export function PatternGrid() {
             <div className="mt-6 flex flex-1 items-end gap-4 text-sm font-medium">
               <ExternalLink
                 href={p.patternHref}
-                className="text-accent transition-opacity hover:opacity-80"
+                className="text-accent-2 transition-opacity hover:opacity-80"
               >
                 Pattern →
               </ExternalLink>

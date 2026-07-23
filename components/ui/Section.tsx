@@ -31,7 +31,11 @@ export function Section({
         {(eyebrow || title) && (
           <div className="reveal">
             {eyebrow && (
-              <p className="mb-3 text-sm font-medium uppercase tracking-widest text-accent">
+              <p
+                className={`mb-3 text-sm font-medium uppercase tracking-widest ${
+                  paper ? "text-olive" : "text-accent-2"
+                }`}
+              >
                 {eyebrow}
               </p>
             )}

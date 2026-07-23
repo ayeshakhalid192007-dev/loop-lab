@@ -80,15 +80,15 @@ export function DepthField() {
     const el = root.current;
     if (!el) return;
 
-    // Respect user + device: no mouse drift for reduced-motion or touch pointers.
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const coarse = window.matchMedia("(pointer: coarse)").matches;
-    if (reduce || coarse) return;
+    // Reduced motion → no parallax, no drift (the field stays static).
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Scroll parallax runs everywhere; mouse drift only for fine pointers.
+    const fine = !window.matchMedia("(pointer: coarse)").matches;
 
     let tx = 0;
-    let ty = 0; // target, normalised [-1, 1]
+    let ty = 0; // drift target, normalised [-1, 1]
     let cx = 0;
-    let cy = 0; // current (eased)
+    let cy = 0; // drift current (eased)
     let raf = 0;
     let running = true;
 
@@ -99,11 +99,15 @@ export function DepthField() {
 
     const tick = () => {
       if (!running) return;
-      cx += (tx - cx) * 0.06;
-      cy += (ty - cy) * 0.06;
-      // Opposite the cursor; written as a CSS var, no React re-render.
-      el.style.setProperty("--mx", String(-cx));
-      el.style.setProperty("--my", String(-cy));
+      // Scroll parallax: layers translate at their own rate off --sy.
+      el.style.setProperty("--sy", String(window.scrollY));
+      if (fine) {
+        cx += (tx - cx) * 0.06;
+        cy += (ty - cy) * 0.06;
+        // Opposite the cursor; written as a CSS var, no React re-render.
+        el.style.setProperty("--mx", String(-cx));
+        el.style.setProperty("--my", String(-cy));
+      }
       raf = requestAnimationFrame(tick);
     };
 
@@ -117,7 +121,7 @@ export function DepthField() {
       }
     };
 
-    window.addEventListener("pointermove", onMove, { passive: true });
+    if (fine) window.addEventListener("pointermove", onMove, { passive: true });
     document.addEventListener("visibilitychange", onVisibility);
     raf = requestAnimationFrame(tick);
 

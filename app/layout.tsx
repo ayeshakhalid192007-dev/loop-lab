@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { Inter_Tight, Inter, Geist_Mono } from "next/font/google";
+import { ScrollAnimator } from "@/components/ScrollAnimator";
 import "./globals.css";
+
+// Adds `reveal-on` before first paint so reveals start hidden without a flash —
+// only when motion is allowed. No-JS / reduced-motion keep the full page visible.
+const revealInit =
+  "try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('reveal-on')}}catch(e){}";
 
 // Display face for headlines
 const display = Inter_Tight({
@@ -57,6 +63,7 @@ export default function RootLayout({
       className={`${display.variable} ${body.variable} ${mono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col overflow-x-hidden">
+        <script dangerouslySetInnerHTML={{ __html: revealInit }} />
         <a
           href="#top"
           className="sr-only rounded bg-accent px-4 py-2 text-accent-fg focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100]"
@@ -64,6 +71,7 @@ export default function RootLayout({
           Skip to content
         </a>
         {children}
+        <ScrollAnimator />
       </body>
     </html>
   );

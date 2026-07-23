@@ -67,7 +67,7 @@ export function BuildingBlocks() {
           >
             <ExternalLink
               href={block.href}
-              className="group flex h-full flex-col rounded-xl border border-border bg-surface p-6 transition-colors hover:border-accent"
+              className="card group flex h-full flex-col rounded-xl border border-border bg-surface p-6"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -85,7 +85,7 @@ export function BuildingBlocks() {
                 {block.title}
               </h3>
               <p className="mt-2 text-sm text-muted">{block.blurb}</p>
-              <span className="mt-4 text-sm font-medium text-muted transition-colors group-hover:text-accent">
+              <span className="mt-4 text-sm font-medium text-muted transition-colors group-hover:text-accent-2">
                 Learn →
               </span>
             </ExternalLink>

@@ -25,7 +25,7 @@ export function LoopAnatomy() {
           <li
             key={part.name}
             style={{ "--i": i } as CSSProperties}
-            className="reveal-stagger relative rounded-xl border border-border bg-surface p-4 lg:after:absolute lg:after:top-[34px] lg:after:left-full lg:after:h-px lg:after:w-4 lg:after:bg-border lg:last:after:hidden"
+            className="card reveal-stagger relative rounded-xl border border-border bg-surface p-4 lg:after:absolute lg:after:top-[34px] lg:after:left-full lg:after:h-px lg:after:w-4 lg:after:bg-border lg:last:after:hidden"
           >
             <span className="flex h-9 w-9 items-center justify-center rounded-full border border-accent font-mono text-sm text-accent">
               {i + 1}
@@ -33,7 +33,7 @@ export function LoopAnatomy() {
             <h3 className="mt-3 font-display text-base font-bold tracking-tight">
               {part.name}
             </h3>
-            <p className="mt-0.5 font-mono text-[11px] uppercase tracking-wider text-accent">
+            <p className="mt-0.5 font-mono text-[11px] uppercase tracking-wider text-accent-2">
               {part.metaphor}
             </p>
             <p className="mt-2 text-sm text-muted">{part.answers}</p>

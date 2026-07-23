@@ -16,8 +16,8 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#0B0E14",
-          color: "#E8E6E1",
+          background: "#10120C",
+          color: "#DBC2A6",
           padding: 80,
           fontFamily: "sans-serif",
         }}
@@ -29,9 +29,10 @@ export default function OpengraphImage() {
               height: 30,
               borderRadius: 9999,
               background: "#99744A",
+              border: "3px solid #414A37",
             }}
           />
-          <div style={{ fontSize: 30, color: "#9AA3B2" }}>Loop Engineering</div>
+          <div style={{ fontSize: 30, color: "#A5997F" }}>Loop Engineering</div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
@@ -41,7 +42,7 @@ export default function OpengraphImage() {
           <div style={{ fontSize: 82, fontWeight: 800, lineHeight: 1.05 }}>
             Start looping.
           </div>
-          <div style={{ marginTop: 28, fontSize: 32, color: "#9AA3B2" }}>
+          <div style={{ marginTop: 28, fontSize: 32, color: "#A5997F" }}>
             A hands-on crash course in loop engineering · MIT
           </div>
         </div>

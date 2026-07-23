@@ -16,9 +16,9 @@ export function Curriculum() {
           <li
             key={part.part}
             style={{ "--i": i } as CSSProperties}
-            className="reveal-stagger flex flex-col rounded-xl border border-border bg-surface p-6"
+            className="card reveal-stagger flex flex-col rounded-xl border border-border bg-surface p-6"
           >
-            <p className="text-xs font-medium uppercase tracking-widest text-accent">
+            <p className="text-xs font-medium uppercase tracking-widest text-accent-2">
               {part.part}
             </p>
             <h3 className="mt-1 font-display text-xl font-bold tracking-tight">

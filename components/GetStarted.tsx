@@ -41,7 +41,7 @@ export function GetStarted() {
                     {step.title}
                   </ExternalLink>
                 </h3>
-                <p className="mt-1 text-sm text-paper-ink/70">{step.blurb}</p>
+                <p className="mt-1 text-sm text-paper-ink/85">{step.blurb}</p>
               </div>
             </li>
           ))}

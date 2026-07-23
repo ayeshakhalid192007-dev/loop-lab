@@ -1,32 +1,38 @@
 @import "tailwindcss";
 
 :root {
-  /* palette — our own brass/near-black, not the reference site's mint/navy */
-  --bg: #0b0e14; /* near-black base */
-  --surface: #141821; /* cards */
-  --border: #242b38;
-  --text: #e8e6e1;
-  --muted: #9aa3b2;
-  --accent: #99744a; /* brass — the ONLY accent */
-  --accent-fg: #0b0e14;
-  --paper: #f5f3ee; /* the one cream band */
-  --paper-ink: #1a1712; /* text on the cream band */
+  /* palette — warm olive / brass / sand (the three brand colours) */
+  --bg: #10120c; /* deep warm olive-black, derived from the olive */
+  --surface: #191d12; /* olive-tinted card */
+  --surface-2: #222819; /* raised / hover surface */
+  --border: #333a28; /* olive divider */
+  --olive: #414a37; /* brand olive — secondary accent (rings, depth, hovers) */
+  --text: #dbc2a6; /* brand sand — primary text */
+  --muted: #a5997f; /* muted sand/olive — secondary text */
+  --accent: #99744a; /* brand brass — CTAs, borders, motif, active states */
+  --accent-2: #b98f5e; /* the brass, lightened for legible small-caps labels (AA) */
+  --accent-fg: #0a0b07; /* near-black text on brass (AA on the brass button) */
+  --paper: #dbc2a6; /* brand sand — the one light band */
+  --paper-ink: #2a2418; /* dark warm text on the sand band */
 
   /* motion tokens */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1); /* the house curve */
   --dur-fast: 180ms;
-  --dur-base: 520ms;
+  --dur-base: 560ms;
   --dur-slow: 900ms;
-  --lift: 24px; /* how far reveal elements travel */
+  --lift: 26px; /* how far reveal elements travel */
 }
 
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-border: var(--border);
+  --color-olive: var(--olive);
   --color-text: var(--text);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
   --color-accent-fg: var(--accent-fg);
   --color-paper: var(--paper);
   --color-paper-ink: var(--paper-ink);
@@ -59,45 +65,67 @@ body {
   }
 }
 
-/* Step 7 — scroll-reveal baseline (§6.1). Pure CSS, compositor-only (opacity +
-   transform), zero JS. Double-guarded so it NEVER hides content:
-   - @supports: browsers without scroll-driven animations ignore it → full page.
-   - prefers-reduced-motion:no-preference: the global `reduce` rule above cannot
-     neutralise a view()-timeline animation (progress is scroll-driven, not
-     time-driven), so reduced-motion is excluded here and sees static content. */
+/* ── Scroll reveals ────────────────────────────────────────────────────────────
+   JS-driven (IntersectionObserver, see ScrollAnimator) so they animate reliably in
+   EVERY browser — not just Chromium's scroll-timeline. Content is visible by
+   default: the hidden start state applies ONLY after JS adds `.reveal-on` to <html>
+   (an inline no-flash script) AND motion is allowed. No-JS and reduced-motion users
+   always get the full page at opacity 1. */
 @media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    .reveal {
-      animation: reveal-up linear both;
-      animation-timeline: view();
-      animation-range: entry 8% cover 34%;
-    }
-    .reveal-stagger {
-      animation: reveal-up linear both;
-      animation-timeline: view();
-      animation-range: entry 4% cover 30%;
-      animation-delay: calc(var(--i, 0) * 60ms);
-    }
-  }
-}
-
-@keyframes reveal-up {
-  from {
+  html.reveal-on .reveal,
+  html.reveal-on .reveal-stagger {
     opacity: 0;
     transform: translateY(var(--lift));
+    transition:
+      opacity var(--dur-base) var(--ease-out),
+      transform var(--dur-base) var(--ease-out);
   }
-  to {
+  html.reveal-on .reveal-stagger {
+    transition-delay: calc(var(--i, 0) * 80ms);
+  }
+  html.reveal-on .reveal.is-visible,
+  html.reveal-on .reveal-stagger.is-visible {
     opacity: 1;
     transform: none;
   }
 }
 
-/* Step 8 — hero depth field (§6.2) + loop-motif dash (§6.3). Same double-guard as
-   the reveals: reduced-motion and browsers without scroll timelines get a static
-   field. Only transform / stroke-dashoffset animate; layer blur is a one-time
-   filter (never animated) so the compositor caches it. Drift is driven by the
-   --mx/--my CSS vars that DepthField's rAF loop writes — no layout, no re-render. */
+/* ── Card hover ────────────────────────────────────────────────────────────────
+   Lift + warm brass border + soft depth. The lift is motion-gated; the colour/
+   shadow shift stays (instant under reduced motion via the global rule). */
+.card {
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out);
+}
+.card:hover {
+  border-color: color-mix(in srgb, var(--accent) 60%, var(--border));
+  background-color: var(--surface-2);
+  box-shadow:
+    0 22px 46px -24px rgba(0, 0, 0, 0.85),
+    0 0 0 1px color-mix(in srgb, var(--accent) 24%, transparent);
+}
 @media (prefers-reduced-motion: no-preference) {
+  .card:hover {
+    transform: translateY(-5px);
+  }
+}
+
+/* ── Hero depth field ──────────────────────────────────────────────────────────
+   Scroll parallax (JS writes --sy = scrollY) + mouse drift (--mx/--my). Only
+   transform moves; per-layer blur is a one-time filter the compositor caches. */
+@media (prefers-reduced-motion: no-preference) {
+  .depth-far {
+    transform: translate3d(0, calc(var(--sy, 0) * -0.04px), 0);
+  }
+  .depth-mid {
+    transform: translate3d(0, calc(var(--sy, 0) * -0.1px), 0);
+  }
+  .depth-near {
+    transform: translate3d(0, calc(var(--sy, 0) * -0.18px), 0);
+  }
   .depth-drift-far {
     transform: translate3d(calc(var(--mx, 0) * 6px), calc(var(--my, 0) * 6px), 0);
   }
@@ -107,53 +135,58 @@ body {
   .depth-drift-near {
     transform: translate3d(calc(var(--mx, 0) * 26px), calc(var(--my, 0) * 26px), 0);
   }
+}
 
-  @supports (animation-timeline: view()) {
-    .depth-far {
-      animation: depth-far linear both;
-      animation-timeline: view();
-    }
-    .depth-mid {
-      animation: depth-mid linear both;
-      animation-timeline: view();
-    }
-    .depth-near {
-      animation: depth-near linear both;
-      animation-timeline: view();
-    }
-  }
-
+/* ── Loop motif (the signature) ────────────────────────────────────────────────
+   A cycling loop: a traveling dash, a bright orbiting node, softly pulsing nodes,
+   and a breathing glow. All of it stops under reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
   .loop-dash {
-    animation: loop-dash 8s linear infinite;
+    animation: loop-dash 7s linear infinite;
+  }
+  .motif-orbit {
+    animation: motif-orbit 9s linear infinite;
+    transform-box: view-box;
+    transform-origin: 100px 100px;
+  }
+  .motif-glow {
+    animation: motif-glow 6s ease-in-out infinite;
+    transform-box: view-box;
+    transform-origin: 100px 100px;
+  }
+  .motif-node {
+    animation: motif-pulse 3.2s ease-in-out infinite;
+    animation-delay: calc(var(--i, 0) * 0.4s);
   }
 }
 
-@keyframes depth-far {
-  from {
-    transform: translateY(20px);
-  }
-  to {
-    transform: translateY(-40px);
-  }
-}
-@keyframes depth-mid {
-  from {
-    transform: translateY(50px);
-  }
-  to {
-    transform: translateY(-110px);
-  }
-}
-@keyframes depth-near {
-  from {
-    transform: translateY(90px);
-  }
-  to {
-    transform: translateY(-200px);
-  }
-}
 @keyframes loop-dash {
   to {
     stroke-dashoffset: -140;
+  }
+}
+@keyframes motif-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes motif-glow {
+  0%,
+  100% {
+    opacity: 0.32;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.58;
+    transform: scale(1.06);
+  }
+}
+@keyframes motif-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
   }
 }
