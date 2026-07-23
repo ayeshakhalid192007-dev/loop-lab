@@ -1,7 +1,5 @@
 {
   "_comment": "Machine attempt-tracking, keyed by 'loop/step'. The loop-constraints skill checks this before retrying and enforces max_attempts. Increment attempts on each failed try; reset to 0 (or remove the key) when a step is committed.",
   "max_attempts_per_step": 3,
-  "entries": {
-    "build-loop/step-9": 1
-  }
+  "entries": {}
 }

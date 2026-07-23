@@ -1,8 +1,8 @@
 # build-loop — STATE.md
 
-**Last iteration:** 2026-07-23 (step 8 committed `9903c11`)
-**Current step:** 9 — Polish: responsive, a11y, metadata, OG image
-**Progress:** 8 / 10
+**Last iteration:** 2026-07-23 (step 9 committed `b6b0462`; attempt 2 after a scope REJECT)
+**Current step:** 10 — Deploy readiness: `npm run build` clean + `npx serve out`
+**Progress:** 9 / 10
 
 ## Build board
 
@@ -18,8 +18,8 @@ Statuses: ☐ todo · ▶ in progress · ✅ done · ⛔ blocked
 | 6  | GetStarted + FinalCTA | ✅ | 1 | `b60613e` | Copy button works; page complete & static |
 | 7  | Motion baseline: `.reveal` + stagger (§6.1) | ✅ | 1 | `fef46b6` | Whole page feels alive; zero JS added |
 | 8  | Signature motion: hero depth field + connector draw (§6.2–6.3) | ✅ | 1 | `9903c11` | 60fps in DevTools; reduced-motion verified |
-| 9  | Polish: responsive, a11y, metadata, OG image | ▶ | 0 | — | 375px clean; Lighthouse a11y ≥ 95 |
-| 10 | Deploy readiness: `npm run build` clean + `npx serve out` | ☐ | 0 | — | Static export verified → hand off to deploy-loop |
+| 9  | Polish: responsive, a11y, metadata, OG image | ✅ | 2 | `b6b0462` | 375px clean; Lighthouse a11y ≥ 95 |
+| 10 | Deploy readiness: `npm run build` clean + `npx serve out` | ▶ | 0 | — | Static export verified → hand off to deploy-loop |
 
 ## Blockers
 
@@ -37,6 +37,11 @@ _none_
     **Human decision needed before deploy** (deploy-loop should surface this).
 - **Not live-browser-tested (Chrome extension disconnected this session):**
   (a) copy button click (step 6), (b) hero depth-field 60fps in DevTools and the
-  reduced-motion toggle (step 8). All verified by build + code review + CSS/JS
-  guards instead. Re-test with a real browser during step 9 (polish) or step 10 if
-  the extension reconnects.
+  reduced-motion toggle (step 8), (c) 375px render + Lighthouse a11y ≥ 95 (step 9).
+  All verified by build + code review + CSS/JS guards + structural a11y signals
+  instead. Re-test with a real browser in step 10 if the extension reconnects.
+- **Deploy-loop handoff items (step 9):** set `NEXT_PUBLIC_SITE_URL` to the real
+  origin so `metadataBase` / OG-image URLs are absolute-correct (currently a
+  `loop-engineering.vercel.app` placeholder); and confirm the host serves the
+  extension-less `out/opengraph-image` file as `image/png` (Vercel/Next handles
+  this; a plain static host may need a content-type rule).
