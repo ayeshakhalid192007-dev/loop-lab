@@ -1,8 +1,8 @@
 # build-loop — STATE.md
 
-**Last iteration:** never
-**Current step:** 1 — Scaffold + tokens + fonts + PillButton + Section
-**Progress:** 0 / 10
+**Last iteration:** 2026-07-23 (step 1 committed `461c41d`)
+**Current step:** 2 — lib/links.ts + lib/content.ts from the real repo
+**Progress:** 1 / 10
 
 ## Build board
 
@@ -10,8 +10,8 @@ Statuses: ☐ todo · ▶ in progress · ✅ done · ⛔ blocked
 
 | # | Step (from loop-landing-plan.md §8) | Status | Attempts | Commit | Done when |
 |---|-------------------------------------|--------|----------|--------|-----------|
-| 1  | Scaffold + colour/motion tokens + fonts + PillButton + Section | ▶ | 0 | — | Test page shows both button variants in the real palette |
-| 2  | `lib/links.ts` + `lib/content.ts` from the real repo | ☐ | 0 | — | Every URL opens the right file on GitHub |
+| 1  | Scaffold + colour/motion tokens + fonts + PillButton + Section | ✅ | 1 | `461c41d` | Test page shows both button variants in the real palette |
+| 2  | `lib/links.ts` + `lib/content.ts` from the real repo | ▶ | 0 | — | Every URL opens the right file on GitHub |
 | 3  | NavBar + Hero + Footer | ☐ | 0 | — | Page has a top, a bottom, working CTAs |
 | 4  | Curriculum + PatternGrid | ☐ | 0 | — | The two link-heavy sections work end to end |
 | 5  | LoopAnatomy + BuildingBlocks | ☐ | 0 | — | Visual middle of the page complete |

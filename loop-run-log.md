@@ -24,3 +24,6 @@ older than 30 days.
 ## Recent Runs
 
 <!-- Loops append below this line -->
+```json
+{"run_id":"2026-07-23T00:00:01Z","loop":"build-loop","step":"step 1: scaffold + tokens + fonts + PillButton + Section","attempt":1,"duration_s":210,"verifier":"ACCEPT","committed":true,"escalations":0,"tokens_estimate":95000,"outcome":"step-done"}
+```
