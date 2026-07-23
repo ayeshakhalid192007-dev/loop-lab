@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { Section } from "@/components/ui/Section";
 import { loopParts } from "@/lib/content";
 
@@ -23,7 +24,8 @@ export function LoopAnatomy() {
         {loopParts.map((part, i) => (
           <li
             key={part.name}
-            className="relative rounded-xl border border-border bg-surface p-4 lg:after:absolute lg:after:top-[34px] lg:after:left-full lg:after:h-px lg:after:w-4 lg:after:bg-border lg:last:after:hidden"
+            style={{ "--i": i } as CSSProperties}
+            className="reveal-stagger relative rounded-xl border border-border bg-surface p-4 lg:after:absolute lg:after:top-[34px] lg:after:left-full lg:after:h-px lg:after:w-4 lg:after:bg-border lg:last:after:hidden"
           >
             <span className="flex h-9 w-9 items-center justify-center rounded-full border border-accent font-mono text-sm text-accent">
               {i + 1}

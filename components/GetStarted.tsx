@@ -10,7 +10,7 @@ import { getStarted } from "@/lib/content";
 export function GetStarted() {
   return (
     <Section id="start" paper eyebrow="Get started" title="Clone it and go">
-      <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
+      <div className="reveal grid gap-10 lg:grid-cols-2 lg:items-start">
         <div className="overflow-hidden rounded-xl border border-border bg-bg">
           <div className="flex items-center gap-1.5 px-4 py-3">
             <span className="h-3 w-3 rounded-full border border-border" />

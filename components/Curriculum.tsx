@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { Section } from "@/components/ui/Section";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { curriculum } from "@/lib/content";
@@ -11,10 +12,11 @@ export function Curriculum() {
   return (
     <Section id="curriculum" eyebrow="Curriculum" title="Six parts, start to finish">
       <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {curriculum.map((part) => (
+        {curriculum.map((part, i) => (
           <li
             key={part.part}
-            className="flex flex-col rounded-xl border border-border bg-surface p-6"
+            style={{ "--i": i } as CSSProperties}
+            className="reveal-stagger flex flex-col rounded-xl border border-border bg-surface p-6"
           >
             <p className="text-xs font-medium uppercase tracking-widest text-accent">
               {part.part}

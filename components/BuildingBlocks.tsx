@@ -1,4 +1,4 @@
-import type { ReactElement } from "react";
+import type { CSSProperties, ReactElement } from "react";
 import { Section } from "@/components/ui/Section";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { buildingBlocks } from "@/lib/content";
@@ -59,8 +59,12 @@ export function BuildingBlocks() {
       title="The primitives you compose"
     >
       <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {buildingBlocks.map((block) => (
-          <li key={block.title}>
+        {buildingBlocks.map((block, i) => (
+          <li
+            key={block.title}
+            style={{ "--i": i } as CSSProperties}
+            className="reveal-stagger"
+          >
             <ExternalLink
               href={block.href}
               className="group flex h-full flex-col rounded-xl border border-border bg-surface p-6 transition-colors hover:border-accent"

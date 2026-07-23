@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { Section } from "@/components/ui/Section";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { patterns } from "@/lib/content";
@@ -11,10 +12,11 @@ export function PatternGrid() {
   return (
     <Section id="patterns" eyebrow="Patterns" title="Production patterns, ready to fork">
       <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {patterns.map((p) => (
+        {patterns.map((p, i) => (
           <li
             key={p.name}
-            className="flex flex-col rounded-xl border border-border bg-surface p-6"
+            style={{ "--i": i } as CSSProperties}
+            className="reveal-stagger flex flex-col rounded-xl border border-border bg-surface p-6"
           >
             <div className="flex items-start justify-between gap-3">
               <h3 className="font-display text-lg font-bold tracking-tight">{p.name}</h3>
