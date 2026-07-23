@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+:root {
+  /* palette — our own brass/near-black, not the reference site's mint/navy */
+  --bg: #0b0e14; /* near-black base */
+  --surface: #141821; /* cards */
+  --border: #242b38;
+  --text: #e8e6e1;
+  --muted: #9aa3b2;
+  --accent: #99744a; /* brass — the ONLY accent */
+  --accent-fg: #0b0e14;
+  --paper: #f5f3ee; /* the one cream band */
+  --paper-ink: #1a1712; /* text on the cream band */
+
+  /* motion tokens */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1); /* the house curve */
+  --dur-fast: 180ms;
+  --dur-base: 520ms;
+  --dur-slow: 900ms;
+  --lift: 24px; /* how far reveal elements travel */
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-paper: var(--paper);
+  --color-paper-ink: var(--paper-ink);
+
+  --font-display: var(--font-display);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-mono-face);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+/* Non-negotiable: respect reduced motion (loop-constraints.md) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
