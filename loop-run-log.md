@@ -32,4 +32,5 @@ older than 30 days.
 {"run_id":"2026-07-23T12:20:00Z","loop":"build-loop","step":"step 5: LoopAnatomy + BuildingBlocks","attempt":1,"duration_s":170,"verifier":"ACCEPT","committed":true,"escalations":0,"tokens_estimate":82000,"outcome":"step-done"}
 {"run_id":"2026-07-23T12:30:00Z","loop":"build-loop","step":"step 6: GetStarted + FinalCTA","attempt":1,"duration_s":240,"verifier":"ACCEPT","committed":true,"escalations":0,"tokens_estimate":98000,"outcome":"step-done"}
 {"run_id":"2026-07-23T12:40:00Z","loop":"build-loop","step":"step 7: motion baseline — CSS scroll reveals","attempt":1,"duration_s":200,"verifier":"ACCEPT","committed":true,"escalations":0,"tokens_estimate":88000,"outcome":"step-done"}
+{"run_id":"2026-07-23T12:50:00Z","loop":"build-loop","step":"step 8: signature motion — hero depth field + loop-motif dash","attempt":1,"duration_s":260,"verifier":"ACCEPT","committed":true,"escalations":0,"tokens_estimate":104000,"outcome":"step-done"}
 ```

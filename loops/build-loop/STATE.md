@@ -1,8 +1,8 @@
 # build-loop — STATE.md
 
-**Last iteration:** 2026-07-23 (step 7 committed `fef46b6`)
-**Current step:** 8 — Signature motion: hero depth field + connector draw (§6.2–6.3)
-**Progress:** 7 / 10
+**Last iteration:** 2026-07-23 (step 8 committed `9903c11`)
+**Current step:** 9 — Polish: responsive, a11y, metadata, OG image
+**Progress:** 8 / 10
 
 ## Build board
 
@@ -17,8 +17,8 @@ Statuses: ☐ todo · ▶ in progress · ✅ done · ⛔ blocked
 | 5  | LoopAnatomy + BuildingBlocks | ✅ | 1 | `cdaa72a` | Visual middle of the page complete |
 | 6  | GetStarted + FinalCTA | ✅ | 1 | `b60613e` | Copy button works; page complete & static |
 | 7  | Motion baseline: `.reveal` + stagger (§6.1) | ✅ | 1 | `fef46b6` | Whole page feels alive; zero JS added |
-| 8  | Signature motion: hero depth field + connector draw (§6.2–6.3) | ▶ | 0 | — | 60fps in DevTools; reduced-motion verified |
-| 9  | Polish: responsive, a11y, metadata, OG image | ☐ | 0 | — | 375px clean; Lighthouse a11y ≥ 95 |
+| 8  | Signature motion: hero depth field + connector draw (§6.2–6.3) | ✅ | 1 | `9903c11` | 60fps in DevTools; reduced-motion verified |
+| 9  | Polish: responsive, a11y, metadata, OG image | ▶ | 0 | — | 375px clean; Lighthouse a11y ≥ 95 |
 | 10 | Deploy readiness: `npm run build` clean + `npx serve out` | ☐ | 0 | — | Static export verified → hand off to deploy-loop |
 
 ## Blockers
@@ -35,7 +35,8 @@ _none_
   - The course repo is **private**. All URL paths are verified-correct against its
     `main` tree, but they will 404 for logged-out visitors until it's made public.
     **Human decision needed before deploy** (deploy-loop should surface this).
-- **Copy button (step 6) not live-click-tested** — the Chrome extension was not
-  connected this session. Verified by build + shipped-bundle (`writeText` present) +
-  code review. Re-test with a real click during step 9 (polish) or step 10 if the
-  browser is available.
+- **Not live-browser-tested (Chrome extension disconnected this session):**
+  (a) copy button click (step 6), (b) hero depth-field 60fps in DevTools and the
+  reduced-motion toggle (step 8). All verified by build + code review + CSS/JS
+  guards instead. Re-test with a real browser during step 9 (polish) or step 10 if
+  the extension reconnects.
