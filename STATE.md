@@ -4,7 +4,7 @@ The single board that answers: **which loop is live, what phase are we in, is an
 blocked?** Each loop keeps its own detailed board in `loops/<name>/STATE.md`; this file
 is the pipeline-level view.
 
-**Last run:** 2026-07-23 (build-loop iter 2 — step 2 done)
+**Last run:** 2026-07-23 (build-loop iter 3 — step 3 done)
 **Active loop:** `build-loop`
 **Pipeline phase:** 1 / 3 — Build
 
@@ -12,7 +12,7 @@ is the pipeline-level view.
 
 | Stage | Loop | Status | Detail |
 |-------|------|--------|--------|
-| 1. Build   | build-loop  | ▶ in progress | 2 / 10 plan steps — see `loops/build-loop/STATE.md` |
+| 1. Build   | build-loop  | ▶ in progress | 3 / 10 plan steps — see `loops/build-loop/STATE.md` |
 | 2. Deploy  | deploy-loop | ⛔ dormant     | waits for build 10/10 |
 | 3. Triage  | triage-loop | ⛔ dormant     | waits for successful deploy |
 

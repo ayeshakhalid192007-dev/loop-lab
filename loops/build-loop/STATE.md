@@ -1,8 +1,8 @@
 # build-loop — STATE.md
 
-**Last iteration:** 2026-07-23 (step 2 committed `cf5f67f`)
-**Current step:** 3 — NavBar + Hero + Footer
-**Progress:** 2 / 10
+**Last iteration:** 2026-07-23 (step 3 committed `61792b0`)
+**Current step:** 4 — Curriculum + PatternGrid
+**Progress:** 3 / 10
 
 ## Build board
 
@@ -12,8 +12,8 @@ Statuses: ☐ todo · ▶ in progress · ✅ done · ⛔ blocked
 |---|-------------------------------------|--------|----------|--------|-----------|
 | 1  | Scaffold + colour/motion tokens + fonts + PillButton + Section | ✅ | 1 | `461c41d` | Test page shows both button variants in the real palette |
 | 2  | `lib/links.ts` + `lib/content.ts` from the real repo | ✅ | 1 | `cf5f67f` | Every URL opens the right file on GitHub |
-| 3  | NavBar + Hero + Footer | ▶ | 0 | — | Page has a top, a bottom, working CTAs |
-| 4  | Curriculum + PatternGrid | ☐ | 0 | — | The two link-heavy sections work end to end |
+| 3  | NavBar + Hero + Footer | ✅ | 1 | `61792b0` | Page has a top, a bottom, working CTAs |
+| 4  | Curriculum + PatternGrid | ▶ | 0 | — | The two link-heavy sections work end to end |
 | 5  | LoopAnatomy + BuildingBlocks | ☐ | 0 | — | Visual middle of the page complete |
 | 6  | GetStarted + FinalCTA | ☐ | 0 | — | Copy button works; page complete & static |
 | 7  | Motion baseline: `.reveal` + stagger (§6.1) | ☐ | 0 | — | Whole page feels alive; zero JS added |
