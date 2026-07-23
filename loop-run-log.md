@@ -38,4 +38,5 @@ older than 30 days.
 {"run_id":"2026-07-23T14:20:00Z","loop":"build-loop","step":"step 9: polish — responsive, a11y, metadata, OG image","attempt":2,"duration_s":120,"verifier":"ACCEPT","committed":true,"escalations":0,"tokens_estimate":60000,"outcome":"step-done"}
 {"run_id":"2026-07-23T18:20:00Z","loop":"build-loop","step":"step 10: deploy readiness — build clean + serve out","attempt":1,"duration_s":220,"verifier":"ACCEPT","committed":false,"escalations":0,"tokens_estimate":72000,"outcome":"step-done"}
 {"run_id":"2026-07-23T18:22:00Z","loop":"build-loop","step":"handoff — build-loop 10/10 DONE → deploy-loop ACTIVE","attempt":0,"duration_s":30,"verifier":"n/a","committed":true,"escalations":0,"tokens_estimate":8000,"outcome":"handoff"}
+{"run_id":"2026-07-23T18:35:00Z","loop":"deploy-loop","step":"iter 1 — live browser QA (Playwright + axe); a11y contrast fix a697628; checks 1-7 green","attempt":1,"duration_s":600,"verifier":"ACCEPT","committed":true,"escalations":0,"tokens_estimate":120000,"outcome":"blocked-on-human"}
 ```

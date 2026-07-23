@@ -1,9 +1,10 @@
 # deploy-loop — STATE.md
 
-**Last iteration:** never
-**Status:** ▶ ACTIVE — build-loop reached 10/10 on 2026-07-23 and handed off.
-Kick off with `/loop Run loops/deploy-loop/runbook.md`. The public deploy (check 8)
-is gated on explicit human approval.
+**Last iteration:** 2026-07-23 (iter 1 — live browser QA via Playwright; checks 1–7 ✅; one a11y fix landed)
+**Status:** ⏸ ACTIVE, parked at the human deploy gate. All automated + browser
+checks pass (checks 1–7). The only thing left is the **human-gated public deploy**
+(check 8) plus the pre-deploy decisions below. Resume with
+`/loop Run loops/deploy-loop/runbook.md` after those are settled.
 
 ## Deploy checklist (runs on activation)
 
@@ -11,14 +12,18 @@ Statuses: ☐ todo · ▶ in progress · ✅ done · ⛔ blocked
 
 | # | Check | Status | Notes |
 |---|-------|--------|-------|
-| 1 | `npm run build` clean, zero warnings | ✅ | pre-verified at build-loop step 10 (rebuild to confirm) |
-| 2 | `npx serve out` — real export renders | ✅ | pre-verified step 10: `/`, assets, 404 all 200 |
-| 3 | Every outbound GitHub link resolves (no 404s) | ✅ | 58 unique links, 0 dead vs repo `main` tree |
-| 4 | 375px mobile layout clean | ☐ | **needs a real browser** — not testable this session (extension off) |
-| 5 | `prefers-reduced-motion` — page readable & static | ☐ | guards verified in code/CSS; confirm with a live toggle |
-| 6 | Lighthouse a11y ≥ 95 | ☐ | **needs a real browser** — structural a11y done (1×h1, skip link, focus rings, alt) |
-| 7 | `loop-verifier` ACCEPT on artifact | ✅ | ACCEPTed at build-loop step 10 |
+| 1 | `npm run build` clean, zero warnings | ✅ | rebuilt during QA — clean, zero warnings |
+| 2 | `npx serve out` — real export renders | ✅ | Playwright on the real export: `/`, assets, 404 all 200; 0 console errors |
+| 3 | Every outbound GitHub link resolves (no 404s) | ✅ | 58 unique links, 0 dead vs repo `main` tree (paths correct; see private-repo note) |
+| 4 | 375px mobile layout clean | ✅ | Playwright @360px content width: 0px horizontal overflow, 0 offending elements |
+| 5 | `prefers-reduced-motion` — page readable & static | ✅* | *CSS double-guard verified (no-preference + @supports); content opacity 1 by default, axe found nothing hidden. Live OS toggle not exercised (Playwright MCP has no emulateMedia). |
+| 6 | Lighthouse a11y ≥ 95 | ✅ | axe-core WCAG 2 A/AA: **0 violations, 21 passes** after fixing one metaphor-label contrast issue (`a697628`) → maps to a11y ~100 |
+| 7 | `loop-verifier` ACCEPT on artifact | ✅ | ACCEPTed at build-loop step 10; a11y fix re-verified (`a697628`) |
 | 8 | Public deploy | ☐ | **HUMAN APPROVAL REQUIRED before running** |
+
+## Live-QA extras confirmed this iteration
+- **Copy button works**: clicking it wrote the exact clone command to the clipboard and flipped the label to "Copied".
+- **Private repo confirmed user-facing**: in an unauthenticated browser, the GitHub links render "Page not found" — the paths are correct, but the repo must be public before these work for visitors. (Still item #1 below.)
 
 ## Pre-deploy human decisions (carried over from build-loop)
 

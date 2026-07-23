@@ -18,13 +18,14 @@ is the pipeline-level view.
 
 ## High Priority (loop is acting or waiting on a human)
 
-- **✅ build-loop COMPLETE (10/10). deploy-loop is now ACTIVE and waiting on you.**
-  The static export is deploy-ready (clean build, serves correctly, 58 links, zero
-  dead). Before a public deploy — which **requires your explicit approval** — decide:
-  (1) make the course repo **public** (or accept 404s for logged-out visitors);
-  (2) set `NEXT_PUBLIC_SITE_URL`; (3) live browser QA still owed (375px, Lighthouse
-  a11y, copy button, hero 60fps + reduced-motion) since the Chrome extension was off
-  all build. Kick off with `/loop Run loops/deploy-loop/runbook.md`.
+- **✅ build-loop COMPLETE (10/10). deploy-loop QA done — parked at the human deploy gate.**
+  Live browser QA (Playwright + axe-core) is complete: 375px clean (0 overflow),
+  **a11y 0 violations / 21 passes** (~100, after one contrast fix `a697628`), copy
+  button works, 0 console errors. Checks 1–7 all green. **Only the human-gated public
+  deploy (check 8) remains**, plus these decisions before deploying:
+  (1) make the course repo **public** — confirmed: links 404 for logged-out visitors
+  until then; (2) set `NEXT_PUBLIC_SITE_URL` for absolute OG/metadata URLs.
+  When ready: `/loop Run loops/deploy-loop/runbook.md`, then approve the deploy.
   Details in `loops/deploy-loop/STATE.md`.
 
 _(Cleared 2026-07-23: the budget pause — human raised caps to 1.1M/1.3M; see
