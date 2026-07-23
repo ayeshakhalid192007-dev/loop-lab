@@ -1,8 +1,8 @@
 # build-loop — STATE.md
 
-**Last iteration:** 2026-07-23 (step 4 committed `9fa1330`)
-**Current step:** 5 — LoopAnatomy + BuildingBlocks
-**Progress:** 4 / 10
+**Last iteration:** 2026-07-23 (step 5 committed `cdaa72a`)
+**Current step:** 6 — GetStarted + FinalCTA
+**Progress:** 5 / 10
 
 ## Build board
 
@@ -14,8 +14,8 @@ Statuses: ☐ todo · ▶ in progress · ✅ done · ⛔ blocked
 | 2  | `lib/links.ts` + `lib/content.ts` from the real repo | ✅ | 1 | `cf5f67f` | Every URL opens the right file on GitHub |
 | 3  | NavBar + Hero + Footer | ✅ | 1 | `61792b0` | Page has a top, a bottom, working CTAs |
 | 4  | Curriculum + PatternGrid | ✅ | 1 | `9fa1330` | The two link-heavy sections work end to end |
-| 5  | LoopAnatomy + BuildingBlocks | ▶ | 0 | — | Visual middle of the page complete |
-| 6  | GetStarted + FinalCTA | ☐ | 0 | — | Copy button works; page complete & static |
+| 5  | LoopAnatomy + BuildingBlocks | ✅ | 1 | `cdaa72a` | Visual middle of the page complete |
+| 6  | GetStarted + FinalCTA | ▶ | 0 | — | Copy button works; page complete & static |
 | 7  | Motion baseline: `.reveal` + stagger (§6.1) | ☐ | 0 | — | Whole page feels alive; zero JS added |
 | 8  | Signature motion: hero depth field + connector draw (§6.2–6.3) | ☐ | 0 | — | 60fps in DevTools; reduced-motion verified |
 | 9  | Polish: responsive, a11y, metadata, OG image | ☐ | 0 | — | 375px clean; Lighthouse a11y ≥ 95 |
