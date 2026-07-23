@@ -32,3 +32,12 @@
 ```bash
 npx @cobusgreyling/loop-cost --pattern build-loop
 ```
+
+## Alerts This Period
+
+- **2026-07-23 — build-loop self-throttled to report-only.** Logged spend reached
+  ~697k, past 80% of the build-loop daily cap (640k of 800k). Steps 9–10 each need
+  a `loop-verifier` sub-agent + commit, which report-only forbids, and step 9 would
+  also cross the global 800k / 80% line mid-step. Loop paused after step 8 (8/10,
+  site fully built + animated). Resume next budget period or after a human raises
+  the cap. See root `STATE.md` → High Priority.
