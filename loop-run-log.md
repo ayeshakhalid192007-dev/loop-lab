@@ -28,4 +28,5 @@ older than 30 days.
 {"run_id":"2026-07-23T00:00:01Z","loop":"build-loop","step":"step 1: scaffold + tokens + fonts + PillButton + Section","attempt":1,"duration_s":210,"verifier":"ACCEPT","committed":true,"escalations":0,"tokens_estimate":95000,"outcome":"step-done"}
 {"run_id":"2026-07-23T12:00:00Z","loop":"build-loop","step":"step 2: lib/links.ts + lib/content.ts from the real repo","attempt":1,"duration_s":190,"verifier":"ACCEPT","committed":true,"escalations":0,"tokens_estimate":78000,"outcome":"step-done"}
 {"run_id":"2026-07-23T12:05:00Z","loop":"build-loop","step":"step 3: NavBar + Hero + Footer","attempt":1,"duration_s":150,"verifier":"ACCEPT","committed":true,"escalations":0,"tokens_estimate":72000,"outcome":"step-done"}
+{"run_id":"2026-07-23T12:10:00Z","loop":"build-loop","step":"step 4: Curriculum + PatternGrid","attempt":1,"duration_s":165,"verifier":"ACCEPT","committed":true,"escalations":0,"tokens_estimate":80000,"outcome":"step-done"}
 ```
