@@ -15,7 +15,7 @@ is **shared** and lives at the root — one source of truth for every loop.
 ```
 build-loop  ──(all 10 steps done)──▶  deploy-loop  ──(deployed & verified)──▶  triage-loop
  self-paced                            one-shot + on-demand                    daily, forever
- ACTIVE                                DORMANT                                 DORMANT
+ ✅ DONE (10/10)                       ACTIVE (awaiting human deploy approval)  DORMANT
 ```
 
 Only **one loop is active at a time.** A loop activates the next one by flipping its
@@ -25,8 +25,8 @@ Only **one loop is active at a time.** A loop activates the next one by flipping
 
 | Loop | Dir | Cadence | Status | Kickoff command | Reviewer gate |
 |------|-----|---------|--------|-----------------|---------------|
-| build-loop  | `loops/build-loop`  | Self-paced (~60s) | **ACTIVE**  | `/loop Run loops/build-loop/runbook.md`  | `loop-verifier` sub-agent before every commit |
-| deploy-loop | `loops/deploy-loop` | Once, then on-demand | DORMANT | `/loop Run loops/deploy-loop/runbook.md` | `loop-verifier` on the deployed artifact |
+| build-loop  | `loops/build-loop`  | Self-paced (~60s) | ✅ **DONE** | `/loop Run loops/build-loop/runbook.md`  | `loop-verifier` sub-agent before every commit |
+| deploy-loop | `loops/deploy-loop` | Once, then on-demand | **ACTIVE** | `/loop Run loops/deploy-loop/runbook.md` | `loop-verifier` on the deployed artifact |
 | triage-loop | `loops/triage-loop` | `1d` | DORMANT | `/loop 1d Run loops/triage-loop/runbook.md` | report-only (L1) |
 
 ## Human gates (apply to every loop)

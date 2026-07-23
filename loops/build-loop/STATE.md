@@ -1,8 +1,8 @@
 # build-loop — STATE.md
 
-**Last iteration:** 2026-07-23 (step 9 committed `b6b0462`; attempt 2 after a scope REJECT)
-**Current step:** 10 — Deploy readiness: `npm run build` clean + `npx serve out`
-**Progress:** 9 / 10
+**Last iteration:** 2026-07-23 (step 10 verified; build-loop COMPLETE)
+**Current step:** — (all 10 done; handed off to deploy-loop)
+**Progress:** 10 / 10 ✅ DONE
 
 ## Build board
 
@@ -19,7 +19,7 @@ Statuses: ☐ todo · ▶ in progress · ✅ done · ⛔ blocked
 | 7  | Motion baseline: `.reveal` + stagger (§6.1) | ✅ | 1 | `fef46b6` | Whole page feels alive; zero JS added |
 | 8  | Signature motion: hero depth field + connector draw (§6.2–6.3) | ✅ | 1 | `9903c11` | 60fps in DevTools; reduced-motion verified |
 | 9  | Polish: responsive, a11y, metadata, OG image | ✅ | 2 | `b6b0462` | 375px clean; Lighthouse a11y ≥ 95 |
-| 10 | Deploy readiness: `npm run build` clean + `npx serve out` | ▶ | 0 | — | Static export verified → hand off to deploy-loop |
+| 10 | Deploy readiness: `npm run build` clean + `npx serve out` | ✅ | 1 | (verify-only, no code commit) | Static export verified → handed off to deploy-loop |
 
 ## Blockers
 

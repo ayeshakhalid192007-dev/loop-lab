@@ -36,4 +36,6 @@ older than 30 days.
 {"run_id":"2026-07-23T12:52:00Z","loop":"build-loop","step":"budget check before step 9","attempt":0,"duration_s":20,"verifier":"n/a","committed":false,"escalations":1,"tokens_estimate":6000,"outcome":"report-only"}
 {"run_id":"2026-07-23T14:10:00Z","loop":"build-loop","step":"step 9: polish — responsive, a11y, metadata, OG image","attempt":1,"duration_s":180,"verifier":"REJECT","committed":false,"escalations":0,"tokens_estimate":95000,"outcome":"retry"}
 {"run_id":"2026-07-23T14:20:00Z","loop":"build-loop","step":"step 9: polish — responsive, a11y, metadata, OG image","attempt":2,"duration_s":120,"verifier":"ACCEPT","committed":true,"escalations":0,"tokens_estimate":60000,"outcome":"step-done"}
+{"run_id":"2026-07-23T18:20:00Z","loop":"build-loop","step":"step 10: deploy readiness — build clean + serve out","attempt":1,"duration_s":220,"verifier":"ACCEPT","committed":false,"escalations":0,"tokens_estimate":72000,"outcome":"step-done"}
+{"run_id":"2026-07-23T18:22:00Z","loop":"build-loop","step":"handoff — build-loop 10/10 DONE → deploy-loop ACTIVE","attempt":0,"duration_s":30,"verifier":"n/a","committed":true,"escalations":0,"tokens_estimate":8000,"outcome":"handoff"}
 ```
