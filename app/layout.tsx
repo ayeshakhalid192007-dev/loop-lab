@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Inter_Tight, Inter, Geist_Mono } from "next/font/google";
+import { Inter_Tight, Inter, Geist_Mono, Fraunces } from "next/font/google";
 import { ScrollAnimator } from "@/components/ScrollAnimator";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { AnimatedBackground } from "@/components/AnimatedBackground";
 import "./globals.css";
 
 // Adds `reveal-on` before first paint so reveals start hidden without a flash —
@@ -26,6 +27,14 @@ const body = Inter({
 const mono = Geist_Mono({
   variable: "--font-mono-face",
   subsets: ["latin"],
+});
+
+// Premium editorial serif — used only for the brand wordmark/logo lockup
+const brand = Fraunces({
+  variable: "--font-brand-face",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 const description =
@@ -61,12 +70,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${display.variable} ${body.variable} ${mono.variable} h-full antialiased`}
+      className={`${display.variable} ${body.variable} ${mono.variable} ${brand.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col overflow-x-hidden">
         <script dangerouslySetInnerHTML={{ __html: revealInit }} />
         <ThemeProvider>
+          <AnimatedBackground />
           <a
             href="#top"
             className="sr-only rounded bg-accent px-4 py-2 text-accent-fg focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100]"

@@ -1,12 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  /* palette — warm olive / brass / sand (the three brand colours) */
-  --bg: #10120c; /* deep warm olive-black, derived from the olive */
-  --surface: #191d12; /* olive-tinted card */
-  --surface-2: #222819; /* raised / hover surface */
-  --border: #333a28; /* olive divider */
-  --olive: #414a37; /* brand olive — secondary accent (rings, depth, hovers) */
+  /* palette — warm olive / brass / sand (the three brand colours).
+     --bg sampled from the reference board (#25261E): a rich, flat dark olive rather
+     than a near-black, so the page reads as a considered olive surface, not a void. */
+  --bg: #25261e; /* rich dark olive (reference board background) */
+  --surface: #2d2f23; /* olive-tinted card — sits a step above --bg */
+  --surface-2: #383a2b; /* raised / hover surface */
+  --border: #474a37; /* olive divider */
+  --olive: #697754; /* brand olive — secondary accent (rings, depth, hovers) */
   --text: #dbc2a6; /* brand sand — primary text */
   --muted: #a5997f; /* muted sand/olive — secondary text */
   --accent: #99744a; /* brand brass — CTAs, borders, motif, active states */
@@ -61,6 +63,7 @@
   --font-display: var(--font-display);
   --font-sans: var(--font-body);
   --font-mono: var(--font-mono-face);
+  --font-brand: var(--font-brand-face);
 }
 
 html {
@@ -70,9 +73,10 @@ html {
 
 body {
   position: relative;
+  /* One restrained warm bloom at the very top over a flat olive field — no second
+     off-centre glow, so the surface reads clean and professional rather than murky. */
   background:
-    radial-gradient(ellipse 60% 40% at 50% -8%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 70%),
-    radial-gradient(ellipse 50% 32% at 88% 4%, color-mix(in srgb, var(--olive) 14%, transparent), transparent 70%),
+    radial-gradient(ellipse 90% 46% at 50% -12%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 62%),
     var(--bg);
   color: var(--text);
   font-family: var(--font-body), system-ui, sans-serif;
@@ -91,12 +95,12 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background-image: radial-gradient(
-    color-mix(in srgb, var(--olive) 42%, transparent) 1px,
+    color-mix(in srgb, var(--olive) 28%, transparent) 1px,
     transparent 1.4px
   );
-  background-size: 30px 30px;
-  -webkit-mask-image: radial-gradient(ellipse 95% 55% at 50% -2%, #000 4%, transparent 68%);
-  mask-image: radial-gradient(ellipse 95% 55% at 50% -2%, #000 4%, transparent 68%);
+  background-size: 34px 34px;
+  -webkit-mask-image: radial-gradient(ellipse 92% 50% at 50% -4%, #000 2%, transparent 60%);
+  mask-image: radial-gradient(ellipse 92% 50% at 50% -4%, #000 2%, transparent 60%);
 }
 
 /* Non-negotiable: respect reduced motion (loop-constraints.md) */
@@ -227,6 +231,24 @@ body::before {
   50.01%,
   100% {
     opacity: 0;
+  }
+}
+/* Each transcript line eases in as it's revealed, so the playback reads as smooth
+   streaming rather than a hard append. Runs once per line; skipped for reduced motion
+   (there the whole transcript is shown at once, so there's nothing to animate in). */
+@media (prefers-reduced-motion: no-preference) {
+  .term-line {
+    animation: term-line-in 260ms var(--ease-out) both;
+  }
+}
+@keyframes term-line-in {
+  from {
+    opacity: 0;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

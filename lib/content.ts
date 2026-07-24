@@ -340,14 +340,51 @@ export const finalCta = {
   cta: { label: "Get the course on GitHub", href: links.repo },
 };
 
+/** Footer link groups. Internal anchors start with "#"; everything else is outbound. */
+export interface FooterLink {
+  label: string;
+  href: string;
+}
+export interface FooterGroup {
+  heading: string;
+  links: FooterLink[];
+}
+
 export const footer = {
-  columns: [
-    { label: "Course", href: links.startCourse },
-    { label: "Patterns", href: links.patterns },
-    { label: "Starters", href: links.starters },
-    { label: "Projects", href: links.projects },
-    { label: "Assessments", href: links.assessments },
-    { label: "License", href: links.license },
-  ],
-  note: "The GitHub repo is the content. This site is the front door.",
+  tagline:
+    "The GitHub repo is the content — six parts, twenty starter kits, eleven projects. This site is the front door.",
+  /** The real scaffolding entry point — copyable, so the footer is also useful. */
+  install: "npx @loop-engineering/loop-kit list",
+  groups: [
+    {
+      heading: "Course",
+      links: [
+        { label: "Start here", href: links.startCourse },
+        { label: "Curriculum", href: "#curriculum" },
+        { label: "Learning tracks", href: links.learningTracks },
+        { label: "Assessments", href: links.assessments },
+      ],
+    },
+    {
+      heading: "Build",
+      links: [
+        { label: "Patterns", href: links.patterns },
+        { label: "Starter kits", href: links.starters },
+        { label: "Projects", href: links.projects },
+        { label: "Get started", href: "#start" },
+      ],
+    },
+    {
+      heading: "Reference",
+      links: [
+        { label: "Foundations", href: links.foundations },
+        { label: "Repository", href: links.repo },
+        { label: "License (MIT)", href: links.license },
+      ],
+    },
+  ] satisfies FooterGroup[],
+  meta: {
+    copyright: "Loop Engineering — a crash course.",
+    attribution: "MIT-licensed. Anatomy after Panaversity; kit shape after cobusgreyling/loop-engineering.",
+  },
 };

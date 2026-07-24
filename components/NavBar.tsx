@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { PillButton } from "@/components/ui/PillButton";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { LoopMark } from "@/components/ui/LoopMark";
 import { nav } from "@/lib/content";
 
 /**
@@ -32,17 +33,21 @@ export function NavBar() {
       <nav className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6">
         <a
           href="#top"
-          className="font-display text-base font-extrabold tracking-tight text-text"
+          aria-label={nav.wordmark}
+          className="group inline-flex items-center gap-2.5 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
         >
-          {nav.wordmark}
+          <LoopMark className="h-12 w-12 shrink-0 transition-transform duration-[600ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:rotate-[360deg]" />
+          <span className="font-brand text-lg font-semibold tracking-wide text-olive">
+            {nav.wordmark}
+          </span>
         </a>
 
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="hidden items-center gap-2 md:flex">
           {nav.anchors.map((a) => (
             <li key={a.href}>
               <a
                 href={a.href}
-                className="text-sm text-muted transition-colors hover:text-text"
+                className="inline-flex rounded-full border border-border px-3.5 py-1.5 text-sm text-muted transition-[color,background-color,border-color] duration-[180ms] hover:border-accent hover:bg-[color-mix(in_srgb,var(--accent)_20%,transparent)] hover:text-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
               >
                 {a.label}
               </a>
