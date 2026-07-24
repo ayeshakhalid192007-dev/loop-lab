@@ -68,15 +68,6 @@ course itself lives in a [separate repository](https://github.com/ayeshakhalid19
 **this repository is its landing site** — the polished, single-page front door that invites people in
 and points them at the material.
 
-The site is a **fully static Next.js export** with no runtime backend, so it deploys anywhere and
-loads instantly. Every word of copy and every outbound link is defined as typed data in
-[`lib/`](lib/), which keeps the components presentation-only and the content easy to audit.
-
-> **In one line:** a considered, accessible, theme-aware marketing page for a course about
-> autonomous agent loops — designed to look as engineered as the subject it teaches.
-
----
-
 ## ✨ Features
 
 | | |
@@ -293,18 +284,11 @@ for full terms.
 - Built with **[Next.js](https://nextjs.org)** and the **[Geist](https://vercel.com/font)** &
   **[Fraunces](https://fonts.google.com/specimen/Fraunces)** typefaces.
 
+
 ---
 
-## 📬 Contact
+<p align="center">
+  <sub>Built on a heartbeat — checked, and human-gated. &nbsp;·&nbsp; <b>Stop prompting. Start looping.</b></sub>
+</p>
 
-**Ayesha Khalid**
 
-- GitHub: [@ayeshakhalid192007-dev](https://github.com/ayeshakhalid192007-dev)
-- Email: [ayeshakhalid192007@gmail.com](mailto:ayeshakhalid192007@gmail.com)
-- Course: [LoopEngineering-CrashCourse](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse)
-
-<div align="center">
-
-**[⬆ Back to top](#loop-engineering--landing-site)** &nbsp;·&nbsp; Built on a heartbeat — checked, and human-gated. &nbsp;·&nbsp; **Stop prompting. Start looping.**
-
-</div>
