@@ -285,16 +285,6 @@ for full terms.
 
 ---
 
-## 📬 Contact
-
-**Ayesha Khalid**
-
-- GitHub: [@ayeshakhalid192007-dev](https://github.com/ayeshakhalid192007-dev)
-- Email: [ayeshakhalid192007@gmail.com](mailto:ayeshakhalid192007@gmail.com)
-- Course: [LoopEngineering-CrashCourse](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse)
-
-<br />
-
 <p align="center">
   <sub>Built on a heartbeat — checked, and human-gated. &nbsp;·&nbsp; <b>Stop prompting. Start looping.</b></sub>
 </p>
