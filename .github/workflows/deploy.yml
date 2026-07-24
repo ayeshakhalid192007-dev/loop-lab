@@ -29,6 +29,8 @@ jobs:
       - name: Build static export
         env:
           PAGES_BASE_PATH: /loop-lab
+          # Absolute origin for OG/Twitter tags — the real project-site URL.
+          NEXT_PUBLIC_SITE_URL: https://ayeshakhalid192007-dev.github.io/loop-lab
         run: npm run build
       - name: Disable Jekyll (serve _next/*)
         run: touch ./out/.nojekyll

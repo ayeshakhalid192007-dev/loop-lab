@@ -1,58 +1,62 @@
-<!-- ─────────────────────────────  HERO BANNER  ───────────────────────────── -->
-<p align="center">
-  <a href="https://ayeshakhalid192007-dev.github.io/loop-lab/">
-    <img src="./assets/banner.png" alt="Loop Engineering — Stop prompting. Start looping." width="100%" />
-  </a>
-</p>
+<div align="center">
 
-<!-- ─────────────────────────────  TAGLINE  ───────────────────────────── -->
-<h1 align="center">Loop Engineering — Landing Site</h1>
+[![Deploy](https://img.shields.io/github/actions/workflow/status/ayeshakhalid192007-dev/loop-lab/deploy.yml?style=flat&logo=githubactions&logoColor=white&label=deploy&color=99744a&labelColor=25261e)](https://github.com/ayeshakhalid192007-dev/loop-lab/actions/workflows/deploy.yml)
+[![Last commit](https://img.shields.io/github/last-commit/ayeshakhalid192007-dev/loop-lab?style=flat&logo=git&logoColor=white&color=99744a&labelColor=25261e)](https://github.com/ayeshakhalid192007-dev/loop-lab/commits)
+[![Repo size](https://img.shields.io/github/repo-size/ayeshakhalid192007-dev/loop-lab?style=flat&color=99744a&labelColor=25261e)](https://github.com/ayeshakhalid192007-dev/loop-lab)
+[![Stars](https://img.shields.io/github/stars/ayeshakhalid192007-dev/loop-lab?style=flat&logo=github&color=99744a&labelColor=25261e)](https://github.com/ayeshakhalid192007-dev/loop-lab/stargazers)
 
-<p align="center">
-  <strong>The front door to the Loop Engineering crash course.</strong><br />
-  A fast, fully-static Next.js site that teaches one idea: <em>stop prompting, start looping.</em>
-</p>
+[![License: MIT](https://img.shields.io/badge/License-MIT-b98f5e?style=flat&labelColor=25261e)](#-license)
+[![Next.js](https://img.shields.io/badge/Next.js-16-b98f5e?style=flat&logo=nextdotjs&logoColor=white&labelColor=25261e)](https://nextjs.org)
+[![React](https://img.shields.io/badge/React-19-b98f5e?style=flat&logo=react&logoColor=white&labelColor=25261e)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-b98f5e?style=flat&logo=typescript&logoColor=white&labelColor=25261e)](https://www.typescriptlang.org)
+[![Tailwind](https://img.shields.io/badge/Tailwind-v4-b98f5e?style=flat&logo=tailwindcss&logoColor=white&labelColor=25261e)](https://tailwindcss.com)
 
-<!-- ─────────────────────────────  BADGES  ───────────────────────────── -->
-<p align="center">
-  <a href="https://github.com/ayeshakhalid192007-dev/loop-lab/actions/workflows/deploy.yml">
-    <img alt="Deploy" src="https://img.shields.io/github/actions/workflow/status/ayeshakhalid192007-dev/loop-lab/deploy.yml?label=deploy&style=flat-square&color=99744a" />
-  </a>
-  <img alt="License" src="https://img.shields.io/badge/license-MIT-99744a?style=flat-square" />
-  <img alt="Next.js" src="https://img.shields.io/badge/Next.js-16-282a20?style=flat-square&logo=nextdotjs" />
-  <img alt="React" src="https://img.shields.io/badge/React-19-282a20?style=flat-square&logo=react" />
-  <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-5-282a20?style=flat-square&logo=typescript" />
-  <img alt="Tailwind CSS" src="https://img.shields.io/badge/Tailwind-v4-282a20?style=flat-square&logo=tailwindcss" />
-  <img alt="PRs welcome" src="https://img.shields.io/badge/PRs-welcome-697754?style=flat-square" />
-</p>
+[![Static export](https://img.shields.io/badge/100%25-Static_Export-697754?style=flat&labelColor=25261e)](#-deployment)
+[![Accessible](https://img.shields.io/badge/a11y-0_axe_violations-34a36a?style=flat&labelColor=25261e)](#-features)
+[![Built with loops](https://img.shields.io/badge/Built_with-its_own_loops-99744a?style=flat&labelColor=25261e)](#-the-autonomous-build-system)
+[![PRs welcome](https://img.shields.io/badge/PRs-Welcome-697754?style=flat&labelColor=25261e)](#-contributing)
 
-<!-- ─────────────────────────────  QUICK LINKS  ───────────────────────────── -->
-<p align="center">
-  <a href="https://ayeshakhalid192007-dev.github.io/loop-lab/"><b>Live Demo</b></a> &nbsp;·&nbsp;
-  <a href="https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse"><b>Course Repo</b></a> &nbsp;·&nbsp;
-  <a href="#-getting-started"><b>Getting Started</b></a> &nbsp;·&nbsp;
-  <a href="#-project-structure"><b>Structure</b></a> &nbsp;·&nbsp;
-  <a href="#-contributing"><b>Contributing</b></a>
-</p>
+</div>
 
----
+<!-- HERO-START -->
 
-## 📖 Table of Contents
+<div align="center">
 
-- [Overview](#-overview)
-- [Features](#-features)
-- [Preview](#-preview)
-- [Tech Stack](#-tech-stack)
-- [Getting Started](#-getting-started)
-- [Available Scripts](#-available-scripts)
-- [Project Structure](#-project-structure)
-- [The Autonomous Build System](#-the-autonomous-build-system)
-- [What the Course Teaches](#-what-the-course-teaches)
-- [Deployment](#-deployment)
-- [Contributing](#-contributing)
-- [License](#-license)
-- [Acknowledgements](#-acknowledgements)
-- [Contact](#-contact)
+<a href="https://ayeshakhalid192007-dev.github.io/loop-lab/">
+  <img src="./assets/banner.png" alt="Loop Engineering — Stop prompting. Start looping." width="100%" />
+</a>
+
+# Loop Engineering — Landing Site
+
+*Stop prompting. Start looping.*
+
+**The polished, fully-static front door to the Loop Engineering crash course —
+a Next.js site built by the very loops the course teaches.**
+
+</div>
+
+<!-- HERO-END -->
+
+The leverage in agentic work has moved: it no longer lives in the perfect prompt, but in the
+**control system that keeps an agent working toward a goal over time**. The [crash course itself](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse)
+teaches that discipline end to end — **this repository is its landing site**, the single-page front
+door that invites people in and points them at the material. It's a fully static Next.js export with
+no runtime backend, so it deploys anywhere and loads instantly.
+
+> **We eat our own cooking.** This is a site *about* loops that is *built by loops*. The rulebook
+> lives in [`LOOP.md`](LOOP.md), the durable spine in [`STATE.md`](STATE.md), and every run is
+> logged one line at a time in [`loop-run-log.md`](loop-run-log.md).
+
+## 📌 Quick links
+
+| I want to… | |
+| --- | --- |
+| **See it live** — the deployed landing page | [**View →**](https://ayeshakhalid192007-dev.github.io/loop-lab/) |
+| Jump into the course itself | [**View →**](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse) |
+| Run the site locally in 3 commands | [**View →**](#-getting-started) |
+| Understand how it was built | [**View →**](#-the-autonomous-build-system) |
+| See the project layout | [**View →**](#-project-structure) |
+| Contribute a change | [**View →**](#-contributing) |
 
 ---
 
@@ -63,15 +67,6 @@ heartbeat, checked by a second pair of eyes, and gated by a human who stays the 
 course itself lives in a [separate repository](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse);
 **this repository is its landing site** — the polished, single-page front door that invites people in
 and points them at the material.
-
-The site is a **fully static Next.js export** with no runtime backend, so it deploys anywhere and
-loads instantly. Every word of copy and every outbound link is defined as typed data in
-[`lib/`](lib/), which keeps the components presentation-only and the content easy to audit.
-
-> **In one line:** a considered, accessible, theme-aware marketing page for a course about
-> autonomous agent loops — designed to look as engineered as the subject it teaches.
-
----
 
 ## ✨ Features
 
@@ -90,13 +85,15 @@ loads instantly. Every word of copy and every outbound link is defined as typed 
 
 ## 🖼 Preview
 
-<p align="center">
-  <a href="https://ayeshakhalid192007-dev.github.io/loop-lab/">
-    <img src="./assets/banner.png" alt="Loop Engineering landing page preview" width="90%" />
-  </a>
-</p>
+<div align="center">
 
-<p align="center"><em>▶ &nbsp;<a href="https://ayeshakhalid192007-dev.github.io/loop-lab/">View the live site</a></em></p>
+<a href="https://ayeshakhalid192007-dev.github.io/loop-lab/">
+  <img src="./assets/banner.png" alt="Loop Engineering landing page preview" width="90%" />
+</a>
+
+*▶ &nbsp;[View the live site](https://ayeshakhalid192007-dev.github.io/loop-lab/)*
+
+</div>
 
 The page is composed of nine focused sections — hero, loop anatomy, building blocks, an
 architecture schematic, the curriculum, the pattern library, a get-started walkthrough, a final
@@ -174,6 +171,7 @@ loop-lab/
 │   ├── layout.tsx          # Root layout, fonts, metadata, theme provider
 │   ├── page.tsx            # Page composition (nine sections)
 │   ├── globals.css         # Design tokens + Tailwind layer
+│   ├── icon.svg            # Brand favicon (auto-detected by App Router)
 │   └── opengraph-image.tsx # Generated OG / social image
 ├── components/             # Presentation-only React components
 │   ├── Hero.tsx            # Headline, CTAs, live loop terminal
@@ -200,9 +198,11 @@ This site was not hand-assembled top to bottom — it was built by a **sequenced
 autonomous loops**, the very pattern the course teaches. The governance files at the repo root
 (`LOOP.md`, `STATE.md`, `loop-constraints.md`, `loop-budget.md`) drive three loops:
 
-```
-build-loop ──(10 steps done)──▶ deploy-loop ──(verified)──▶ triage-loop
- self-paced                      human-gated deploy          daily, forever
+```mermaid
+flowchart LR
+    B["🔨 build-loop<br/>self-paced · 10 steps"] -->|all steps done| D["🚀 deploy-loop<br/>human-gated deploy"]
+    D -->|verified live| T["🔭 triage-loop<br/>daily · report-only"]
+    T -.->|findings| B
 ```
 
 - **build-loop** — implemented the site one plan step per iteration, each gated by an independent
@@ -240,7 +240,8 @@ The site ships automatically to **GitHub Pages** on every push to `main`, via
 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml):
 
 1. `npm ci` and `npm run build` with `PAGES_BASE_PATH=/loop-lab` (so `/_next` assets resolve
-   under the project subpath).
+   under the project subpath) and `NEXT_PUBLIC_SITE_URL` set to the live origin (so OG/social tags
+   are absolute-correct).
 2. The static `out/` directory is uploaded as a Pages artifact.
 3. `actions/deploy-pages` publishes it.
 
@@ -283,8 +284,11 @@ for full terms.
 - Built with **[Next.js](https://nextjs.org)** and the **[Geist](https://vercel.com/font)** &
   **[Fraunces](https://fonts.google.com/specimen/Fraunces)** typefaces.
 
+
 ---
 
 <p align="center">
   <sub>Built on a heartbeat — checked, and human-gated. &nbsp;·&nbsp; <b>Stop prompting. Start looping.</b></sub>
 </p>
+
+

@@ -40,9 +40,11 @@ const brand = Fraunces({
 const description =
   "A hands-on crash course in loop engineering: build agents that run themselves — on a heartbeat, checked, and human-gated. 6 parts, 20 starter kits, 11 projects. MIT licensed.";
 
-// Resolved to the real origin at deploy time via NEXT_PUBLIC_SITE_URL (deploy-loop
-// sets this); the fallback only affects the absolute OG-image URL, not the markup.
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://loop-engineering.vercel.app";
+// Resolved to the real origin at deploy time via NEXT_PUBLIC_SITE_URL (the Pages
+// workflow sets this to the project-site origin). The fallback matches the live
+// GitHub Pages URL so absolute OG/Twitter tags are correct even without the env var.
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ayeshakhalid192007-dev.github.io/loop-lab";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
