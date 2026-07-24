@@ -316,6 +316,10 @@ export const patterns: PatternCard[] = [
 
 export const getStarted = {
   cloneCommand: `git clone ${links.clone}`,
+  /** Folder git drops the clone into — drives the animated transcript. */
+  repoDir: "LoopEngineering-CrashCourse",
+  /** What lands once the clone finishes — the ✓ line at the end of the transcript. */
+  cloneSummary: "6 parts · 20 starters · 11 projects",
   steps: [
     {
       title: "Clone & skim the map",
