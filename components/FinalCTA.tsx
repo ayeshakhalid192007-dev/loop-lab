@@ -10,7 +10,7 @@ export function FinalCTA() {
         {finalCta.headline}
       </h2>
       <div className="reveal mt-8 flex justify-center">
-        <PillButton href={finalCta.cta.href} variant="solid" external>
+        <PillButton href={finalCta.cta.href} variant="solid">
           {finalCta.cta.label}
         </PillButton>
       </div>

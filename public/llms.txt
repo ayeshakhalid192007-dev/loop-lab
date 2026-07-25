@@ -10,30 +10,49 @@ it by hand. Every production loop declares six parts: a heartbeat (when it runs)
 (what it can do), a spine (what it remembers), a stopping condition (when it's done), a
 checker (who verifies), and a human gate (where a person decides).
 
+Every page below is published on this domain. The source markdown lives at
+https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse.
+
 ## Course
 
-- [Start here](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/docs/00-start-here/README.md): entry point and learning tracks
-- [Foundations](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/docs/02-foundations/concepts.md): core concepts
-- [Glossary](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/docs/02-foundations/glossary.md): every term defined once
-- [Part 1 — The Shift](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/docs/03-part-1-the-shift/README.md): from prompting to looping
-- [Part 2 — Heartbeat](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/docs/04-part-2-heartbeat/README.md): scheduling and unattended runs
-- [Part 3 — The Body](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/docs/05-part-3-the-body/README.md): capabilities, worktrees, skills, MCP
-- [Part 4 — The Spine](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/docs/06-part-4-the-spine/README.md): durable state between runs
-- [Part 5 — Complete Loop](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/docs/07-part-5-complete-loop/README.md): stopping conditions and checkers
-- [Part 6 — Human Control](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/docs/08-part-6-human-control/README.md): human gates and staying the engineer
+- [Start Here — the 60-second router](https://ayeshakhalid192007-dev.github.io/loop-lab/start-here/): You are one honest answer away from knowing exactly where to begin. No account, no sign-up, no placement test — just read the four questions below and…
+- [Prerequisites](https://ayeshakhalid192007-dev.github.io/loop-lab/prerequisites/): What to have in place before the first loop runs: a working agentic coding setup, the spec-driven habits the course assumes, and a primer on agentic coding itself. Skip whichever you already know.
+- [Foundations](https://ayeshakhalid192007-dev.github.io/loop-lab/foundations/): The vocabulary and mental models the rest of the course leans on. Read these once and the six parts of a loop stop being jargon.
+- [Part 1 · The Shift](https://ayeshakhalid192007-dev.github.io/loop-lab/parts/the-shift/): From prompting to looping: what actually changes, which layer you're standing in, and the six-part anatomy every loop shares. This part is pure mental…
+- [Part 2 · The Heartbeat](https://ayeshakhalid192007-dev.github.io/loop-lab/parts/heartbeat/): Four ways a loop decides when to beat — from a timer you can watch tick, to the world itself reaching over and pulling the trigger. Read this part as a…
+- [Part 3 · The Body](https://ayeshakhalid192007-dev.github.io/loop-lab/parts/the-body/): What a beat may do and touch — and how to keep many hands from colliding: isolation, taught moves, hands on the world, and the split that keeps work…
+- [Part 4 · The Spine](https://ayeshakhalid192007-dev.github.io/loop-lab/parts/the-spine/): One step, one organ, one unbending rule: the model forgets, so the files have to remember. This is the briefest part of the whole course — and the one…
+- [Part 5 · A Complete Loop, Twice](https://ayeshakhalid192007-dev.github.io/loop-lab/parts/complete-loop/): The capstone of the build track: every organ from Parts 1–4 wired together into one production loop — and then wired together again in a second tool,…
+- [Part 6 · Human Control](https://ayeshakhalid192007-dev.github.io/loop-lab/parts/human-control/): The course ends exactly where accountability lives: with you. Four pages on the one job that can't be handed off — paying for, verifying, and…
 
 ## Build
 
-- [Starter kits](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/starters/README.md): 20 ready-to-run loop templates
-- [Patterns](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/patterns/ci-sweeper.md): named loop patterns
-- [Projects](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/docs/projects/01-a-watch-loop.md): graded labs
+- [Loop Patterns](https://ayeshakhalid192007-dev.github.io/loop-lab/patterns/): Named, reusable loop designs. Each pattern states what the loop watches, what it may do, how it verifies its own output, and where a human stays in the…
+- [starters/ — install-and-run loop kits](https://ayeshakhalid192007-dev.github.io/loop-lab/starters/): A loop is a handful of small files: a definition, a spine, a budget, a constitution, a skill, and a checker. This folder hands you those files…
+- [Projects](https://ayeshakhalid192007-dev.github.io/loop-lab/projects/): Eleven graded labs. Each one builds a working loop end to end, then breaks it on purpose so you learn what failure looks like before production teaches…
+- [Methods](https://ayeshakhalid192007-dev.github.io/loop-lab/methods/): The reusable procedures — how to choose a pattern, how to check a loop design before you run it, and how to scaffold a new loop from a template. These are the pages you come back to, not the ones you read once.
+- [Operating](https://ayeshakhalid192007-dev.github.io/loop-lab/operating/): Running loops in anger: the failure modes, the anti-patterns, what observability a loop needs, how to recover one that has gone wrong, and how to keep an infinite loop from being infinite.
+- [Advanced](https://ayeshakhalid192007-dev.github.io/loop-lab/advanced/): What comes after your first working loop: making it better on purpose, running several at once, and keeping a fleet of them accountable.
 
 ## Reference
 
-- [Loop Ready certification](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/docs/assessments/loop-ready-certification.md)
-- [Repository](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse)
+- [Assessments](https://ayeshakhalid192007-dev.github.io/loop-lab/certification/): How you find out whether you actually learned this. Graded against a written rubric, not against a feeling.
+- [Appendix](https://ayeshakhalid192007-dev.github.io/loop-lab/appendix/): Reference material — per-tool cheatsheets for Claude Code, Codex, Cursor, OpenCode, Windsurf and Grok, plus the routines reference.
+- [Course Contents — read in folder order](https://ayeshakhalid192007-dev.github.io/loop-lab/curriculum/): New here? Open 00-start-here/ first — the 60-second router that drops you onto a track. The folders below are numbered in reading order, so the listing…
+
+## Key pages
+
+- [Glossary](https://ayeshakhalid192007-dev.github.io/loop-lab/foundations/glossary/): Every term this course leans on, defined once and linked from everywhere. Keep this page open in a spare tab — the popovers on the website are…
+- [Core Concepts](https://ayeshakhalid192007-dev.github.io/loop-lab/foundations/concepts/): Intent debt, comprehension debt, and the harness-vs-loop distinction — the three ideas that explain most loop failures before they happen.
+- [Primitives](https://ayeshakhalid192007-dev.github.io/loop-lab/foundations/primitives/): The raw materials every loop is assembled from — and what each one is for once the goal is autonomy instead of assistance.
+- [Step 3 · Anatomy of a Loop](https://ayeshakhalid192007-dev.github.io/loop-lab/parts/the-shift/anatomy-of-a-loop/): Six parts, every loop, no exceptions: heartbeat, body, spine, stopping condition, checker, human gate. Learn the shape once and you can read any loop…
+- [About the author](https://ayeshakhalid192007-dev.github.io/loop-lab/about/): who writes this course
+
+## Optional
+
+- [Repository](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse): source markdown, starter kits, and issues
 - [License](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/LICENSE): MIT
 
 ## Author
 
-Ayesha Khalid — https://github.com/ayeshakhalid192007-dev
+Ayesha Khalid — https://ayeshakhalid192007-dev.github.io/loop-lab/about/

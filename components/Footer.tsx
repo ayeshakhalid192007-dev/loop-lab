@@ -8,8 +8,9 @@ import { footer, nav } from "@/lib/content";
  * same-page links; every outbound link goes through ExternalLink so target/rel stay safe.
  */
 function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+  // inline-flex + min-h clears the 24px tap-target floor; a bare text-sm link is 20px.
   const cls =
-    "text-sm text-muted transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded-sm";
+    "inline-flex min-h-[24px] items-center text-sm text-muted transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg rounded-sm";
   return href.startsWith("#") ? (
     <a href={href} className={cls}>
       {children}

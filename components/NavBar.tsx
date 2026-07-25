@@ -57,7 +57,7 @@ export function NavBar() {
 
         <div className="flex items-center gap-3">
           <ThemeToggle />
-          <PillButton href={nav.cta.href} variant="solid" external>
+          <PillButton href={nav.cta.href} variant="solid">
             {nav.cta.label}
           </PillButton>
         </div>

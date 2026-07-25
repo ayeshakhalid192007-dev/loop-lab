@@ -30,10 +30,15 @@ export function GetStarted() {
                 {i + 1}
               </span>
               <div className="pt-0.5">
-                <h3 className="font-display text-lg font-bold tracking-tight text-paper-ink">
+                {/* A <p>, not an <h3>. These three are calls to action — "Clone &
+                    skim the map →" is not a section of the document, and marking it
+                    as one put three arrow-suffixed pseudo-headings into the outline
+                    where crawlers and screen readers both read them as content
+                    structure. Styling is unchanged; only the element is. */}
+                <p className="font-display text-lg font-bold tracking-tight text-paper-ink">
                   <ExternalLink
                     href={step.href}
-                    className="group inline-flex items-center gap-1.5 underline decoration-paper-ink/25 underline-offset-4 transition-colors hover:decoration-accent"
+                    className="group inline-flex min-h-[24px] items-center gap-1.5 underline decoration-paper-ink/25 underline-offset-4 transition-colors hover:decoration-accent"
                   >
                     {step.title}
                     <span
@@ -43,7 +48,7 @@ export function GetStarted() {
                       →
                     </span>
                   </ExternalLink>
-                </h3>
+                </p>
                 <p className="mt-1.5 text-sm text-paper-ink/85">{step.blurb}</p>
               </div>
             </li>

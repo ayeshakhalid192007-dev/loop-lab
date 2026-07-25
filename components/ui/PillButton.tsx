@@ -23,18 +23,25 @@ const variants: Record<Variant, string> = {
 };
 
 /**
- * The one shared button primitive. `external` renders a raw <a> with safe rel;
- * internal links use next/link. Every outbound link on the site goes through here.
+ * The one shared button primitive. Outbound links render as a raw <a> with a safe
+ * rel; internal links use next/link, which applies the deploy-time basePath.
+ *
+ * `external` now defaults to "whatever the href says" rather than to false. When
+ * the curriculum moved from github.com URLs to internal routes, every call site
+ * that passed `external` became wrong at once; deriving it from the href means a
+ * link cannot be mislabelled, and passing it explicitly still wins for the rare
+ * case that needs to override.
  */
 export function PillButton({
   href,
   children,
   variant = "solid",
-  external = false,
+  external,
   className = "",
 }: PillButtonProps) {
   const cls = `${base} ${variants[variant]} ${className}`;
-  if (external) {
+  const isExternal = external ?? !href.startsWith("/");
+  if (isExternal) {
     return (
       <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>
         {children}

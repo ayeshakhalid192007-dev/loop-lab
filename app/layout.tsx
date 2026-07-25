@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { Inter_Tight, Inter, Geist_Mono, Fraunces } from "next/font/google";
+import { Inter, Geist_Mono } from "next/font/google";
 import { ScrollAnimator } from "@/components/ScrollAnimator";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
-import { JsonLd } from "@/components/JsonLd";
 import "./globals.css";
 
 // Adds `reveal-on` before first paint so reveals start hidden without a flash —
@@ -11,31 +10,45 @@ import "./globals.css";
 const revealInit =
   "try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('reveal-on')}}catch(e){}";
 
-// Display face for headlines
-const display = Inter_Tight({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["700", "800"],
-});
-
-// Body sans
-const body = Inter({
+/**
+ * Two families, down from four.
+ *
+ * The page was declaring 49 @font-face rules across Fraunces (18), Inter Tight
+ * (14), Inter (7) and Geist Mono (6) — 194 KB of a 464 KB page, the largest
+ * category after JS — while only 7 faces ever loaded. It also carried a
+ * cold-cache CLS of 0.334, which is what four swapping families does to a layout.
+ *
+ * What went:
+ *  - Inter Tight, folded into Inter. Inter Tight is Inter with tighter default
+ *    tracking; every heading on the site already sets `tracking-tight`, so the
+ *    two rendered nearly identically for the cost of a second family.
+ *  - Fraunces, which existed for the two-word nav wordmark and nothing else.
+ *    Eighteen faces for one lockup. It now renders in the display face.
+ *
+ * Both survivors are variable fonts subset to latin, so each is a single file
+ * covering every weight rather than one file per weight. `adjustFontFallback` is
+ * on by default in next/font and is what actually fixes the CLS: it derives a
+ * size-adjusted local fallback so the swap does not reflow.
+ */
+const sans = Inter({
   variable: "--font-body",
   subsets: ["latin"],
+  display: "swap",
 });
 
-// Monospace for the terminal block
+/**
+ * Code, terminal blocks, and the small-caps labels. Genuinely a third face rather
+ * than an indulgence — the 150 curriculum pages are full of code blocks, and a
+ * proportional font in a shell transcript is unreadable.
+ *
+ * `preload: false`: no monospace text is above the fold on any page, so preloading
+ * it competes with the LCP element's own font for the same early bandwidth.
+ */
 const mono = Geist_Mono({
   variable: "--font-mono-face",
   subsets: ["latin"],
-});
-
-// Premium editorial serif — used only for the brand wordmark/logo lockup
-const brand = Fraunces({
-  variable: "--font-brand-face",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  style: ["normal", "italic"],
+  display: "swap",
+  preload: false,
 });
 
 // Kept under ~160 chars so it survives intact in a result snippet.
@@ -51,6 +64,20 @@ const title = "Loop Engineering Crash Course — 20 Loop Kits + Certification";
 // GitHub Pages URL so absolute OG/Twitter tags are correct even without the env var.
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://ayeshakhalid192007-dev.github.io/loop-lab";
+
+// A real file with a real extension, generated into public/ by scripts/generate-og.mjs.
+// This replaced app/opengraph-image.tsx, whose extensionless route (/opengraph-image)
+// made GitHub Pages serve `application/octet-stream` while the markup declared
+// image/png — Pages types responses purely from the extension, so the route could
+// never be right. Declared explicitly here since removing the file convention also
+// removes Next's automatic og:image injection.
+const ogImage = {
+  url: "/og.png",
+  width: 1200,
+  height: 630,
+  alt: "Loop Engineering — Crash Course",
+  type: "image/png",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -70,11 +97,13 @@ export const metadata: Metadata = {
     title,
     description,
     url: "/",
+    images: [ogImage],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
+    images: [ogImage],
   },
 };
 
@@ -86,11 +115,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${display.variable} ${body.variable} ${mono.variable} ${brand.variable} h-full antialiased`}
+      className={`${sans.variable} ${mono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="flex min-h-full flex-col overflow-x-hidden">
-        <JsonLd />
+      {/* Horizontal clipping lives on <html> in globals.css, not here: the two
+          backdrop layers are position: fixed and escape body's overflow entirely. */}
+      <body className="flex min-h-full flex-col">
         <script dangerouslySetInnerHTML={{ __html: revealInit }} />
         <ThemeProvider>
           <AnimatedBackground />

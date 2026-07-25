@@ -15,7 +15,16 @@ export function PatternGrid() {
         kit you can fork today.
       </p>
 
-      <div className="overflow-x-auto border-y border-border">
+      {/* The 680px minimum keeps the five columns readable, so on a 375px viewport this
+          has to scroll inside its own box rather than dragging the page sideways.
+          tabIndex + role make that scroll reachable from the keyboard — a scrollable
+          region with no focusable child is otherwise a keyboard trap for its content. */}
+      <div
+        role="region"
+        aria-label="Production patterns"
+        tabIndex={0}
+        className="max-w-full overflow-x-auto border-y border-border"
+      >
         <table className="w-full min-w-[680px] border-collapse text-left text-sm">
           <thead>
             <tr className="border-b border-border font-mono text-[11px] uppercase tracking-widest text-accent-2">
