@@ -60,6 +60,10 @@ export const metadata: Metadata = {
   // full project-site URL. The trailing slash matters — next.config sets
   // trailingSlash: true, and sitemap.ts must agree with what is emitted here.
   alternates: { canonical: "/" },
+  // Bing ownership. Also served as public/BingSiteAuth.xml — two independent
+  // methods, so removing either one alone cannot un-verify the property.
+  // Bing's index feeds Copilot and is an input to ChatGPT search.
+  verification: { other: { "msvalidate.01": "4CA0CF2F5ED9090962EE9836B5919AE9" } },
   openGraph: {
     type: "website",
     siteName: "Loop Engineering — Crash Course",
