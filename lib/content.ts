@@ -12,7 +12,10 @@ export interface NavContent {
 }
 
 export interface HeroContent {
+  /** The H1. Carries the search term — the hook lives in `tagline`, rendered below it. */
   headline: string;
+  /** The original hook, kept as a sub-headline so the voice survives the SEO rewrite. */
+  tagline: string;
   lede: string;
   primary: { label: string; href: string };
   secondary: { label: string; href: string };
@@ -72,7 +75,8 @@ export const nav: NavContent = {
 };
 
 export const hero: HeroContent = {
-  headline: "Stop prompting. Start looping.",
+  headline: "Loop Engineering: Build Agents That Run Themselves",
+  tagline: "Stop prompting. Start looping.",
   lede: "A hands-on crash course in loop engineering — building agents that run on a heartbeat, checked by a second pair of eyes, and gated by a human who stays the engineer.",
   primary: { label: "Start the course", href: links.startCourse },
   secondary: { label: "Browse the repo", href: links.repo },

@@ -11,8 +11,14 @@ const BRANCH = "main";
 /** A single file on GitHub (…/blob/main/<path>). */
 export const doc = (path: string) => `${REPO}/blob/${BRANCH}/${path}`;
 
-/** A folder on GitHub (…/tree/main/<path>). */
-export const folder = (path: string) => `${REPO}/tree/${BRANCH}/${path}`;
+/**
+ * A folder's rendered index on GitHub (…/blob/main/<path>/README.md).
+ *
+ * Deliberately NOT a /tree/ URL — github.com/robots.txt disallows tree paths under
+ * every owner, so each such link here was a dead end for crawlers. /blob/ is allowed.
+ * Every directory reached this way must contain a README.md; check before adding one.
+ */
+export const folder = (path: string) => `${REPO}/blob/${BRANCH}/${path}/README.md`;
 
 export const links = {
   repo: REPO,

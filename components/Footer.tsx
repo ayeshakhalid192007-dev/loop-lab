@@ -46,9 +46,12 @@ export function Footer() {
           <nav aria-label="Footer" className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3">
             {footer.groups.map((group) => (
               <div key={group.heading}>
-                <h2 className="font-mono text-[11px] font-semibold uppercase tracking-widest text-accent-2">
+                {/* A <p>, not an <h2>: these are nav labels, not content sections. As
+                    headings they entered the document outline as peers of real page
+                    sections, which misreports the page's structure to crawlers. */}
+                <p className="font-mono text-[11px] font-semibold uppercase tracking-widest text-accent-2">
                   {group.heading}
-                </h2>
+                </p>
                 <ul className="mt-4 flex flex-col gap-3">
                   {group.links.map((link) => (
                     <li key={link.label}>

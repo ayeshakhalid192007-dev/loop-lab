@@ -3,6 +3,7 @@ import { Inter_Tight, Inter, Geist_Mono, Fraunces } from "next/font/google";
 import { ScrollAnimator } from "@/components/ScrollAnimator";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { AnimatedBackground } from "@/components/AnimatedBackground";
+import { JsonLd } from "@/components/JsonLd";
 import "./globals.css";
 
 // Adds `reveal-on` before first paint so reveals start hidden without a flash —
@@ -37,8 +38,13 @@ const brand = Fraunces({
   style: ["normal", "italic"],
 });
 
+// Kept under ~160 chars so it survives intact in a result snippet.
 const description =
-  "A hands-on crash course in loop engineering: build agents that run themselves — on a heartbeat, checked, and human-gated. 6 parts, 20 starter kits, 11 projects. MIT licensed.";
+  "A free crash course in loop engineering: build AI agents that run themselves — on a heartbeat, checked, and human-gated. 20 loop kits, graded labs, MIT.";
+
+// Leads with the term people search, then the two things no competitor offers.
+// ~60 chars, so it fills the SERP line without truncating.
+const title = "Loop Engineering Crash Course — 20 Loop Kits + Certification";
 
 // Resolved to the real origin at deploy time via NEXT_PUBLIC_SITE_URL (the Pages
 // workflow sets this to the project-site origin). The fallback matches the live
@@ -48,18 +54,22 @@ const siteUrl =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Loop Engineering — Crash Course",
+  title,
   description,
+  // Next.js joins this against metadataBase's pathname, so "/" resolves to the
+  // full project-site URL. The trailing slash matters — next.config sets
+  // trailingSlash: true, and sitemap.ts must agree with what is emitted here.
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     siteName: "Loop Engineering — Crash Course",
-    title: "Loop Engineering — Crash Course",
+    title,
     description,
     url: "/",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Loop Engineering — Crash Course",
+    title,
     description,
   },
 };
@@ -76,6 +86,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col overflow-x-hidden">
+        <JsonLd />
         <script dangerouslySetInnerHTML={{ __html: revealInit }} />
         <ThemeProvider>
           <AnimatedBackground />

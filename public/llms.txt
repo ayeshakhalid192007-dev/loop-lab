@@ -1,0 +1,39 @@
+# Loop Engineering Crash Course
+
+> A free, open-source curriculum for loop engineering: designing control systems that keep
+> AI coding agents working toward a goal over time. 6 parts, 14 steps, 20 starter kits,
+> graded labs, and a Loop Ready certification. MIT licensed.
+
+Loop engineering is the practice of designing the system that prompts an AI agent — its
+trigger, instructions, guardrails, verification, state, and logging — rather than prompting
+it by hand. Every production loop declares six parts: a heartbeat (when it runs), a body
+(what it can do), a spine (what it remembers), a stopping condition (when it's done), a
+checker (who verifies), and a human gate (where a person decides).
+
+## Course
+
+- [Start here](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/docs/00-start-here/README.md): entry point and learning tracks
+- [Foundations](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/docs/02-foundations/concepts.md): core concepts
+- [Glossary](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/docs/02-foundations/glossary.md): every term defined once
+- [Part 1 — The Shift](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/docs/03-part-1-the-shift/README.md): from prompting to looping
+- [Part 2 — Heartbeat](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/docs/04-part-2-heartbeat/README.md): scheduling and unattended runs
+- [Part 3 — The Body](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/docs/05-part-3-the-body/README.md): capabilities, worktrees, skills, MCP
+- [Part 4 — The Spine](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/docs/06-part-4-the-spine/README.md): durable state between runs
+- [Part 5 — Complete Loop](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/docs/07-part-5-complete-loop/README.md): stopping conditions and checkers
+- [Part 6 — Human Control](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/docs/08-part-6-human-control/README.md): human gates and staying the engineer
+
+## Build
+
+- [Starter kits](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/starters/README.md): 20 ready-to-run loop templates
+- [Patterns](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/patterns/ci-sweeper.md): named loop patterns
+- [Projects](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/docs/projects/01-a-watch-loop.md): graded labs
+
+## Reference
+
+- [Loop Ready certification](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/docs/assessments/loop-ready-certification.md)
+- [Repository](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse)
+- [License](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/LICENSE): MIT
+
+## Author
+
+Ayesha Khalid — https://github.com/ayeshakhalid192007-dev
