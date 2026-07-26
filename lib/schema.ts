@@ -12,14 +12,14 @@ export const SITE = "https://ayeshakhalid192007-dev.github.io/loop-lab/";
 
 export const COURSE_ID = `${SITE}#course`;
 export const ORG_ID = `${SITE}#org`;
-export const AUTHOR_ID = `${SITE}#author`;
 export const WEBSITE_ID = `${SITE}#website`;
 
 /** First commit on the curriculum repo, and the last content sync. */
 export const DATE_PUBLISHED = "2026-07-16";
 export const DATE_MODIFIED = "2026-07-25";
 
-export const AUTHOR_NAME = "Ayesha Khalid";
+export const MAINTAINER_NAMES = ["Saram Ali", "Ayesha Khalid"];
+export const MAINTAINERS_LABEL = MAINTAINER_NAMES.join(" & ");
 
 /**
  * Organization. Was `name` + `url` only — the weakest kind of node, since it gives
@@ -46,30 +46,26 @@ export const organization = {
 } as const;
 
 /**
- * Person. For a course whose credibility rests entirely on who wrote it, this was
- * the weakest node on the site: one sameAs and nothing else. `url` now points at
- * the author page rather than back at the course homepage — a Person whose url is
- * the thing they authored gives a search engine no separate entity to resolve.
+ * Maintainers, one Person node each. `url` points at the shared /about/ page
+ * rather than back at the course homepage — a Person whose url is the thing
+ * they maintain gives a search engine no separate entity to resolve.
  */
-export const person = {
-  "@type": "Person",
-  "@id": AUTHOR_ID,
-  name: AUTHOR_NAME,
-  url: `${SITE}about/`,
-  jobTitle: "Software Engineer",
-  description:
-    "Author of the Loop Engineering Crash Course. Writes about agent loops, autonomous coding agents, and the control systems that keep them working toward a goal.",
-  knowsAbout: [
-    "Loop engineering",
-    "AI agent orchestration",
-    "Agentic coding workflows",
-    "Model Context Protocol (MCP)",
-    "Git worktrees",
-    "Human-in-the-loop system design",
-    "Continuous integration automation",
-  ],
-  sameAs: ["https://github.com/ayeshakhalid192007-dev"],
-} as const;
+export const maintainers = [
+  {
+    "@type": "Person",
+    "@id": `${SITE}#maintainer-saram-ali`,
+    name: "Saram Ali",
+    url: `${SITE}about/`,
+  },
+  {
+    "@type": "Person",
+    "@id": `${SITE}#maintainer-ayesha-khalid`,
+    name: "Ayesha Khalid",
+    url: `${SITE}about/`,
+  },
+] as const;
+
+export const MAINTAINER_IDS = maintainers.map((m) => m["@id"]);
 
 /**
  * The six parts, as real URLs.

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { PillButton } from "@/components/ui/PillButton";
 import { LiveTerminal } from "@/components/LiveTerminal";
 import { hero } from "@/lib/content";
-import { AUTHOR_NAME, DATE_MODIFIED, DATE_PUBLISHED } from "@/lib/schema";
+import { MAINTAINERS_LABEL, DATE_MODIFIED, DATE_PUBLISHED } from "@/lib/schema";
 
 const fmt = (iso: string) =>
   new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
@@ -55,7 +55,7 @@ export function Hero() {
             rel="author"
             className="inline-flex min-h-[24px] items-center underline decoration-border underline-offset-4 transition-colors hover:text-text hover:decoration-accent"
           >
-            {AUTHOR_NAME}
+            {MAINTAINERS_LABEL}
           </Link>{" "}
           · Published <time dateTime={DATE_PUBLISHED}>{fmt(DATE_PUBLISHED)}</time> · Updated{" "}
           <time dateTime={DATE_MODIFIED}>{fmt(DATE_MODIFIED)}</time>

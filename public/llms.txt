@@ -53,6 +53,6 @@ https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse.
 - [Repository](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse): source markdown, starter kits, and issues
 - [License](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/LICENSE): MIT
 
-## Author
+## Maintainers
 
-Ayesha Khalid — https://ayeshakhalid192007-dev.github.io/loop-lab/about/
+Saram Ali, Ayesha Khalid — https://ayeshakhalid192007-dev.github.io/loop-lab/about/
