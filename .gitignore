@@ -30,3 +30,7 @@ next-env.d.ts
 # QA scratch (screenshots + playwright-mcp working dir)
 /.playwright-mcp
 /*.png
+
+# Generated at build time by scripts/ (prebuild regenerates them on every build)
+/public/og.png
+/assets/social-preview.png

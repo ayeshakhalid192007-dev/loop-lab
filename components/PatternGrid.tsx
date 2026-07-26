@@ -15,7 +15,16 @@ export function PatternGrid() {
         kit you can fork today.
       </p>
 
-      <div className="overflow-x-auto border-y border-border">
+      {/* The 680px minimum keeps the five columns readable, so on a 375px viewport this
+          has to scroll inside its own box rather than dragging the page sideways.
+          tabIndex + role make that scroll reachable from the keyboard — a scrollable
+          region with no focusable child is otherwise a keyboard trap for its content. */}
+      <div
+        role="region"
+        aria-label="Production patterns"
+        tabIndex={0}
+        className="max-w-full overflow-x-auto border-y border-border"
+      >
         <table className="w-full min-w-[680px] border-collapse text-left text-sm">
           <thead>
             <tr className="border-b border-border font-mono text-[11px] uppercase tracking-widest text-accent-2">
@@ -46,16 +55,18 @@ export function PatternGrid() {
                 </td>
                 <td className="max-w-sm px-4 py-4 text-muted">{p.blurb}</td>
                 <td className="py-4 pl-4">
+                  {/* min-h-[24px] on the anchors, not the cell: the tap target is the
+                      link box. Same reasoning as the curriculum sub-links. */}
                   <div className="flex flex-col gap-1.5 whitespace-nowrap">
                     <ExternalLink
                       href={p.patternHref}
-                      className="font-medium text-accent-2 transition-opacity hover:opacity-80"
+                      className="inline-flex min-h-[24px] items-center font-medium text-accent-2 transition-opacity hover:opacity-80"
                     >
                       Pattern →
                     </ExternalLink>
                     <ExternalLink
                       href={p.starterHref}
-                      className="text-muted transition-colors hover:text-text"
+                      className="inline-flex min-h-[24px] items-center text-muted transition-colors hover:text-text"
                     >
                       Starter kit →
                     </ExternalLink>

@@ -1,9 +1,16 @@
 /**
  * All section copy as typed data. Components stay dumb — they render this.
- * Every href is built through the helpers in `lib/links.ts`, so no URL is hardcoded
- * in a component. Repo paths below are real files on the course's `main` branch.
+ *
+ * Every course href here is now an internal route. They used to be
+ * github.com/blob/main URLs almost without exception, which meant the landing
+ * page's 77 anchors included exactly zero internal links — a front door that sent
+ * every visitor, every crawler and every unit of PageRank straight back out to a
+ * domain we do not own, for content we wrote. The curriculum is published at these
+ * paths now (lib/docs.ts), so this is where that changes. github.com survives as
+ * the repo/clone CTA and the per-page "view source" link, which is what it should
+ * have been from the start.
  */
-import { doc, folder, links } from "@/lib/links";
+import { links } from "@/lib/links";
 
 export interface NavContent {
   wordmark: string;
@@ -88,32 +95,32 @@ export const buildingBlocks: BuildingBlock[] = [
   {
     title: "Scheduling",
     blurb: "Give a loop a heartbeat: timers, conditions, and unattended runs.",
-    href: doc("docs/04-part-2-heartbeat/06-unattended-schedules.md"),
+    href: "/parts/heartbeat/unattended-schedules/",
   },
   {
     title: "Worktrees",
     blurb: "Isolate each run in its own checkout so parallel loops never collide.",
-    href: doc("docs/05-part-3-the-body/08-worktrees.md"),
+    href: "/parts/the-body/worktrees/",
   },
   {
     title: "Skills",
     blurb: "Package repeatable know-how the agent can load on demand.",
-    href: doc("docs/05-part-3-the-body/09-skills.md"),
+    href: "/parts/the-body/skills/",
   },
   {
     title: "Connectors",
     blurb: "Reach real systems over MCP — the hands of the loop.",
-    href: doc("docs/05-part-3-the-body/10-connectors-mcp.md"),
+    href: "/parts/the-body/connectors-mcp/",
   },
   {
     title: "Sub-agents",
     blurb: "A separate checker grades the work — never the maker itself.",
-    href: doc("docs/05-part-3-the-body/11-maker-checker.md"),
+    href: "/parts/the-body/maker-checker/",
   },
   {
     title: "State",
     blurb: "A spine that survives between beats: state files and run logs.",
-    href: doc("docs/06-part-4-the-spine/12-state-between-runs.md"),
+    href: "/parts/the-spine/state-between-runs/",
   },
 ];
 
@@ -131,75 +138,75 @@ export const curriculum: CurriculumPart[] = [
   {
     part: "Part 1",
     title: "The Shift",
-    folderHref: folder("docs/03-part-1-the-shift"),
+    folderHref: "/parts/the-shift/",
     lessons: [
-      { title: "From Prompting to Looping", href: doc("docs/03-part-1-the-shift/01-from-prompting-to-looping.md") },
-      { title: "The Four Layers", href: doc("docs/03-part-1-the-shift/02-the-four-layers.md") },
-      { title: "Anatomy of a Loop", href: doc("docs/03-part-1-the-shift/03-anatomy-of-a-loop.md") },
+      { title: "From Prompting to Looping", href: "/parts/the-shift/from-prompting-to-looping/" },
+      { title: "The Four Layers", href: "/parts/the-shift/the-four-layers/" },
+      { title: "Anatomy of a Loop", href: "/parts/the-shift/anatomy-of-a-loop/" },
     ],
-    quizHref: doc("docs/03-part-1-the-shift/quiz.md"),
-    flashcardsHref: doc("docs/03-part-1-the-shift/flashcards.md"),
+    quizHref: "/parts/the-shift/quiz/",
+    flashcardsHref: "/parts/the-shift/flashcards/",
   },
   {
     part: "Part 2",
     title: "Heartbeat",
-    folderHref: folder("docs/04-part-2-heartbeat"),
+    folderHref: "/parts/heartbeat/",
     lessons: [
-      { title: "In-Session Loops", href: doc("docs/04-part-2-heartbeat/04-in-session-loops.md") },
-      { title: "Conditional: Run Until Done", href: doc("docs/04-part-2-heartbeat/05-conditional-run-until-done.md") },
-      { title: "Unattended Schedules", href: doc("docs/04-part-2-heartbeat/06-unattended-schedules.md") },
-      { title: "Event-Driven", href: doc("docs/04-part-2-heartbeat/07-event-driven.md") },
+      { title: "In-Session Loops", href: "/parts/heartbeat/in-session-loops/" },
+      { title: "Conditional: Run Until Done", href: "/parts/heartbeat/conditional-run-until-done/" },
+      { title: "Unattended Schedules", href: "/parts/heartbeat/unattended-schedules/" },
+      { title: "Event-Driven", href: "/parts/heartbeat/event-driven/" },
     ],
-    quizHref: doc("docs/04-part-2-heartbeat/quiz.md"),
-    flashcardsHref: doc("docs/04-part-2-heartbeat/flashcards.md"),
+    quizHref: "/parts/heartbeat/quiz/",
+    flashcardsHref: "/parts/heartbeat/flashcards/",
   },
   {
     part: "Part 3",
     title: "The Body",
-    folderHref: folder("docs/05-part-3-the-body"),
+    folderHref: "/parts/the-body/",
     lessons: [
-      { title: "Worktrees", href: doc("docs/05-part-3-the-body/08-worktrees.md") },
-      { title: "Skills", href: doc("docs/05-part-3-the-body/09-skills.md") },
-      { title: "Connectors (MCP)", href: doc("docs/05-part-3-the-body/10-connectors-mcp.md") },
-      { title: "Maker–Checker", href: doc("docs/05-part-3-the-body/11-maker-checker.md") },
+      { title: "Worktrees", href: "/parts/the-body/worktrees/" },
+      { title: "Skills", href: "/parts/the-body/skills/" },
+      { title: "Connectors (MCP)", href: "/parts/the-body/connectors-mcp/" },
+      { title: "Maker–Checker", href: "/parts/the-body/maker-checker/" },
     ],
-    quizHref: doc("docs/05-part-3-the-body/quiz.md"),
-    flashcardsHref: doc("docs/05-part-3-the-body/flashcards.md"),
+    quizHref: "/parts/the-body/quiz/",
+    flashcardsHref: "/parts/the-body/flashcards/",
   },
   {
     part: "Part 4",
     title: "The Spine",
-    folderHref: folder("docs/06-part-4-the-spine"),
+    folderHref: "/parts/the-spine/",
     lessons: [
-      { title: "State Between Runs", href: doc("docs/06-part-4-the-spine/12-state-between-runs.md") },
+      { title: "State Between Runs", href: "/parts/the-spine/state-between-runs/" },
     ],
-    quizHref: doc("docs/06-part-4-the-spine/quiz.md"),
-    flashcardsHref: doc("docs/06-part-4-the-spine/flashcards.md"),
+    quizHref: "/parts/the-spine/quiz/",
+    flashcardsHref: "/parts/the-spine/flashcards/",
   },
   {
     part: "Part 5",
     title: "Complete Loop",
-    folderHref: folder("docs/07-part-5-complete-loop"),
+    folderHref: "/parts/complete-loop/",
     lessons: [
-      { title: "Build the Loop Twice", href: doc("docs/07-part-5-complete-loop/13-build-the-loop-twice.md") },
-      { title: "Claude Code Walkthrough", href: doc("docs/07-part-5-complete-loop/13a-claude-code-walkthrough.md") },
-      { title: "OpenCode Walkthrough", href: doc("docs/07-part-5-complete-loop/13b-opencode-walkthrough.md") },
+      { title: "Build the Loop Twice", href: "/parts/complete-loop/build-the-loop-twice/" },
+      { title: "Claude Code Walkthrough", href: "/parts/complete-loop/claude-code-walkthrough/" },
+      { title: "OpenCode Walkthrough", href: "/parts/complete-loop/opencode-walkthrough/" },
     ],
-    quizHref: doc("docs/07-part-5-complete-loop/quiz.md"),
+    quizHref: "/parts/complete-loop/quiz/",
     // Part 5 has no flashcards deck in the repo.
   },
   {
     part: "Part 6",
     title: "Human Control",
-    folderHref: folder("docs/08-part-6-human-control"),
+    folderHref: "/parts/human-control/",
     lessons: [
-      { title: "Staying the Engineer", href: doc("docs/08-part-6-human-control/14-staying-the-engineer.md") },
-      { title: "The Three Nested Loops", href: doc("docs/08-part-6-human-control/the-three-nested-loops.md") },
-      { title: "Verification", href: doc("docs/08-part-6-human-control/verification.md") },
-      { title: "Cost Management", href: doc("docs/08-part-6-human-control/cost-management.md") },
+      { title: "Staying the Engineer", href: "/parts/human-control/staying-the-engineer/" },
+      { title: "The Three Nested Loops", href: "/parts/human-control/the-three-nested-loops/" },
+      { title: "Verification", href: "/parts/human-control/verification/" },
+      { title: "Cost Management", href: "/parts/human-control/cost-management/" },
     ],
-    quizHref: doc("docs/08-part-6-human-control/quiz.md"),
-    flashcardsHref: doc("docs/08-part-6-human-control/flashcards.md"),
+    quizHref: "/parts/human-control/quiz/",
+    flashcardsHref: "/parts/human-control/flashcards/",
   },
 ];
 
@@ -273,48 +280,48 @@ export const patterns: PatternCard[] = [
     blurb: "Shepherds a PR through review, CI, and rebase. The human stays in the merge seat.",
     frequency: "On PR events",
     risk: "medium",
-    patternHref: doc("patterns/pr-babysitter.md"),
-    starterHref: folder("starters/pr-babysitter"),
+    patternHref: "/patterns/pr-babysitter/",
+    starterHref: "/starters/pr-babysitter/",
   },
   {
     name: "Daily Triage",
     blurb: "A morning scan of CI, issues, and commits. Report-only in week one, small auto-wins after.",
     frequency: "Daily",
     risk: "low",
-    patternHref: doc("patterns/daily-triage.md"),
-    starterHref: folder("starters/daily-triage"),
+    patternHref: "/patterns/daily-triage/",
+    starterHref: "/starters/daily-triage/",
   },
   {
     name: "CI Sweeper",
     blurb: "Reacts to a failing check with the smallest fix that passes it. Escalates after three tries.",
     frequency: "On CI failure",
     risk: "medium",
-    patternHref: doc("patterns/ci-sweeper.md"),
-    starterHref: folder("starters/ci-sweeper"),
+    patternHref: "/patterns/ci-sweeper/",
+    starterHref: "/starters/ci-sweeper/",
   },
   {
     name: "Dependency Sweeper",
     blurb: "Opens one PR per upgrade, reads the changelog, and flags anything that needs a human look.",
     frequency: "Weekly",
     risk: "medium",
-    patternHref: doc("patterns/dependency-sweeper.md"),
-    starterHref: folder("starters/dependency-sweeper"),
+    patternHref: "/patterns/dependency-sweeper/",
+    starterHref: "/starters/dependency-sweeper/",
   },
   {
     name: "Issue Triage",
     blurb: "Labels, dedupes, and routes a new issue before anyone on the team has seen it.",
     frequency: "On new issue",
     risk: "low",
-    patternHref: doc("patterns/issue-triage.md"),
-    starterHref: folder("starters/issue-triage"),
+    patternHref: "/patterns/issue-triage/",
+    starterHref: "/starters/issue-triage/",
   },
   {
     name: "Changelog Drafter",
     blurb: "Reads the merged commits since last tag and drafts release notes for a human to edit.",
     frequency: "On release",
     risk: "low",
-    patternHref: doc("patterns/changelog-drafter.md"),
-    starterHref: folder("starters/changelog-drafter"),
+    patternHref: "/patterns/changelog-drafter/",
+    starterHref: "/starters/changelog-drafter/",
   },
 ];
 
@@ -338,7 +345,7 @@ export const getStarted = {
     {
       title: "Build your first loop",
       blurb: "A guided watch loop — your first hands-on project.",
-      href: doc("docs/projects/01-a-watch-loop.md"),
+      href: links.firstProject,
     },
   ] satisfies GetStartedStep[],
 };
@@ -370,7 +377,7 @@ export const footer = {
         { label: "Start here", href: links.startCourse },
         { label: "Curriculum", href: "#curriculum" },
         { label: "Learning tracks", href: links.learningTracks },
-        { label: "Assessments", href: links.assessments },
+        { label: "Assessments", href: links.certification },
       ],
     },
     {

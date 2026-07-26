@@ -60,15 +60,29 @@
   --color-paper: var(--paper);
   --color-paper-ink: var(--paper-ink);
 
-  --font-display: var(--font-display);
+  /* `font-display` and `font-brand` stay as Tailwind utilities so the ~28 call
+     sites keep working, but all three now resolve to the one sans. The distinction
+     between display and body is carried by weight and tracking — every heading
+     already sets font-extrabold + tracking-tight — rather than by loading a
+     separate family for each. That is what took the page from four families and
+     49 @font-face rules to two. */
+  --font-display: var(--font-body);
   --font-sans: var(--font-body);
   --font-mono: var(--font-mono-face);
-  --font-brand: var(--font-brand-face);
+  --font-brand: var(--font-body);
 }
 
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
+  /* Kills the mobile horizontal scroll (scrollWidth 406 vs clientWidth 375 at 390px).
+     It has to live here, not on <body>: the two backdrop layers — body::before and
+     AnimatedBackground — are `position: fixed`, so they size to the visual viewport
+     and escape body's overflow entirely (body is not their containing block).
+     `clip`, not `hidden`: hidden on one axis forces the other to `auto`, which would
+     make <html> a scroll container and break `scroll-behavior: smooth` plus any
+     `position: sticky`. `clip` constrains the axis and leaves the rest alone. */
+  overflow-x: clip;
 }
 
 body {
@@ -300,3 +314,207 @@ body::before {
   opacity: 1;
 }
 
+
+/* ── Curriculum prose ──────────────────────────────────────────────────────────
+   Styles for the markdown rendered by lib/markdown.ts across the 150 curriculum
+   pages. Hand-written rather than @tailwindcss/typography: the palette here is
+   three brand colours driven by CSS variables that flip per theme, and overriding
+   the plugin's own colour scheme back to those would have cost more than this.
+
+   Measure is capped at 72ch. Long-form technical prose read across a full 1024px
+   column is the single most common way a docs site becomes unreadable. */
+.doc-prose {
+  max-width: 72ch;
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.doc-prose > * + * {
+  margin-top: 1.25em;
+}
+
+.doc-prose h2,
+.doc-prose h3,
+.doc-prose h4 {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  scroll-margin-top: 6rem; /* clears the sticky nav when jumping to an anchor */
+}
+.doc-prose h2 {
+  margin-top: 2.75em;
+  font-size: 1.6rem;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--border);
+}
+.doc-prose h3 {
+  margin-top: 2em;
+  font-size: 1.25rem;
+}
+.doc-prose h4 {
+  margin-top: 1.75em;
+  font-size: 1.05rem;
+}
+
+/* The heading is the link. Colour is inherited so a heading does not read as a
+   link until hovered — the anchor is there to be copied, not to be clicked. */
+.doc-prose .heading-anchor {
+  color: inherit;
+  text-decoration: none;
+}
+.doc-prose .heading-anchor:hover {
+  color: var(--accent-2);
+}
+.doc-prose .heading-anchor:hover::after {
+  content: " #";
+  color: var(--border);
+}
+
+.doc-prose a {
+  color: var(--accent-2);
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 4px;
+  transition: text-decoration-color var(--dur-fast) var(--ease-out);
+}
+.doc-prose a:hover {
+  text-decoration-color: var(--accent);
+}
+
+.doc-prose strong {
+  color: var(--text);
+  font-weight: 700;
+}
+.doc-prose em {
+  font-style: italic;
+}
+
+.doc-prose ul,
+.doc-prose ol {
+  padding-left: 1.5em;
+}
+.doc-prose ul {
+  list-style: disc;
+}
+.doc-prose ol {
+  list-style: decimal;
+}
+.doc-prose li::marker {
+  color: var(--accent);
+}
+.doc-prose li + li {
+  margin-top: 0.4em;
+}
+.doc-prose li > ul,
+.doc-prose li > ol {
+  margin-top: 0.4em;
+}
+
+.doc-prose blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.1em 0 0.1em 1.15em;
+  color: var(--muted);
+}
+
+.doc-prose code {
+  font-family: var(--font-mono-face), ui-monospace, monospace;
+  font-size: 0.875em;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+
+.doc-prose .doc-code {
+  overflow-x: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.15rem;
+  font-size: 0.85rem;
+  line-height: 1.65;
+}
+/* The <pre> already carries the surface; the <code> inside must not repeat it. */
+.doc-prose .doc-code code {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: inherit;
+}
+/* Language tag in the corner — orientation while scanning a long page. */
+.doc-prose .doc-code[data-lang]::before {
+  content: attr(data-lang);
+  display: block;
+  margin-bottom: 0.6rem;
+  font-family: var(--font-mono-face), ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+}
+
+/* Wide tables scroll in their own box rather than dragging the page sideways —
+   the same rule as the landing page's patterns table, and the reason the mobile
+   viewport no longer overflows. */
+.doc-prose .doc-table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  border-block: 1px solid var(--border);
+}
+.doc-prose table {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  text-align: left;
+}
+.doc-prose th {
+  font-family: var(--font-mono-face), ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  padding: 0.75rem 1rem 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.doc-prose td {
+  padding: 0.85rem 1rem 0.85rem 0;
+  border-top: 1px solid var(--border);
+  vertical-align: top;
+  color: var(--muted);
+}
+
+/* Diagrams and figures. `height: auto` with an explicit `aspect-ratio` fallback
+   is what keeps these from shifting layout as they decode — the images are SVGs
+   whose intrinsic size the browser only learns after the fetch. */
+.doc-prose .doc-figure,
+.doc-prose .doc-diagram img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-inline: auto;
+}
+.doc-prose .doc-diagram {
+  margin-block: 2em;
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+/* The mermaid SVGs are rendered on a transparent ground with a light palette, so
+   on the dark theme they need lifting off the surface to stay legible. */
+:root:not([data-theme="light"]) .doc-prose .doc-diagram {
+  background: #f8fafc;
+}
+
+.doc-prose hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin-block: 2.5em;
+}
+
+.doc-prose img.doc-figure {
+  border-radius: 10px;
+}

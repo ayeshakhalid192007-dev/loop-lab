@@ -24,19 +24,25 @@ export function Curriculum() {
             <div className="sm:w-40">
               <p className="font-mono text-[11px] uppercase tracking-widest text-muted">{part.part}</p>
               <h3 className="mt-1 font-display text-lg font-bold tracking-tight">
-                <ExternalLink href={part.folderHref} className="transition-colors hover:text-accent">
+                <ExternalLink
+                  href={part.folderHref}
+                  className="inline-flex min-h-[24px] items-center transition-colors hover:text-accent"
+                >
                   {part.title}
                 </ExternalLink>
               </h3>
             </div>
 
             <div>
-              <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+              {/* min-h-[24px] on the anchors, not padding on the <li>: the tap target is
+                  the link box itself, and these lines are 16–22px of text with no
+                  vertical padding — the whole reason 60 targets failed the 24px floor. */}
+              <ul className="flex flex-wrap gap-x-5 gap-y-1 text-sm">
                 {part.lessons.map((lesson) => (
                   <li key={lesson.href}>
                     <ExternalLink
                       href={lesson.href}
-                      className="text-muted underline decoration-border underline-offset-4 transition-colors hover:text-text hover:decoration-accent"
+                      className="inline-flex min-h-[24px] items-center text-muted underline decoration-border underline-offset-4 transition-colors hover:text-text hover:decoration-accent"
                     >
                       {lesson.title}
                     </ExternalLink>
@@ -44,14 +50,17 @@ export function Curriculum() {
                 ))}
               </ul>
 
-              <div className="mt-4 flex gap-4 text-xs font-medium uppercase tracking-wide">
-                <ExternalLink href={part.quizHref} className="text-muted transition-colors hover:text-accent">
+              <div className="mt-3 flex gap-4 text-xs font-medium uppercase tracking-wide">
+                <ExternalLink
+                  href={part.quizHref}
+                  className="inline-flex min-h-[24px] items-center text-muted transition-colors hover:text-accent"
+                >
                   Quiz
                 </ExternalLink>
                 {part.flashcardsHref && (
                   <ExternalLink
                     href={part.flashcardsHref}
-                    className="text-muted transition-colors hover:text-accent"
+                    className="inline-flex min-h-[24px] items-center text-muted transition-colors hover:text-accent"
                   >
                     Flashcards
                   </ExternalLink>
