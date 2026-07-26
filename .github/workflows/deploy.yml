@@ -23,7 +23,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          # 24, not 20: the prebuild step imports lib/docs.ts from a .mjs script so
+          # the route table has one definition, and only Node >=23.6 strips types
+          # from an imported .ts without a flag. On 20 the build dies with
+          # ERR_UNKNOWN_FILE_EXTENSION before Next is ever invoked. Kept in step
+          # with .nvmrc and package.json engines — do not lower it in isolation.
+          node-version-file: .nvmrc
           cache: npm
       - run: npm ci
       - name: Build static export

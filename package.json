@@ -2,6 +2,10 @@
   "name": "loop-landing",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "//": "Node >=23.6 strips types from an imported .ts. scripts/generate-llms-txt.mjs imports lib/docs.ts so the route table has exactly one definition; on older Node the build fails before Next starts. Keep in step with .nvmrc and the deploy workflow.",
+    "node": ">=23.6"
+  },
   "scripts": {
     "dev": "next dev",
     "sync:docs": "node scripts/sync-docs.mjs",
