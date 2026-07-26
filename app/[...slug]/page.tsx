@@ -31,6 +31,39 @@ function urlFrom(slug: string[]): string {
   return "/" + slug.join("/") + "/";
 }
 
+/** Titles longer than this are truncated in Google's results. */
+const TITLE_BUDGET = 60;
+
+/**
+ * The <title> for a curriculum page.
+ *
+ * The section suffix exists to keep the 21 pages called "README" and the 6 called
+ * "Quiz" from competing as identical titles — so it is only worth its characters
+ * when the bare title is ambiguous. Appending it unconditionally pushed 12 pages
+ * past the ~60 characters Google displays, truncating the distinctive end of a
+ * title to append a section name the breadcrumb already states.
+ *
+ * So: suffix when the title is ambiguous, or when it fits. Never when it would
+ * cost a unique title its tail.
+ */
+function pageTitle(doc: { title: string; section?: { label: string }; isIndex: boolean }): string {
+  if (!doc.section || doc.isIndex) return doc.title;
+  const suffixed = `${doc.title} — ${doc.section.label}`;
+  if (suffixed.length <= TITLE_BUDGET) return suffixed;
+  return ambiguousTitles().has(doc.title) ? suffixed : doc.title;
+}
+
+/** Titles shared by more than one page, and therefore needing the section suffix. */
+let ambiguous: Set<string> | null = null;
+function ambiguousTitles(): Set<string> {
+  if (!ambiguous) {
+    const counts = new Map<string, number>();
+    for (const d of allDocs()) counts.set(d.title, (counts.get(d.title) ?? 0) + 1);
+    ambiguous = new Set([...counts].filter(([, n]) => n > 1).map(([t]) => t));
+  }
+  return ambiguous;
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -39,9 +72,7 @@ export async function generateMetadata({
   const doc = docByUrl(urlFrom((await params).slug));
   if (!doc) return {};
 
-  // The section suffix keeps 21 pages called "README" and 6 called "Quiz" from
-  // competing as identical <title>s in the same index.
-  const title = doc.section && !doc.isIndex ? `${doc.title} — ${doc.section.label}` : doc.title;
+  const title = pageTitle(doc);
 
   return {
     title,

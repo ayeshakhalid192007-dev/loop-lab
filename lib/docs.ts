@@ -136,9 +136,27 @@ function stripInline(s: string): string {
  * callouts, tables, and fenced code — so the description is prose a human wrote
  * about the topic, not "| Step | Page | One-line takeaway |".
  */
-function extractDescription(md: string): string {
+/**
+ * Trim to a length Google will actually display, breaking on a word.
+ *
+ * Shared so every description on the site obeys one limit. It previously lived
+ * inside extractDescription, which meant the four synthesized hub pages — the only
+ * ones whose description is hand-written rather than lifted — bypassed it and
+ * shipped at 188–210 chars.
+ */
+function clampDescription(text: string): string {
+  return text.length > 155 ? text.slice(0, 152).replace(/\s+\S*$/, "") + "…" : text;
+}
+
+/**
+ * The `skip`-th qualifying paragraph, so a page whose opening line is shared
+ * boilerplate can fall through to the first sentence that is actually about it.
+ * See dedupeDescriptions.
+ */
+function extractDescription(md: string, skip = 0): string {
   const body = md.replace(/^```[\s\S]*?^```/gm, "");
   const blocks = body.split(/\n{2,}/);
+  let seen = 0;
   for (const raw of blocks) {
     const block = raw.trim();
     if (!block) continue;
@@ -151,9 +169,53 @@ function extractDescription(md: string): string {
     // material, just needs its "> " markers removed.
     const text = stripInline(block.replace(/^>\s?/gm, ""));
     if (text.length < 40) continue;
-    return text.length > 155 ? text.slice(0, 152).replace(/\s+\S*$/, "") + "…" : text;
+    if (seen++ < skip) continue;
+    return clampDescription(text);
   }
   return "";
+}
+
+/**
+ * Make every description unique.
+ *
+ * Nine of the solution pages open with the same sentence — "Reference solution.
+ * Read the project first." — because that is genuinely how the course wrote them.
+ * Lifted verbatim it gave six pages one identical meta description and three
+ * another, which is the classic duplicate-description defect: the pages compete
+ * with each other and Google picks its own snippet anyway.
+ *
+ * Rather than hand-write nine descriptions that would drift from the curriculum
+ * on the next sync, walk further into each colliding document for a paragraph that
+ * distinguishes it, and only fall back to prefixing the title if nothing does.
+ */
+function dedupeDescriptions(docs: DocPage[]): void {
+  const byDescription = new Map<string, DocPage[]>();
+  for (const d of docs) {
+    if (!d.description) continue;
+    const group = byDescription.get(d.description);
+    if (group) group.push(d);
+    else byDescription.set(d.description, [d]);
+  }
+
+  const taken = new Set(docs.map((d) => d.description).filter(Boolean));
+  for (const [, group] of byDescription) {
+    if (group.length < 2) continue;
+    // Leave the first page holding the shared text; move the rest off it.
+    for (const doc of group.slice(1)) {
+      let replacement = "";
+      for (let skip = 1; skip <= 3; skip++) {
+        const candidate = extractDescription(doc.markdown, skip);
+        if (candidate && !taken.has(candidate)) {
+          replacement = candidate;
+          break;
+        }
+      }
+      if (!replacement) replacement = clampDescription(`${doc.title} — ${doc.description}`);
+      taken.delete(doc.description);
+      doc.description = replacement;
+      taken.add(replacement);
+    }
+  }
 }
 
 function walk(dir: string, base: string): string[] {
@@ -234,7 +296,8 @@ function synthesizeIndex(section: Section, pages: DocPage[]): DocPage {
     slug: section.match.replace(/^\//, "").split("/"),
     url: section.match + "/",
     title: section.label,
-    description: intro,
+    // Clamped for the meta tag; the page body below keeps the intro in full.
+    description: clampDescription(intro),
     // No source file — this page has no counterpart in the course repo, so the
     // "view source" link points at the nearest thing that does: the folder.
     sourcePath: `${section.match.replace(/^\//, "")}/index.md`,
@@ -251,6 +314,9 @@ let cache: DocPage[] | null = null;
 export function allDocs(): DocPage[] {
   if (!cache) {
     const pages = build();
+    // Before the indexes are synthesized, so their link lists quote the
+    // descriptions the pages will actually ship with.
+    dedupeDescriptions(pages);
     const have = new Set(pages.map((p) => p.url));
     for (const section of SECTIONS) {
       if (have.has(section.match + "/")) continue;
