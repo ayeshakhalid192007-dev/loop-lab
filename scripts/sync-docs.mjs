@@ -16,8 +16,9 @@
  *    a pure static export and the pages ship zero diagram JS.
  *
  * 2. The markdown itself is copied verbatim. Diagrams are keyed by a hash of their
- *    mermaid source in content/diagrams.json, so the vendored copy stays a faithful
- *    mirror of the course repo and `diff` against it stays meaningful.
+ *    mermaid source and stored as public/diagrams/<hash>.svg, so the vendored copy
+ *    stays a faithful mirror of the course repo and `diff` against it stays
+ *    meaningful. That file existing is the only record that a diagram rendered.
  *
  * Mermaid CLI is invoked through `npx -y`, deliberately not a devDependency: it
  * pulls puppeteer and a chromium download, and CI must never pay for that.
@@ -42,7 +43,6 @@ const skipDiagrams = process.argv.includes("--skip-diagrams");
 
 const CONTENT = join(root, "content");
 const DIAGRAM_DIR = join(root, "public", "diagrams");
-const DIAGRAM_INDEX = join(CONTENT, "diagrams.json");
 
 /**
  * Trees copied out of the course repo, and where they land under content/.
@@ -183,11 +183,15 @@ for (const { body } of allMarkdown) {
   }
 }
 
-const index = JSON.parse(await readFile(DIAGRAM_INDEX, "utf8").catch(() => "{}"));
 await mkdir(DIAGRAM_DIR, { recursive: true });
 
+// The rendered file is the record. There used to be a content/diagrams.json
+// alongside it mapping hash -> "<hash>.svg" — an identity map, so it held no
+// information the directory listing does not, but it could still fall out of step
+// with it. It did: every SVG rendered and committed while the index committed as
+// `{}`, and the renderer, trusting the index, printed 64 diagrams as source code.
 const missing = [...wanted.keys()].filter(
-  (hash) => !index[hash] || !existsSync(join(DIAGRAM_DIR, `${hash}.svg`)),
+  (hash) => !existsSync(join(DIAGRAM_DIR, `${hash}.svg`)),
 );
 
 if (skipDiagrams) {
@@ -215,7 +219,6 @@ if (skipDiagrams) {
          "-b", "transparent", "-c", config, "-p", puppeteerConfig],
         { timeout: 120_000, cwd: root },
       );
-      index[hash] = `${hash}.svg`;
       ok++;
       process.stdout.write(`\r  ${i + 1}/${missing.length} rendered`);
     } catch (err) {
@@ -253,14 +256,12 @@ if (!skipDiagrams && missing.length > 0) {
   }
 }
 
-// Drop entries whose diagram no longer appears anywhere in the curriculum.
-for (const hash of Object.keys(index)) {
-  if (!wanted.has(hash)) {
-    delete index[hash];
-    await rm(join(DIAGRAM_DIR, `${hash}.svg`), { force: true });
+// Drop SVGs whose diagram no longer appears anywhere in the curriculum.
+for (const file of await readdir(DIAGRAM_DIR)) {
+  if (file.endsWith(".svg") && !wanted.has(file.slice(0, -4))) {
+    await rm(join(DIAGRAM_DIR, file), { force: true });
   }
 }
-await writeFile(DIAGRAM_INDEX, JSON.stringify(index, null, 2) + "\n");
 
 // ── 4. Record provenance ─────────────────────────────────────────────────────
 const { stdout: sha } = await execFileAsync("git", ["rev-parse", "HEAD"], { cwd: source });

@@ -10,6 +10,7 @@
     "prebuild": "node scripts/generate-og.mjs && node scripts/generate-llms-txt.mjs",
     "build": "next build",
     "check:links": "node scripts/check-links.mjs",
+    "check:diagrams": "node scripts/check-diagrams.mjs",
     "start": "next start",
     "lint": "eslint"
   },

@@ -32,6 +32,7 @@ app/[...slug]/    one route, 150 prerendered pages
 | `npm run sync:docs` | Re-vendor the curriculum after the course repo changes. Renders any new mermaid diagrams to SVG (needs Chrome; uses `npx @mermaid-js/mermaid-cli`, not a dependency). |
 | `npm run build` | Generates `og.png` + `llms.txt`, then the static export. |
 | `npm run check:links` | Verifies every internal link in `out/` resolves. **Run after every build.** |
+| `npm run check:diagrams` | Verifies every mermaid block rendered to an image rather than falling back to a code block. **Run after every build.** |
 | `npm run indexnow` | Pushes the sitemap's URLs to Bing/IndexNow. Run *after* a deploy, never before. |
 | `npm run og` | Regenerate the social cards on their own. |
 
@@ -142,6 +143,14 @@ for Google and only helps some aggregators. Skipped.
   **not** to raw HTML. Curriculum pages are rendered markdown, so every link and
   image in them goes through `withBasePath()` in `lib/base-path.ts`. Without it
   they work in dev and 404 in production.
+- **`public/diagrams/<hash>.svg` is the only record that a diagram rendered.** The
+  hash is a digest of the mermaid source, computed identically in `sync-docs.mjs`,
+  `lib/markdown.ts` and `check-diagrams.mjs` — change it in one and diagrams stop
+  resolving in the other two. There used to be a `content/diagrams.json` index
+  alongside the files; it was an identity map that could disagree with the
+  filesystem, and did, so all 64 diagrams shipped as walls of source code on a
+  build that otherwise looked clean. Do not reintroduce a second source of truth.
+  `npm run check:diagrams` is what makes that failure loud.
 - **No `app/robots.ts`.** Intentional — see the Search Console note above.
 - **No `app/opengraph-image.tsx`.** Also intentional: it emitted an extensionless
   route, and GitHub Pages types responses purely from the file extension, so it

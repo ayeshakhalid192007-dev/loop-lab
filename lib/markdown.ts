@@ -19,16 +19,30 @@
  */
 import { Marked, type Tokens } from "marked";
 import GithubSlugger from "github-slugger";
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { createHash } from "node:crypto";
 import { resolveDocLink } from "@/lib/docs";
 import { withBasePath } from "@/lib/base-path";
 
-const DIAGRAM_INDEX = join(process.cwd(), "content", "diagrams.json");
-const diagrams: Record<string, string> = existsSync(DIAGRAM_INDEX)
-  ? JSON.parse(readFileSync(DIAGRAM_INDEX, "utf8"))
-  : {};
+/**
+ * Rendered diagrams live at public/diagrams/<hash>.svg, and that file existing is
+ * the whole truth about whether a diagram rendered.
+ *
+ * This used to consult a content/diagrams.json written by sync-docs. That index
+ * was a second copy of the same fact — and it could disagree with the filesystem.
+ * It did: all 64 SVGs were rendered and committed while the index was committed as
+ * `{}`, so every page silently fell back to printing mermaid source as a code
+ * block. Reading the directory removes the class of bug rather than that instance.
+ */
+const DIAGRAM_DIR = join(process.cwd(), "public", "diagrams");
+const rendered = new Set(
+  existsSync(DIAGRAM_DIR)
+    ? readdirSync(DIAGRAM_DIR)
+        .filter((f) => f.endsWith(".svg"))
+        .map((f) => f.slice(0, -4))
+    : [],
+);
 
 /**
  * Assets sync-docs rewrote — the raster-in-SVG banners it unwrapped to WebP.
@@ -115,9 +129,8 @@ export function renderMarkdown(markdown: string, sourcePath: string): RenderedDo
       code({ text, lang }: Tokens.Code) {
         if (lang === "mermaid") {
           const hash = createHash("sha256").update(text.trim()).digest("hex").slice(0, 16);
-          const svg = diagrams[hash];
-          if (svg) {
-            return `<figure class="doc-diagram"><img src="${withBasePath(`/diagrams/${svg}`)}" alt="Diagram" loading="lazy" decoding="async" /></figure>\n`;
+          if (rendered.has(hash)) {
+            return `<figure class="doc-diagram"><img src="${withBasePath(`/diagrams/${hash}.svg`)}" alt="Diagram" loading="lazy" decoding="async" /></figure>\n`;
           }
           // Unrendered diagram (sync ran with --skip-diagrams, or mermaid choked on
           // it). Showing the source beats showing nothing, and it stays indexable.
