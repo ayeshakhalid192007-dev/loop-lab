@@ -18,7 +18,13 @@ export const WEBSITE_ID = `${SITE}#website`;
 export const DATE_PUBLISHED = "2026-07-16";
 export const DATE_MODIFIED = "2026-07-25";
 
-export const MAINTAINER_NAMES = ["Saram Ali", "Ayesha Khalid"];
+/** One entry per maintainer — name, initials for the avatar, and their GitHub profile. */
+export const MAINTAINER_PROFILES = [
+  { name: "Ayesha Khalid", initials: "AK", github: "https://github.com/ayeshakhalid192007-dev" },
+  { name: "Saram Ali", initials: "SA", github: "https://github.com/SARAMALI15792" },
+] as const;
+
+export const MAINTAINER_NAMES = MAINTAINER_PROFILES.map((m) => m.name);
 export const MAINTAINERS_LABEL = MAINTAINER_NAMES.join(" & ");
 
 /**
@@ -50,20 +56,13 @@ export const organization = {
  * rather than back at the course homepage — a Person whose url is the thing
  * they maintain gives a search engine no separate entity to resolve.
  */
-export const maintainers = [
-  {
-    "@type": "Person",
-    "@id": `${SITE}#maintainer-saram-ali`,
-    name: "Saram Ali",
-    url: `${SITE}about/`,
-  },
-  {
-    "@type": "Person",
-    "@id": `${SITE}#maintainer-ayesha-khalid`,
-    name: "Ayesha Khalid",
-    url: `${SITE}about/`,
-  },
-] as const;
+export const maintainers = MAINTAINER_PROFILES.map((m) => ({
+  "@type": "Person",
+  "@id": `${SITE}#maintainer-${m.name.toLowerCase().replace(/\s+/g, "-")}`,
+  name: m.name,
+  url: `${SITE}about/`,
+  sameAs: [m.github],
+}));
 
 export const MAINTAINER_IDS = maintainers.map((m) => m["@id"]);
 

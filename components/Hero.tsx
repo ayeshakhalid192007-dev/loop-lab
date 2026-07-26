@@ -2,7 +2,7 @@ import Link from "next/link";
 import { PillButton } from "@/components/ui/PillButton";
 import { LiveTerminal } from "@/components/LiveTerminal";
 import { hero } from "@/lib/content";
-import { MAINTAINERS_LABEL, DATE_MODIFIED, DATE_PUBLISHED } from "@/lib/schema";
+import { MAINTAINERS_LABEL, MAINTAINER_PROFILES, DATE_MODIFIED, DATE_PUBLISHED } from "@/lib/schema";
 
 const fmt = (iso: string) =>
   new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
@@ -47,17 +47,35 @@ export function Hero() {
             the rendered HTML. In a field moving this fast, a reader deciding whether
             a course on agent loops is current has nothing else to go on — and the
             schema's datePublished/dateModified should have something visible backing
-            them rather than asserting a date the page never shows. */}
-        <p className="mt-5 text-xs text-muted">
-          By{" "}
-          <Link
-            href="/about/"
-            rel="author"
-            className="inline-flex min-h-[24px] items-center underline decoration-border underline-offset-4 transition-colors hover:text-text hover:decoration-accent"
-          >
-            {MAINTAINERS_LABEL}
-          </Link>{" "}
-          · Published <time dateTime={DATE_PUBLISHED}>{fmt(DATE_PUBLISHED)}</time> · Updated{" "}
+            them rather than asserting a date the page never shows.
+
+            Styled as a pill, matching the eyebrow chip above the headline, so the
+            byline reads as a credit rather than fine print — the names are the
+            largest thing on the line, dates trail after in a quieter voice. */}
+        <Link
+          href="/about/"
+          rel="author"
+          className="group mt-7 inline-flex items-center gap-2 rounded-full border border-border bg-surface/50 py-1.5 pl-1.5 pr-4 transition-colors hover:border-accent"
+        >
+          <span aria-hidden="true" className="flex -space-x-2">
+            {MAINTAINER_PROFILES.map((m) => (
+              <span
+                key={m.initials}
+                className="flex h-7 w-7 items-center justify-center rounded-full border-2 border-bg bg-accent font-display text-[11px] font-bold text-accent-fg"
+              >
+                {m.initials}
+              </span>
+            ))}
+          </span>
+          <span className="text-sm text-text">
+            By{" "}
+            <span className="font-semibold underline decoration-border underline-offset-4 transition-colors group-hover:decoration-accent">
+              {MAINTAINERS_LABEL}
+            </span>
+          </span>
+        </Link>
+        <p className="mt-2 text-xs text-muted">
+          Published <time dateTime={DATE_PUBLISHED}>{fmt(DATE_PUBLISHED)}</time> · Updated{" "}
           <time dateTime={DATE_MODIFIED}>{fmt(DATE_MODIFIED)}</time>
         </p>
 

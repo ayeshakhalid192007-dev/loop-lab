@@ -17,6 +17,7 @@ import { writeFile } from "node:fs/promises";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { allDocs, SECTIONS } from "../lib/docs.ts";
+import { MAINTAINERS_LABEL } from "../lib/schema.ts";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const SITE = "https://ayeshakhalid192007-dev.github.io/loop-lab/";
@@ -70,15 +71,15 @@ out += `\n## Key pages\n\n`;
 for (const url of ["/foundations/glossary/", "/foundations/concepts/", "/foundations/primitives/", "/parts/the-shift/anatomy-of-a-loop/", "/about/"]) {
   const doc = byUrl.get(url);
   if (doc) out += line(doc) + "\n";
-  else if (url === "/about/") out += `- [About the author](${abs(url)}): who writes this course\n`;
+  else if (url === "/about/") out += `- [About the maintainers](${abs(url)}): who writes this course\n`;
 }
 
 out += `\n## Optional\n\n- [Repository](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse): source markdown, starter kits, and issues
 - [License](https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse/blob/main/LICENSE): MIT
 
-## Author
+## Maintainers
 
-Ayesha Khalid — ${abs("/about/")}
+${MAINTAINERS_LABEL} — ${abs("/about/")}
 `;
 
 await writeFile(join(root, "public", "llms.txt"), out);

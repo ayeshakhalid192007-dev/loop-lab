@@ -46,7 +46,7 @@ https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse.
 - [Core Concepts](https://ayeshakhalid192007-dev.github.io/loop-lab/foundations/concepts/): Intent debt, comprehension debt, and the harness-vs-loop distinction — the three ideas that explain most loop failures before they happen.
 - [Primitives](https://ayeshakhalid192007-dev.github.io/loop-lab/foundations/primitives/): The raw materials every loop is assembled from — and what each one is for once the goal is autonomy instead of assistance.
 - [Step 3 · Anatomy of a Loop](https://ayeshakhalid192007-dev.github.io/loop-lab/parts/the-shift/anatomy-of-a-loop/): Six parts, every loop, no exceptions: heartbeat, body, spine, stopping condition, checker, human gate. Learn the shape once and you can read any loop…
-- [About the author](https://ayeshakhalid192007-dev.github.io/loop-lab/about/): who writes this course
+- [About the maintainers](https://ayeshakhalid192007-dev.github.io/loop-lab/about/): who writes this course
 
 ## Optional
 
@@ -55,4 +55,4 @@ https://github.com/ayeshakhalid192007-dev/LoopEngineering-CrashCourse.
 
 ## Maintainers
 
-Saram Ali, Ayesha Khalid — https://ayeshakhalid192007-dev.github.io/loop-lab/about/
+Ayesha Khalid & Saram Ali — https://ayeshakhalid192007-dev.github.io/loop-lab/about/

@@ -7,6 +7,7 @@ import { links } from "@/lib/links";
 import {
   MAINTAINER_IDS,
   MAINTAINER_NAMES,
+  MAINTAINER_PROFILES,
   MAINTAINERS_LABEL,
   DATE_MODIFIED,
   DATE_PUBLISHED,
@@ -89,14 +90,17 @@ export default function AboutPage() {
 
         <h2 className="mt-14 font-display text-2xl font-extrabold tracking-tight">Elsewhere</h2>
         <ul className="mt-5 flex flex-col gap-2">
-          <li>
-            <ExternalLink
-              href="https://github.com/ayeshakhalid192007-dev"
-              className="inline-flex min-h-[24px] items-center text-muted underline decoration-border underline-offset-4 transition-colors hover:text-text hover:decoration-accent"
-            >
-              github.com/ayeshakhalid192007-dev
-            </ExternalLink>
-          </li>
+          {MAINTAINER_PROFILES.map((m) => (
+            <li key={m.name}>
+              <span className="text-muted">{m.name}: </span>
+              <ExternalLink
+                href={m.github}
+                className="inline-flex min-h-[24px] items-center text-muted underline decoration-border underline-offset-4 transition-colors hover:text-text hover:decoration-accent"
+              >
+                {m.github.replace("https://", "")}
+              </ExternalLink>
+            </li>
+          ))}
         </ul>
 
         <p className="mt-14 border-t border-border pt-6 text-sm text-muted">
