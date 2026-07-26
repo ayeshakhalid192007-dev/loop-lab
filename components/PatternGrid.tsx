@@ -55,16 +55,18 @@ export function PatternGrid() {
                 </td>
                 <td className="max-w-sm px-4 py-4 text-muted">{p.blurb}</td>
                 <td className="py-4 pl-4">
+                  {/* min-h-[24px] on the anchors, not the cell: the tap target is the
+                      link box. Same reasoning as the curriculum sub-links. */}
                   <div className="flex flex-col gap-1.5 whitespace-nowrap">
                     <ExternalLink
                       href={p.patternHref}
-                      className="font-medium text-accent-2 transition-opacity hover:opacity-80"
+                      className="inline-flex min-h-[24px] items-center font-medium text-accent-2 transition-opacity hover:opacity-80"
                     >
                       Pattern →
                     </ExternalLink>
                     <ExternalLink
                       href={p.starterHref}
-                      className="text-muted transition-colors hover:text-text"
+                      className="inline-flex min-h-[24px] items-center text-muted transition-colors hover:text-text"
                     >
                       Starter kit →
                     </ExternalLink>

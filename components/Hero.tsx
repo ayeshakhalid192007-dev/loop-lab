@@ -53,7 +53,7 @@ export function Hero() {
           <Link
             href="/about/"
             rel="author"
-            className="underline decoration-border underline-offset-4 transition-colors hover:text-text hover:decoration-accent"
+            className="inline-flex min-h-[24px] items-center underline decoration-border underline-offset-4 transition-colors hover:text-text hover:decoration-accent"
           >
             {AUTHOR_NAME}
           </Link>{" "}
