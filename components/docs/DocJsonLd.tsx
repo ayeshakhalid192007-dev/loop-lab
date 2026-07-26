@@ -2,12 +2,12 @@ import type { DocPage } from "@/lib/docs";
 import {
   SITE,
   ORG_ID,
-  AUTHOR_ID,
+  MAINTAINER_IDS,
   COURSE_ID,
   DATE_MODIFIED,
   DATE_PUBLISHED,
   organization,
-  person,
+  maintainers,
 } from "@/lib/schema";
 
 /**
@@ -34,7 +34,7 @@ export function DocJsonLd({ doc }: { doc: DocPage }) {
       datePublished: DATE_PUBLISHED,
       dateModified: DATE_MODIFIED,
       isPartOf: { "@id": COURSE_ID },
-      author: { "@id": AUTHOR_ID },
+      author: MAINTAINER_IDS.map((id) => ({ "@id": id })),
       publisher: { "@id": ORG_ID },
       ...(doc.section ? { learningResourceType: doc.section.label } : {}),
     },
@@ -50,10 +50,10 @@ export function DocJsonLd({ doc }: { doc: DocPage }) {
       name: "Loop Engineering Crash Course",
       url: SITE,
       provider: { "@id": ORG_ID },
-      author: { "@id": AUTHOR_ID },
+      author: MAINTAINER_IDS.map((id) => ({ "@id": id })),
     },
     organization,
-    person,
+    ...maintainers,
     {
       "@type": "BreadcrumbList",
       "@id": `${url}#breadcrumb`,

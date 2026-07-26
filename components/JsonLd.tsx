@@ -2,9 +2,9 @@
  * Structured data for the landing page, emitted as a single JSON-LD @graph in <head>.
  *
  * Nodes cross-reference by @id so Course → provider/author resolve to the shared
- * Organization and Person in lib/schema.ts rather than duplicating them inline —
- * the same @ids every curriculum page's LearningResource points back at, which is
- * what makes 153 pages read as one course by one author.
+ * Organization and Person nodes in lib/schema.ts rather than duplicating them
+ * inline — the same @ids every curriculum page's LearningResource points back
+ * at, which is what makes 153 pages read as one course by its maintainers.
  *
  * FAQ answers are lifted from the course glossary (content/docs/02-foundations/
  * glossary.md) so the markup and the prose stay in agreement; a mismatch there is
@@ -17,12 +17,12 @@ import {
   DATE_MODIFIED,
   DATE_PUBLISHED,
   ORG_ID,
-  AUTHOR_ID,
+  MAINTAINER_IDS,
   SITE,
   WEBSITE_ID,
   courseParts,
   organization,
-  person,
+  maintainers,
 } from "@/lib/schema";
 
 const schema = {
@@ -51,7 +51,7 @@ const schema = {
         "Human-in-the-loop control",
       ],
       provider: { "@id": ORG_ID },
-      author: { "@id": AUTHOR_ID },
+      author: MAINTAINER_IDS.map((id) => ({ "@id": id })),
       // The six parts as real URLs. They existed only as <h3> prose before the
       // curriculum was published, so the course's structure was invisible to
       // anything that reads markup rather than renders it.
@@ -64,7 +64,7 @@ const schema = {
       },
     },
     organization,
-    person,
+    ...maintainers,
     {
       "@type": "WebSite",
       "@id": WEBSITE_ID,
