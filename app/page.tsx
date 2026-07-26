@@ -7,6 +7,7 @@ import { Curriculum } from "@/components/Curriculum";
 import { PatternGrid } from "@/components/PatternGrid";
 import { GetStarted } from "@/components/GetStarted";
 import { FinalCTA } from "@/components/FinalCTA";
+import { Maintainers } from "@/components/Maintainers";
 import { Footer } from "@/components/Footer";
 import { JsonLd } from "@/components/JsonLd";
 
@@ -34,6 +35,7 @@ export default function Home() {
         <PatternGrid />
         <GetStarted />
         <FinalCTA />
+        <Maintainers />
       </main>
       <Footer />
     </>
