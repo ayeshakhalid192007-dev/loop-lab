@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ayeshakhalid192007-dev.github.io/loop-lab/sitemap.xml
