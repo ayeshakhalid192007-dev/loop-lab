@@ -28,7 +28,7 @@ export function DocSidebar({ doc, siblings }: { doc: DocPage; siblings: DocPage[
                   "-ml-px flex min-h-[24px] items-center border-l py-1 pl-4 text-sm transition-colors " +
                   (active
                     ? "border-accent font-medium text-text"
-                    : "border-transparent text-muted hover:border-border hover:text-text")
+                    : "border-transparent text-muted hover:border-border-hover hover:text-text")
                 }
               >
                 {section.label}
@@ -55,7 +55,7 @@ export function DocSidebar({ doc, siblings }: { doc: DocPage; siblings: DocPage[
                       "-ml-px flex min-h-[24px] items-center border-l py-1 pl-4 text-sm transition-colors " +
                       (active
                         ? "border-accent font-medium text-text"
-                        : "border-transparent text-muted hover:border-border hover:text-text")
+                        : "border-transparent text-muted hover:border-border-hover hover:text-text")
                     }
                   >
                     {page.title}

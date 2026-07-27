@@ -1,20 +1,20 @@
 <div align="center">
 
-[![Deploy](https://img.shields.io/github/actions/workflow/status/ayeshakhalid192007-dev/loop-lab/deploy.yml?style=flat&logo=githubactions&logoColor=white&label=deploy&color=99744a&labelColor=25261e)](https://github.com/ayeshakhalid192007-dev/loop-lab/actions/workflows/deploy.yml)
-[![Last commit](https://img.shields.io/github/last-commit/ayeshakhalid192007-dev/loop-lab?style=flat&logo=git&logoColor=white&color=99744a&labelColor=25261e)](https://github.com/ayeshakhalid192007-dev/loop-lab/commits)
-[![Repo size](https://img.shields.io/github/repo-size/ayeshakhalid192007-dev/loop-lab?style=flat&color=99744a&labelColor=25261e)](https://github.com/ayeshakhalid192007-dev/loop-lab)
-[![Stars](https://img.shields.io/github/stars/ayeshakhalid192007-dev/loop-lab?style=flat&logo=github&color=99744a&labelColor=25261e)](https://github.com/ayeshakhalid192007-dev/loop-lab/stargazers)
+[![Deploy](https://img.shields.io/github/actions/workflow/status/ayeshakhalid192007-dev/loop-lab/deploy.yml?style=flat&logo=githubactions&logoColor=white&label=deploy&color=8b5cf6&labelColor=1a1030)](https://github.com/ayeshakhalid192007-dev/loop-lab/actions/workflows/deploy.yml)
+[![Last commit](https://img.shields.io/github/last-commit/ayeshakhalid192007-dev/loop-lab?style=flat&logo=git&logoColor=white&color=8b5cf6&labelColor=1a1030)](https://github.com/ayeshakhalid192007-dev/loop-lab/commits)
+[![Repo size](https://img.shields.io/github/repo-size/ayeshakhalid192007-dev/loop-lab?style=flat&color=8b5cf6&labelColor=1a1030)](https://github.com/ayeshakhalid192007-dev/loop-lab)
+[![Stars](https://img.shields.io/github/stars/ayeshakhalid192007-dev/loop-lab?style=flat&logo=github&color=8b5cf6&labelColor=1a1030)](https://github.com/ayeshakhalid192007-dev/loop-lab/stargazers)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-b98f5e?style=flat&labelColor=25261e)](#-license)
-[![Next.js](https://img.shields.io/badge/Next.js-16-b98f5e?style=flat&logo=nextdotjs&logoColor=white&labelColor=25261e)](https://nextjs.org)
-[![React](https://img.shields.io/badge/React-19-b98f5e?style=flat&logo=react&logoColor=white&labelColor=25261e)](https://react.dev)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-b98f5e?style=flat&logo=typescript&logoColor=white&labelColor=25261e)](https://www.typescriptlang.org)
-[![Tailwind](https://img.shields.io/badge/Tailwind-v4-b98f5e?style=flat&logo=tailwindcss&logoColor=white&labelColor=25261e)](https://tailwindcss.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-a855f7?style=flat&labelColor=1a1030)](#-license)
+[![Next.js](https://img.shields.io/badge/Next.js-16-a855f7?style=flat&logo=nextdotjs&logoColor=white&labelColor=1a1030)](https://nextjs.org)
+[![React](https://img.shields.io/badge/React-19-a855f7?style=flat&logo=react&logoColor=white&labelColor=1a1030)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-a855f7?style=flat&logo=typescript&logoColor=white&labelColor=1a1030)](https://www.typescriptlang.org)
+[![Tailwind](https://img.shields.io/badge/Tailwind-v4-a855f7?style=flat&logo=tailwindcss&logoColor=white&labelColor=1a1030)](https://tailwindcss.com)
 
-[![Static export](https://img.shields.io/badge/100%25-Static_Export-697754?style=flat&labelColor=25261e)](#-deployment)
-[![Accessible](https://img.shields.io/badge/a11y-0_axe_violations-34a36a?style=flat&labelColor=25261e)](#-features)
-[![Built with loops](https://img.shields.io/badge/Built_with-its_own_loops-99744a?style=flat&labelColor=25261e)](#-the-autonomous-build-system)
-[![PRs welcome](https://img.shields.io/badge/PRs-Welcome-697754?style=flat&labelColor=25261e)](#-contributing)
+[![Static export](https://img.shields.io/badge/100%25-Static_Export-c084fc?style=flat&labelColor=1a1030)](#-deployment)
+[![Accessible](https://img.shields.io/badge/a11y-0_axe_violations-a855f7?style=flat&labelColor=1a1030)](#-features)
+[![Built with loops](https://img.shields.io/badge/Built_with-its_own_loops-8b5cf6?style=flat&labelColor=1a1030)](#-the-autonomous-build-system)
+[![PRs welcome](https://img.shields.io/badge/PRs-Welcome-c084fc?style=flat&labelColor=1a1030)](#-contributing)
 
 </div>
 
@@ -72,7 +72,7 @@ and points them at the material.
 
 | | |
 |---|---|
-| 🎨 **Distinctive brand system** | A warm olive / brass / sand palette, an editorial serif wordmark, and a hand-built loop-instrument emblem — no default template look. |
+| 🎨 **Distinctive brand system** | A premium dark-purple AI/SaaS palette, an editorial serif wordmark, and a hand-built loop-instrument emblem — no default template look. |
 | 🌗 **Light & dark, done right** | Theme-aware via `next-themes`, with every colour token contrast-checked against WCAG AA in both modes. |
 | ⚡ **Static & instant** | `output: "export"` produces plain HTML/CSS/JS — zero server, deployable to any static host. |
 | ♿ **Accessible by default** | Semantic landmarks, a skip link, reduced-motion support, and a verified **0 axe-core violations**. |

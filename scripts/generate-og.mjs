@@ -26,11 +26,11 @@ import { ImageResponse } from "next/og.js";
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 
 // Lifted from app/globals.css so the card cannot drift from the site's palette.
-const INK = "#10120C";
-const CREAM = "#DBC2A6";
-const SAND = "#A5997F";
-const BRONZE = "#99744A";
-const OLIVE = "#414A37";
+const INK = "#0B0617";
+const CREAM = "#FFFFFF";
+const SAND = "#CBD5E1";
+const BRONZE = "#A855F7";
+const OLIVE = "#32204D";
 
 /** One card. `scale` lets the 1280x640 variant reuse the 1200x630 type ramp. */
 function Card({ width }) {
