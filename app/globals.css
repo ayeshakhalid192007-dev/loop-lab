@@ -1,24 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  /* palette — deep hazel-green ground / bright olive accent / sand (the three brand
-     colours). --bg moved from a desaturated near-black olive to a genuinely green
-     hazel tone so the page reads as a considered green surface, not a void.
-     --accent moved from a muted brass to a vivid olive so CTAs and motifs read as
-     punchy rather than dull; --olive stays the quieter secondary tone underneath it. */
-  --bg: #263215; /* deep hazel-green (8:1 on --text, 4.8:1 on --muted) */
-  --surface: #2f3e1a; /* hazel-green card — sits a step above --bg */
-  --surface-2: #3a4d21; /* raised / hover surface */
-  --border: #4a5f2c; /* hazel-green divider */
-  --olive: #697754; /* brand olive — secondary accent (rings, depth, hovers) */
-  --text: #dbc2a6; /* brand sand — primary text */
-  --muted: #a5997f; /* muted sand/olive — secondary text */
-  --accent: #a8c94a; /* bright olive — CTAs, borders, motif, active states (7.5:1 on bg) */
-  --accent-2: #b0d152; /* brighter olive for legible small-caps labels (8.8:1 on bg) */
-  --accent-fg: #0f110a; /* near-black text on bright olive (9.3:1 on accent) */
-  --paper: #dbc2a6; /* brand sand — the one light band */
-  --paper-ink: #2a2418; /* dark warm text on the sand band */
-  --glow: color-mix(in srgb, var(--accent) 35%, transparent); /* card hover glow */
+  /* palette — premium dark-purple AI/SaaS system. Four background steps (bg → bg-2 →
+     surface-2 → surface) run darkest to lightest; --accent/--accent-2/--olive are the
+     three brand purples (primary / secondary / tertiary); --text is reserved for
+     headings, --body for long-form prose, --muted for secondary copy. */
+  --bg: #0b0617; /* Background / Primary */
+  --bg-2: #120a24; /* Background / Secondary — body-gradient midpoint */
+  --surface-2: #1a1030; /* Background / Surface — raised / hover reserve */
+  --surface: #1e1438; /* Background / Cards — actual card + code-block fill */
+  --border: #32204d; /* Border / Default */
+  --border-hover: #4c2d7c; /* Border / Hover */
+  --olive: #c084fc; /* tertiary brand accent (rings, depth, idle states) */
+  --text: #ffffff; /* Heading text */
+  --body: #cbd5e1; /* long-form body copy (doc-prose) */
+  --muted: #9ca3af; /* Muted text */
+  --accent: #8b5cf6; /* Primary brand — CTAs, primary button bg */
+  --accent-2: #a855f7; /* Secondary brand — small-caps labels, links */
+  --accent-fg: #ffffff; /* Primary button text */
+  --btn-outline-hover: #251544; /* Secondary button hover background */
+  --paper: #f5f3ff; /* the one light band, recoloured to a purple-tinted white */
+  --paper-ink: #1a1030; /* dark ink on the paper band */
+  --glow: color-mix(in srgb, var(--accent) 35%, transparent); /* card hover glow — soft purple */
 
   /* motion tokens */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1); /* the house curve */
@@ -28,33 +31,41 @@
   --lift: 26px; /* how far reveal elements travel */
 }
 
-/* Light variant of the same three brand colours (olive / brass / sand), set by
-   next-themes via [data-theme] on <html>. Dark stays the default in :root above —
-   this block only overrides when the resolved theme is explicitly "light". Values
-   contrast-checked against WCAG AA (4.5:1 body text, 3:1 large text/borders). */
+/* Light variant of the same purple brand system, set by next-themes via
+   [data-theme] on <html>. Dark stays the default in :root above — this block only
+   overrides when the resolved theme is explicitly "light". Accent is deepened from
+   the dark-mode #8b5cf6 so white button text still clears WCAG AA on a light ground.
+   Values contrast-checked against WCAG AA (4.5:1 body text, 3:1 large text/borders). */
 :root[data-theme="light"] {
-  --bg: #f7f1e6; /* light warm sand background */
-  --surface: #efe4d1; /* card surface */
-  --surface-2: #e6d8bf; /* raised / hover surface */
-  --border: #d8c7a6; /* warm divider */
-  --olive: #5c6b45; /* lightened olive, secondary accent */
-  --text: #2a2418; /* dark warm brown-black — ~14.6:1 on --bg */
-  --muted: #6b5f4c; /* muted warm brown — ~5.4:1 on --bg */
-  --accent: #4f6b16; /* bright olive, dark enough so accent-fg text stays AA (5.4:1 on bg) */
-  --accent-2: #537015; /* vivid olive for small-caps labels — ~5.1:1 on --bg */
-  --accent-fg: #fdf8ef; /* light text on the olive button — ~5.8:1 on --accent */
-  --paper: #e6d8bf; /* same as surface-2 — light mode has no dark page to invert against */
-  --paper-ink: #2a2418;
+  --bg: #f7f5fc; /* light lavender-white background */
+  --bg-2: #f1edfa; /* body-gradient midpoint */
+  --surface-2: #ece5fb; /* raised / hover surface */
+  --surface: #ffffff; /* card surface — crisp white */
+  --border: #ddd3f3; /* light purple-grey divider */
+  --border-hover: #b79eea;
+  --olive: #7c3aed; /* deepened tertiary accent */
+  --text: #17102b; /* near-black purple — ~16:1 on --bg */
+  --body: #3f3465; /* muted purple-grey body copy */
+  --muted: #6b6483; /* muted secondary text — ~5.4:1 on --bg */
+  --accent: #6d28d9; /* deepened primary, dark enough so accent-fg text stays AA */
+  --accent-2: #7c3aed; /* secondary brand — ~5:1 on --bg */
+  --accent-fg: #ffffff; /* light text on the accent button */
+  --btn-outline-hover: #ece5fb;
+  --paper: #ece5fb; /* same as surface-2 — light mode has no dark page to invert against */
+  --paper-ink: #17102b;
   --glow: color-mix(in srgb, var(--accent) 20%, transparent); /* lighter bg needs a subtler glow */
 }
 
 @theme inline {
   --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
   --color-border: var(--border);
+  --color-border-hover: var(--border-hover);
   --color-olive: var(--olive);
   --color-text: var(--text);
+  --color-body: var(--body);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
   --color-accent-2: var(--accent-2);
@@ -89,11 +100,12 @@ html {
 
 body {
   position: relative;
-  /* One restrained warm bloom at the very top over a flat olive field — no second
-     off-centre glow, so the surface reads clean and professional rather than murky. */
+  /* One restrained purple bloom at the very top, over the three-stop brand gradient
+     (Background/Primary → Secondary → Surface) — no second off-centre glow, so the
+     surface reads clean and professional rather than murky. */
   background:
     radial-gradient(ellipse 90% 46% at 50% -12%, color-mix(in srgb, var(--accent) 9%, transparent), transparent 62%),
-    var(--bg);
+    linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 45%, var(--surface-2) 100%);
   color: var(--text);
   font-family: var(--font-body), system-ui, sans-serif;
 }
@@ -327,7 +339,7 @@ body::before {
    column is the single most common way a docs site becomes unreadable. */
 .doc-prose {
   max-width: 72ch;
-  color: var(--text);
+  color: var(--body);
   font-size: 1rem;
   line-height: 1.75;
 }
@@ -339,6 +351,7 @@ body::before {
 .doc-prose h2,
 .doc-prose h3,
 .doc-prose h4 {
+  color: var(--text);
   font-family: var(--font-display), system-ui, sans-serif;
   font-weight: 800;
   letter-spacing: -0.02em;

@@ -19,7 +19,7 @@ const base =
 
 const variants: Record<Variant, string> = {
   solid: "bg-accent text-accent-fg hover:brightness-110",
-  outline: "border border-border text-text hover:border-accent hover:text-accent",
+  outline: "border border-border text-text hover:border-accent hover:bg-[var(--btn-outline-hover)] hover:text-accent",
 };
 
 /**

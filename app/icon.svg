@@ -2,30 +2,30 @@
   <defs>
     <!-- centre glyph arc: olive (bottom) -> brass (mid) -> sand (top node) -->
     <linearGradient id="live" x1="24" y1="44" x2="34" y2="20" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#697754"/>
-      <stop offset="52%" stop-color="#99744a"/>
-      <stop offset="100%" stop-color="#dbc2a6"/>
+      <stop offset="0%" stop-color="#c084fc"/>
+      <stop offset="52%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#ffffff"/>
     </linearGradient>
     <!-- gold seal edge, lit from upper-left -->
     <linearGradient id="ring" x1="6" y1="6" x2="58" y2="58" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#b98f5e"/>
-      <stop offset="55%" stop-color="#99744a"/>
-      <stop offset="100%" stop-color="#697754"/>
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="55%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#c084fc"/>
     </linearGradient>
   </defs>
 
   <!-- seal base: rounded square so the mark reads on any browser chrome -->
-  <rect x="2" y="2" width="60" height="60" rx="15" fill="#2d2f23"/>
+  <rect x="2" y="2" width="60" height="60" rx="15" fill="#1e1438"/>
   <!-- double gold edge -->
   <rect x="2.6" y="2.6" width="58.8" height="58.8" rx="14.4" fill="none" stroke="url(#ring)" stroke-width="2.4"/>
-  <rect x="6.5" y="6.5" width="51" height="51" rx="11.5" fill="none" stroke="#99744a" stroke-width="0.9" opacity="0.5"/>
+  <rect x="6.5" y="6.5" width="51" height="51" rx="11.5" fill="none" stroke="#8b5cf6" stroke-width="0.9" opacity="0.5"/>
 
   <!-- centre loop glyph -->
-  <circle cx="32" cy="33" r="13" fill="none" stroke="#697754" stroke-width="2.1" opacity="0.6"/>
+  <circle cx="32" cy="33" r="13" fill="none" stroke="#c084fc" stroke-width="2.1" opacity="0.6"/>
   <path d="M 24.54 43.65 A 13 13 0 0 1 32 20" fill="none" stroke="url(#live)" stroke-width="3.4" stroke-linecap="round"/>
 
   <!-- heartbeat node with soft glow + sand highlight -->
-  <circle cx="32" cy="20" r="4.6" fill="#99744a" opacity="0.18"/>
-  <circle cx="32" cy="20" r="2.9" fill="#99744a"/>
-  <circle cx="30.9" cy="18.9" r="1.05" fill="#dbc2a6"/>
+  <circle cx="32" cy="20" r="4.6" fill="#8b5cf6" opacity="0.18"/>
+  <circle cx="32" cy="20" r="2.9" fill="#8b5cf6"/>
+  <circle cx="30.9" cy="18.9" r="1.05" fill="#ffffff"/>
 </svg>
